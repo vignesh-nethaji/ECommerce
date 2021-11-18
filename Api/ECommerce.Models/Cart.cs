@@ -10,5 +10,8 @@ namespace ECommerce.Models
         public string Date { get; set; }
         public string Quantity { get; set; }
 
+        public virtual User user { get; set; }
+        public virtual Product product { get; set; }
+
     }
 }

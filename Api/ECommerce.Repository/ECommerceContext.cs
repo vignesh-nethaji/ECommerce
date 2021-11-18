@@ -12,5 +12,8 @@ namespace ECommerce.Repository
         {
         }
         public DbSet<User> Users { get; set; } 
+        public DbSet<Catagory> Catagory { get; set; } 
+        public DbSet<Product> Product { get; set; } 
+        public DbSet<Cart> cart { get; set; } 
     }
 }

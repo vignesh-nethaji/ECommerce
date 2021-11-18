@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ECommerce.Repository.Implementation
 {
@@ -14,49 +15,50 @@ namespace ECommerce.Repository.Implementation
             DbContext = context;
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
             T obj = DbContext.Set<T>().Find(id);
             DbContext.Set<T>().Remove(obj);
-            DbContext.SaveChanges();
+            await DbContext.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll()
+        public async Task<List<T>> GetAll()
         {
-            return DbContext.Set<T>();
+            return await DbContext.Set<T>().ToListAsync();
         }
 
-        public T GetById(int id)
+        public async Task<T> GetById(int id)
         {
-            return DbContext.Set<T>().Find(id);
-
+            return await DbContext.Set<T>().FindAsync(id);
         }
 
-        public void Insert(T obj)
+        public async Task<T> Insert(T obj)
         {
-            DbContext.Set<T>().Add(obj);
-            DbContext.SaveChanges();
+            var data = DbContext.Set<T>().Add(obj);
+            await DbContext.SaveChangesAsync();
+            return data.Entity;
         }
 
 
-        public void Update(T obj)
+        public async Task<T> Update(T obj)
         {
             DbContext.Entry(obj).State = EntityState.Modified;
-            DbContext.SaveChanges();
+            await DbContext.SaveChangesAsync();
+            return obj;
         }
 
         private bool disposed = false;
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!disposed)
             {
                 if (disposing)
                 {
                     DbContext.Dispose();
                 }
             }
-            this.disposed = true;
+            disposed = true;
         }
 
         public void Dispose()

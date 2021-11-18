@@ -11,9 +11,9 @@ namespace ECommerce.Repository
         public ECommerceContext(DbContextOptions<ECommerceContext> options) : base(options)
         {
         }
-        public DbSet<User> Users { get; set; } 
-        public DbSet<Catagory> Catagory { get; set; } 
+        public DbSet<User> User { get; set; } 
+        public DbSet<Category> Catagory { get; set; } 
         public DbSet<Product> Product { get; set; } 
-        public DbSet<Cart> cart { get; set; } 
+        public DbSet<Cart> Cart { get; set; } 
     }
 }

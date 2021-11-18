@@ -4,14 +4,14 @@ using System.Text;
 
 namespace ECommerce.Models
 {
-   public class Product
+    public class Product
     {
         public int Id { get; set; }
-        public string title { get; set; }
-        public double price { get; set; }
-        public string description { get; set; }
-        public string image { get; set; }
+        public string Title { get; set; }
+        public double Price { get; set; }
+        public string Description { get; set; }
+        public string Image { get; set; }
 
-        public virtual Catagory Catagory { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

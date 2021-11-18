@@ -13,7 +13,8 @@ namespace ECommerce.Repository
         public static IServiceCollection InitRepository(this IServiceCollection services)
         {
             services.AddEntityFrameworkSqlServer()
-        .AddDbContext<ECommerceContext>(options => options.UseSqlServer("server=localhost;Database=tttttt;Trusted_Connection=True;"));
+                    .AddDbContext<ECommerceContext>(options =>
+                                                    options.UseSqlServer("server=localhost;Database=ECommerce;Trusted_Connection=True;"));
 
             services.AddTransient<IUserRepository, UserRepository>();
             return services;

@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ECommerce.Repository;
+using ECommerce.Services.Implementation;
+using ECommerce.Services.Interfaces;
 
 namespace ECommerce.Services
 {
@@ -9,6 +11,7 @@ namespace ECommerce.Services
         public static IServiceCollection InitServices(this IServiceCollection services)
         {
             services.InitRepository();
+            services.AddTransient<IUserService, UserService>();
             return services;
         }
     }

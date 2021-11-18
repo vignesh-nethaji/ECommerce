@@ -13,7 +13,7 @@ namespace ECommerce.Web
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("hello api");
+            //Console.WriteLine("hello api");
             CreateHostBuilder(args).Build().Run();
         }
 

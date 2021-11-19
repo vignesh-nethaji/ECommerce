@@ -36,3 +36,39 @@
     transform: rotate(360deg);
   }
 }
+
+.LoginPageHeader{
+  margin-left: 30rem;
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+  text-align: center;
+  width: 20rem;
+  height: 100%;
+  /* border-style: groove; */
+  padding: 3rem;
+}
+.LoginInputs{
+  margin-left: 2rem;
+}
+.LoginBtn{
+  margin-left: 15%;
+}
+.HeaderUserCle{
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50% !important;
+  margin-left: 10rem;
+  background-color: #61dafb;
+}
+.HeaderCartCle{
+
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50% !important;
+  background-color: #61dafb;
+}
+.CartIcons{
+  width: 50px;
+  height: 50px;
+  margin-left: 2px;
+}

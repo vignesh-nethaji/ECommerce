@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ECommerce.Models.ViewModels;
+using ECommerce.Web.Helper;
 
 namespace ECommerce.Web.Controllers
 {
@@ -29,6 +30,7 @@ namespace ECommerce.Web.Controllers
         /// Get All user data
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
@@ -53,6 +55,7 @@ namespace ECommerce.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("Get/{id}")]
+        [Authorize]
         public async Task<IActionResult> Get(int id)
         {
             ResponseData<User> response = new ResponseData<User>();
@@ -98,6 +101,7 @@ namespace ECommerce.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPut("Update")]
+        [Authorize]
         public async Task<IActionResult> Update([FromBody] User obj)
         {
             ResponseData<User> response = new ResponseData<User>();
@@ -120,6 +124,7 @@ namespace ECommerce.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpDelete("Delete/{id}")]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             ResponseData<int> response = new ResponseData<int>();
@@ -135,7 +140,6 @@ namespace ECommerce.Web.Controllers
                 response.Message = ex.Message;
                 return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
-
         }
     }
 }

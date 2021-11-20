@@ -18,6 +18,7 @@ namespace ECommerce.Web.Controllers
         {
             _accountService = accountService;
         }
+
         [HttpPost("Login")]
         public async Task<IActionResult> Login(AuthenticateRequest model)
         {

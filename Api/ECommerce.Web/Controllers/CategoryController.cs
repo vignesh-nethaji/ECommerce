@@ -1,6 +1,7 @@
 ﻿using ECommerce.Models;
 using ECommerce.Models.ViewModels;
 using ECommerce.Services.Interfaces;
+using ECommerce.Web.Helper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -30,6 +31,7 @@ namespace ECommerce.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetAll")]
+        [Authorize]
         public async Task<IActionResult> GetAll()
         {
             ResponseData<List<Category>> response = new ResponseData<List<Category>>();
@@ -53,6 +55,7 @@ namespace ECommerce.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("Get/{id}")]
+        [Authorize]
         public async Task<IActionResult> Get(int id)
         {
             ResponseData<Category> response = new ResponseData<Category>();
@@ -68,10 +71,7 @@ namespace ECommerce.Web.Controllers
                 response.Data = null;
                 return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
-
         }
-
     }
-
 }
 

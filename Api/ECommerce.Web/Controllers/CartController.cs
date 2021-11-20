@@ -1,6 +1,7 @@
 ﻿using ECommerce.Models;
 using ECommerce.Models.ViewModels;
 using ECommerce.Services.Interfaces;
+using ECommerce.Web.Helper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -30,6 +31,7 @@ namespace ECommerce.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetAll")]
+        [Authorize]
         public async Task<IActionResult> GetAll()
         {
             ResponseData<List<Cart>> response = new ResponseData<List<Cart>>();
@@ -53,6 +55,7 @@ namespace ECommerce.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("Get/{id}")]
+        [Authorize]
         public async Task<IActionResult> Get(int id)
         {
             ResponseData<Cart> response = new ResponseData<Cart>();
@@ -76,6 +79,7 @@ namespace ECommerce.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("Add")]
+        [Authorize]
         public async Task<IActionResult> Add([FromBody] Cart obj)
         {
             ResponseData<Cart> response = new ResponseData<Cart>();
@@ -98,6 +102,7 @@ namespace ECommerce.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPut("Update")]
+        [Authorize]
         public async Task<IActionResult> Update([FromBody] Cart obj)
         {
             ResponseData<Cart> response = new ResponseData<Cart>();
@@ -120,6 +125,7 @@ namespace ECommerce.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpDelete("Delete/{id}")]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             ResponseData<int> response = new ResponseData<int>();
@@ -135,7 +141,6 @@ namespace ECommerce.Web.Controllers
                 response.Message = ex.Message;
                 return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
-
         }
     }
 }

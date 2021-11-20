@@ -1,4 +1,5 @@
 ﻿using ECommerce.Models;
+using ECommerce.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -15,8 +16,11 @@ namespace ECommerce.Web.Helper
             var user = (User)context.HttpContext.Items["User"];
             if (user == null)
             {
+                var response = new ResponseData<string>();
+                response.Message = "Unauthorized";
+                response.Data = "May be token is invalid or expired";
                 // not logged in
-                context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+                context.Result = new JsonResult(response) { StatusCode = StatusCodes.Status401Unauthorized };
             }
         }
     }

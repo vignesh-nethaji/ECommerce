@@ -1,11 +1,11 @@
 ﻿using ECommerce.Models;
 using ECommerce.Models.ViewModels;
 using ECommerce.Services.Interfaces;
+using ECommerce.Web.Helper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ECommerce.Web.Controllers
@@ -30,6 +30,7 @@ namespace ECommerce.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetAll")]
+        [Authorize]
         public async Task<IActionResult> GetAll()
         {
             ResponseData<List<Product>> response = new ResponseData<List<Product>>();
@@ -53,6 +54,7 @@ namespace ECommerce.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("Get/{id}")]
+        [Authorize]
         public async Task<IActionResult> Get(int id)
         {
             ResponseData<Product> response = new ResponseData<Product>();
@@ -76,6 +78,7 @@ namespace ECommerce.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("Add")]
+        [Authorize]
         public async Task<IActionResult> Add([FromBody] Product obj)
         {
             ResponseData<Product> response = new ResponseData<Product>();
@@ -98,6 +101,7 @@ namespace ECommerce.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPut("Update")]
+        [Authorize]
         public async Task<IActionResult> Update([FromBody] Product obj)
         {
             ResponseData<Product> response = new ResponseData<Product>();
@@ -120,6 +124,7 @@ namespace ECommerce.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpDelete("Delete/{id}")]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
             ResponseData<int> response = new ResponseData<int>();
@@ -135,8 +140,6 @@ namespace ECommerce.Web.Controllers
                 response.Message = ex.Message;
                 return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
-
         }
     }
-    
 }

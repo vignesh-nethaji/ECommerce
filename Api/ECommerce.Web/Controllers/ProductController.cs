@@ -35,7 +35,7 @@ namespace ECommerce.Web.Controllers
             ResponseData<List<Product>> response = new ResponseData<List<Product>>();
             try
             {
-                response.Message = "Read product detail";
+                response.Message = "Read product Data";
                 response.Data = await _productService.GetAll();
                 return Ok(response);
             }
@@ -58,7 +58,7 @@ namespace ECommerce.Web.Controllers
             ResponseData<Product> response = new ResponseData<Product>();
             try
             {
-                response.Message = "product detail read by id";
+                response.Message = "product data read by id";
                 response.Data = await _productService.Get(id);
                 return Ok(response);
             }
@@ -82,7 +82,7 @@ namespace ECommerce.Web.Controllers
             try
             {
                 response.Data = await _productService.Insert(obj);
-                response.Message = "product detail Added";
+                response.Message = "product data Added";
                 return Ok(response);
             }
             catch (Exception ex)

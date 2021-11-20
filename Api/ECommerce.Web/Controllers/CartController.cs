@@ -58,7 +58,7 @@ namespace ECommerce.Web.Controllers
             ResponseData<Cart> response = new ResponseData<Cart>();
             try
             {
-                response.Message = "Cart Data read by Category id";
+                response.Message = "Cart by id";
                 response.Data = await _cartService.Get(id);
                 return Ok(response);
             }
@@ -82,7 +82,7 @@ namespace ECommerce.Web.Controllers
             try
             {
                 response.Data = await _cartService.Insert(obj);
-                response.Message = "This Product is added in cart";
+                response.Message = " Product is added in cart";
                 return Ok(response);
             }
             catch (Exception ex)

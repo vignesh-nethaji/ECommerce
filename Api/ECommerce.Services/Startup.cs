@@ -12,6 +12,9 @@ namespace ECommerce.Services
         {
             services.InitRepository();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ICartService, CartService>();
             services.AddTransient<IAccountService, AccountService>();
             return services;
         }

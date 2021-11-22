@@ -1,46 +1,46 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText, Col, Row, CardHeader } from 'reactstrap';
 
-const SignUpPage = () => {
-    var [emilidvld, setEmilidvld] = useState();
-    var [passwordvld, setPasswordvld] = useState();
-    var [usernamevld, setUsernamevld] = useState();
-    var [firstnamevld, setFirstnamevld] = useState();
-    var [lastnamevld, setLastnamevld] = useState();
-    var [cityvld, setCityvld] = useState();
-    var [addressvld, setAddressvld] = useState();
-    var [zipcodevld, setZipcodevld] = useState();
+const SignUpPage = ({ initialValue, ...rest }) => {
+    var [emilidvld, setEmilidvld] = useState(initialValue || "");
+    var [passwordvld, setPasswordvld] = useState(initialValue || "");
+    var [usernamevld, setUsernamevld] = useState(initialValue || "");
+    var [firstnamevld, setFirstnamevld] = useState(initialValue || "");
+    var [lastnamevld, setLastnamevld] = useState(initialValue || "");
+    var [cityvld, setCityvld] = useState(initialValue || "");
+    var [addressvld, setAddressvld] = useState(initialValue || "");
+    var [zipcodevld, setZipcodevld] = useState(initialValue || "");
 
     const Emailidvld = (e) => {
-        setEmilidvld(e.targer.value)
+        setEmilidvld(e.currentTarget.value);
     }
 
     const UserNamevld = (e) => {
-        setUsernamevld(e.targer.value)
+        setUsernamevld(e.currentTarget.value);
     }
 
     const PassWordvld = (e) => {
-        setPasswordvld(e.targer.value)
+        setPasswordvld(e.currentTarget.value)
     }
 
     const FirstNamevld = (e) => {
-        setFirstnamevld(e.targer.value)
+        setFirstnamevld(e.currentTarget.value)
     }
 
     const LastNamevld = (e) => {
-        setLastnamevld(e.targer.value)
+        setLastnamevld(e.currentTarget.value)
     }
 
     const Cityvld = (e) => {
-        setCityvld(e.targer.value)
+        setCityvld(e.currentTarget.value)
     }
 
     const Addressvld = (e) => {
-        setAddressvld(e.targer.value)
+        setAddressvld(e.currentTarget.value)
     }
 
     const Zipcodevld = (e) => {
-        setZipcodevld(e.targer.value)
+        setZipcodevld(e.currentTarget.value)
     }
 
     const Onsubmit_Function = () => {
@@ -55,7 +55,7 @@ const SignUpPage = () => {
                         <Form>
                             <FormGroup>
                                 <Label for="exampleEmail">Email</Label>
-                                <Input type="email" name="email" id="exampleEmail" placeholder="Email ID" value={emilidvld} onChange={(e) => { Emailidvld(e) }} />
+                                <Input type="email" name="email" id="exampleEmail" placeholder="Email ID" value={emilidvld} onChange={(e) => Emailidvld(e)} />
                                 <FormText >Please Fill Email Format</FormText>
                             </FormGroup>
                             <FormGroup>
@@ -98,7 +98,18 @@ const SignUpPage = () => {
                         </Form>
                     </CardHeader>
                 </Col>
-                <Col md="3"></Col>
+                <Col md="3">
+                    <div>
+                        <p>{emilidvld}</p>
+                        <p>{passwordvld}</p>
+                        <p>{usernamevld}</p>
+                        <p>{firstnamevld}</p>
+                        <p>{lastnamevld}</p>
+                        <p>{cityvld}</p>
+                        <p>{addressvld}</p>
+                        <p>{zipcodevld}</p>
+                    </div>
+                </Col>
             </Row>
         </div>
 

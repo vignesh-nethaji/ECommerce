@@ -1,13 +1,14 @@
-import { Card, CardHeader, Row, Col, Input, InputGroup, InputGroupText, Button } from 'reactstrap';
+import { CardHeader, Row, Col, Input, InputGroup, InputGroupText, Button } from 'reactstrap';
 import { IoSearchSharp } from "react-icons/io5";
 import { BsCartCheckFill } from "react-icons/bs";
+import { FaUserCircle } from "react-icons/fa";
 
 const HeaderPage = () => {
     return (
         <div>
             <CardHeader>
                 <Row>
-                    <Col md="2"><h4 style={{ fontFamily: "monospace" }}>Zero Dot One</h4></Col>
+                    <Col md="3"><h4 style={{ fontFamily: "monospace" }}>Zero Dot One</h4></Col>
                     <Col md="6">
                         <InputGroup>
                             <Input placeholder="Search Product" />
@@ -20,12 +21,10 @@ const HeaderPage = () => {
                         <Button href="/">Login</Button>
                     </Col>
                     <Col md="1">
-                        <BsCartCheckFill className="CartIcons" />
+                        <FaUserCircle className="CartIcons" />
                     </Col>
                     <Col md="1">
-                        <Card className="HeaderUserCle">
-                            <h2>hii</h2>
-                        </Card>
+                        <BsCartCheckFill className="CartIcons" />
                     </Col>
                 </Row>
             </CardHeader>

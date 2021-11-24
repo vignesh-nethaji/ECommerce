@@ -24,7 +24,9 @@ const HeaderPage = () => {
                         <FaUserCircle className="CartIcons" />
                     </Col>
                     <Col md="1">
-                        <BsCartCheckFill className="CartIcons" />
+                        <a href="/ZeroDotOne/CartDetailsPage">
+                            <BsCartCheckFill className="CartIcons" />
+                        </a>
                     </Col>
                 </Row>
             </CardHeader>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText, Col, Row, CardHeader } from 'reactstrap';
-import axios from "axios";
 
 const SignUpPage = ({ initialValue, ...rest }) => {
     var [emilidvld, setEmilidvld] = useState(initialValue || "");
@@ -12,27 +11,8 @@ const SignUpPage = ({ initialValue, ...rest }) => {
     var [addressvld, setAddressvld] = useState(initialValue || "");
     var [zipcodevld, setZipcodevld] = useState(initialValue || "");
 
-    
     const Onsubmit_Function = () => {
-        debugger;
-        axios.post("http://localhost:40073/api/User/Add", {
 
-            "id": 0,
-  "email": emilidvld,
-  "username": usernamevld,
-  "password": passwordvld,
-  "firstname": firstnamevld,
-  "lastname": lastnamevld,
-  "address": addressvld,
-  "city": cityvld,
-  "zipcode": zipcodevld,
-  "phoneNumber": "string"
-
-        }).then((response) => { JSON.stringify(response)})
-        .catch(error => {
-            console.log(error);
-
-        });
     }
     return (
         <div>

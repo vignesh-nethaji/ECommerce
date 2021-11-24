@@ -66,7 +66,18 @@ const SignUpPage = ({ initialValue, ...rest }) => {
                         </Form>
                     </CardHeader>
                 </Col>
-                <Col md="3"></Col>
+                <Col md="3">
+                    <div>
+                        <p>{emilidvld}</p>
+                        <p>{passwordvld}</p>
+                        <p>{usernamevld}</p>
+                        <p>{firstnamevld}</p>
+                        <p>{lastnamevld}</p>
+                        <p>{cityvld}</p>
+                        <p>{addressvld}</p>
+                        <p>{zipcodevld}</p>
+                    </div>
+                </Col>
             </Row>
         </div>
 

@@ -18,10 +18,10 @@ const HeaderPage = () => {
                         </InputGroup>
                     </Col>
                     <Col md="1">
-                        <Button href="/">Login</Button>
+                        <Button href="/">LogOut</Button>
                     </Col>
                     <Col md="1">
-                        <FaUserCircle className="CartIcons" />
+                        <a href="/UserDetails"><FaUserCircle className="CartIcons" /></a>
                     </Col>
                     <Col md="1">
                         <a href="/ZeroDotOne/CartDetailsPage">

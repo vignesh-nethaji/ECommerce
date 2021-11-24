@@ -4,7 +4,11 @@ const CartDetailsPage = () => {
     console.log(orders)
     return (
         <div>
-
+            {orders.map((items) => (
+                <div>
+                    <p>{items.id}</p>
+                </div>
+            ))}
         </div>
     )
 }

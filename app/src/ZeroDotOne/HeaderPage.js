@@ -21,10 +21,12 @@ const HeaderPage = () => {
                         <Button href="/">LogOut</Button>
                     </Col>
                     <Col md="1">
-                        <FaUserCircle className="CartIcons" href="/UserDelete" />
+                        <a href="/UserDetails"><FaUserCircle className="CartIcons" /></a>
                     </Col>
                     <Col md="1">
-                        <BsCartCheckFill className="CartIcons" />
+                        <a href="/ZeroDotOne/CartDetailsPage">
+                            <BsCartCheckFill className="CartIcons" />
+                        </a>
                     </Col>
                 </Row>
             </CardHeader>

@@ -45,6 +45,8 @@
     setErrorMessageuser("please enter the correct username");
     }
     console.log(data);
+    localStorage.setItem("UserIdDetails", data.data.data.id)
+    localStorage.setItem("UserTokenDetails", data.data.data.token)
     })
     .catch(error => {
     console.log(error);

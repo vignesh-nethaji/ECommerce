@@ -104,7 +104,7 @@ namespace ECommerce.Web.Controllers
         {
             ResponseData<Category> response = new ResponseData<Category>();
             try
-            { 
+            {
                 response.Data = await _categoryService.Update(obj);
                 response.Message = "category list updated";
                 return Ok(response);

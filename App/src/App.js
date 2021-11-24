@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
 import HomePage from "./ZeroDotOne/Homepage";
+import UserDetails from "./UserDetails"
 import 'bootstrap/dist/css/bootstrap.css';
+
 
 
 function App() {
@@ -14,6 +16,7 @@ function App() {
           <Route exact path="/" element={<LoginPage />}></Route>
           <Route path="/SignUpPage" element={<SignUpPage />}></Route>
           <Route path="/ZeroDotOne/HomePage" element={<HomePage />}></Route>
+          <Route path="/UserDetails"element={<UserDetails />}></Route>
         </Routes>
       </Router>
     </div>

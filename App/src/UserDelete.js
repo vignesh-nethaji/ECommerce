@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+
 import axios from "axios";
 
 
 const Delete = () => {
-    axios.post("http://localhost:40073/api/User/Delete", {
+    axios.delete("http://localhost:40073/api/User/Delete", {
         "id": 0,
         "email": emailidvld,
         "username": usernamevld,

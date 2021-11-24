@@ -21,7 +21,7 @@ const HeaderPage = () => {
                         <Button href="/">LogOut</Button>
                     </Col>
                     <Col md="1">
-                        <FaUserCircle className="CartIcons" />
+                        <FaUserCircle className="CartIcons" href="/UserDelete" />
                     </Col>
                     <Col md="1">
                         <BsCartCheckFill className="CartIcons" />

@@ -28,7 +28,7 @@ const SignUpPage = () => {
         }
     
          else if( passwordvld.length < 7) {
-            alert('Enter Password');
+            alert('Password is too Short');
             return false;
         }
         else if(usernamevld ==='') {

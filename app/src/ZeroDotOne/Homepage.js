@@ -11,15 +11,35 @@ import {
 } from "reactstrap";
 import HeaderPage from "./HeaderPage";
 import SidePage from "./SidePage";
+import axios from "axios";
 
+import { AiOutlineMore } from "react-icons/ai";
+  
 const HomePage = () => {
 
-    const [UserName, setUserName] = useState([]);
+    const [product, setProduct] = useState([]); 
+    const token = localStorage.getItem("UserTokenDetails")
     useEffect(() => {
-        fetch("https://fakestoreapi.com/products")
-            .then((response) => response.json())
-            .then((data) => setUserName(data));
-    }, [])
+
+    //      axios.get("http://localhost:40073/api/Product/GetAll", {
+    //         headers: {"Authorization" : `Bearer ${token}`} }
+    //         )
+    //     }),[token])
+    //     .then((data) =>(data.data.data))
+    //     .then((data) =>(console.log(data))) 
+    //     .then((res)=> setUserName(res))
+    //     .catch(error => {
+    //         console.log(error);
+
+    //     }); 
+    //  }, []) 
+     
+     axios.get(("http://localhost:40073/api/Product/GetAll"),
+    { headers: {"Authorization" : `Bearer ${token}`} }
+    )
+    .then(res => {setProduct(res.data.data)})
+   },[token])
+console.log(product);
     return (
         <div>
             <div>
@@ -31,7 +51,7 @@ const HomePage = () => {
                 <Col md="9" >
                     <Button href="../ZeroDotOne/CreateProduct">Add Product</Button>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridGap: 10, }}>
-                        {UserName.map((postDetails, i) =>
+                        {product.map((postDetails, i) =>
                             <div key={i} className="mt-5">
                                 <Col md="10">
                                     <Card className="homecard">
@@ -46,8 +66,9 @@ const HomePage = () => {
                                             <CardText tag="h5"> $ {postDetails.price}{" "}<s> ${postDetails.price + 199}</s></CardText>
                                         </CardBody>
                                         <CardFooter>
-                                            <Button className="mobilebtn">
-                                                ${postDetails.price}{" "}<s> ${postDetails.price + 199}</s>
+ 
+                                            <Button className="mobilebtn" value= {postDetails.id}>
+                                               Add To Cart  
                                             </Button>
                                         </CardFooter>
                                     </Card>

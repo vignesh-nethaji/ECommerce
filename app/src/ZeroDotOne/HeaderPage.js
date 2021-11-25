@@ -1,6 +1,6 @@
 import { CardHeader, Row, Col, Input, InputGroup, InputGroupText, Button } from 'reactstrap';
 import { IoSearchSharp } from "react-icons/io5";
-import { BsCartCheckFill } from "react-icons/bs";
+import { BsCartCheckFill,BsThreeDotsVertical } from "react-icons/bs";
 import { FaUserCircle } from "react-icons/fa";
 
 const HeaderPage = () => {
@@ -18,13 +18,16 @@ const HeaderPage = () => {
                         </InputGroup>
                     </Col>
                     <Col md="1">
-                        <Button href="/">Login</Button>
+                        <Button href="/">LogOut</Button>
                     </Col>
                     <Col md="1">
-                        <FaUserCircle className="CartIcons" />
+                        <a href="/ZeroDotOne/UserDetails"><FaUserCircle className="CartIcons" /></a>
                     </Col>
                     <Col md="1">
-                        <BsCartCheckFill className="CartIcons" />
+                        <a href="/ZeroDotOne/CartDetailsPage">
+                            <BsCartCheckFill className="CartIcons" />
+                        </a>
+                        <BsThreeDotsVertical/>
                     </Col>
                 </Row>
             </CardHeader>

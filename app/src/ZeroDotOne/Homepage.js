@@ -11,24 +11,15 @@ import {
 } from "reactstrap";
 import HeaderPage from "./HeaderPage";
 import SidePage from "./SidePage";
-import axios from "axios";
-import { AiOutlineMore } from "react-icons/ai";
 
 const HomePage = () => {
 
-    const [UserName, setUserName] = useState([]); 
+    const [UserName, setUserName] = useState([]);
     useEffect(() => {
-
-         axios.get("http://localhost:40073/api/Product/GetAll", {
-
-        })
-        .then((data) =>(data.data.data))
-        .then((res)=> setUserName(res))
-        .catch(error => {
-            console.log(error);
-
-        }); 
-     }, []) 
+        fetch("https://fakestoreapi.com/products")
+            .then((response) => response.json())
+            .then((data) => setUserName(data));
+    }, [])
     return (
         <div>
             <div>
@@ -55,8 +46,8 @@ const HomePage = () => {
                                             <CardText tag="h5"> $ {postDetails.price}{" "}<s> ${postDetails.price + 199}</s></CardText>
                                         </CardBody>
                                         <CardFooter>
-                                            <Button className="mobilebtn" value= {postDetails.id}>
-                                               Add To Cart
+                                            <Button className="mobilebtn">
+                                                ${postDetails.price}{" "}<s> ${postDetails.price + 199}</s>
                                             </Button>
                                         </CardFooter>
                                     </Card>

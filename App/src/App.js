@@ -5,6 +5,7 @@ import SignUpPage from "./SignUpPage";
 import HomePage from "./ZeroDotOne/Homepage";
 import 'bootstrap/dist/css/bootstrap.css';
 import AddCategory from './ZeroDotOne/AddCategory';
+import UserDetails from './UserDetails';
 
 
 
@@ -17,6 +18,8 @@ function App() {
           <Route path="/SignUpPage" element={<SignUpPage />}></Route>
           <Route path="/ZeroDotOne/HomePage" element={<HomePage />}></Route>
           <Route path="/ZeroDotOne/AddCategory" element={<AddCategory />}></Route>
+          <Route path="/ZeroDotOne/UserDetails" element={<UserDetails />}></Route>
+
         </Routes>
       </Router>
     </div>

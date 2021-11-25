@@ -13,7 +13,7 @@ namespace ECommerce.Models
         public string Description { get; set; }
         public string Image { get; set; }
         [ForeignKey("CategoryId")]
-        public int CategoryId { get; set; }
+        public int CategoryId { get; set; }  
         public virtual Category Category { get; set; }
     }
 }

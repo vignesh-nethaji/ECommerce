@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react"; 
 import Datatable from "./DataTable";
-import { Table } from "reactstrap";
+import { Button, Table } from "reactstrap";
+import { useNavigate } from "react-router-dom";
   
 
 const UserDetails =() =>{
 
-    const UserId = localStorage.getItem("UserIdDetails")
+    const navigate = useNavigate();
     const token = localStorage.getItem("UserTokenDetails")
     const [userDetails, setUserDetails] = useState([])
 
@@ -16,10 +17,14 @@ const UserDetails =() =>{
     )
     .then(res => {setUserDetails(res.data.data)})
    },[token])
-   console.log(userDetails);
-   console.log(UserId);  
+   console.log(userDetails); 
+   
+   const AddUser =()=>{
+    navigate("/ZeroDotOne/AddUser")
+}
     return(
         <div>
+             <Button href="/ZeroDotOne/AddUser">Add User</Button>
             <Table responsive>
                 <thead>
                     <tr>
@@ -38,8 +43,8 @@ const UserDetails =() =>{
                 </thead>
                 <tbody>
                 {userDetails.map((items,i)=>
-                <Datatable UserDataTable={items} i={i} key={items.id}/>
-            )}
+                    <Datatable UserDataTable={items} i={i} key={items.id}/>
+                )}
                 </tbody>
             </Table>
         </div>

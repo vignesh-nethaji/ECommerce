@@ -11,6 +11,7 @@ import {
 } from "reactstrap";
 import HeaderPage from "./HeaderPage";
 import SidePage from "./SidePage";
+import {AiOutlineMore} from "react-icons/ai";
 
 const HomePage = () => {
 

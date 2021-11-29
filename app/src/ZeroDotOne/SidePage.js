@@ -8,9 +8,9 @@ const SidePage = () => {
 
     useEffect(() => {
         axios.get(("http://localhost:40073/api/Category/GetAll"),
-        { headers: {"Authorization" : `Bearer ${token}`} }
+            { headers: { "Authorization": `Bearer ${token}` } }
         )
-        .then(res => {setCategory(res.data.data)})
+            .then(res => { setCategory(res.data.data) })
     }, [token])
     console.log(category)
 
@@ -22,17 +22,17 @@ const SidePage = () => {
         localStorage.setItem("CategoryIds", id)
 
     }
-    
+
     return (
         <div>
             <CardHeader>
-                <h3 onClick={()=> SelectCategory()}> Category </h3>
+                <h3 onClick={() => SelectCategory()}> Category </h3>
                 {on ?
-                    category.map((item) =>
-                        <p onClick={() => CategoryName(item.id)}>{item.name}</p>
+                    category.map((item, i) =>
+                        <p key={i} onClick={() => CategoryName(item.id)}>{item.name}</p>
                     )
                     : ''}
-                
+
             </CardHeader>
         </div>
 

@@ -44,7 +44,6 @@ const CategoryDetails = () => {
                         timer: 2000,
                         button: false
                     })
-
                     this.setState({ redirect: this.state.redirect === false });
                 })
                 .catch(error => {

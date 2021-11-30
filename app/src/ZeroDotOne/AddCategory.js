@@ -54,7 +54,6 @@ const AddCategory = () => {
             return false;
         }
         else {
-
             axios.post("http://localhost:40073/api/Category/Add", {
                 "id": 0,
                 "name": categoryName
@@ -65,7 +64,6 @@ const AddCategory = () => {
                 })
             navigate("/ZeroDotOne/CategoryDetails");
         }
-
     }
     const CategoryDetailsUpdate = () => {
 

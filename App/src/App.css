@@ -68,18 +68,11 @@
   background-color: #61dafb;
 }
 .CartIcons{
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   margin-left: 2px;
-  color: #282c34;
 }
 .homecard{
   width: 100%;
   height: 652px;
-}
-.btn-secondary{
-  border: 0px;
-  background-color: #f7f7f7 !important;
-  border-color:#f7f7f7 !important;
-  color: black !important;
 }

@@ -31,7 +31,7 @@ namespace ECommerce.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetAll")]
-      //  [Authorize]
+        [Authorize]
         public async Task<IActionResult> GetAll()
         {
             ResponseData<List<Category>> response = new ResponseData<List<Category>>();

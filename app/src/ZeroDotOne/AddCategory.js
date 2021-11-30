@@ -10,15 +10,22 @@ const AddCategory = () => {
     const id = useContext(Context);
     console.log(id)
 
-    const [categoryName, setCategoryName] = useState("");
+    const [categoryName, setCategoryName] = useState('');
 
     const [categoryDetails, setCategoryDetails] = useState([])
+
+    const [on, setOn] = useState(true);
+    const [off, setOff] = useState(false);
+
     // const [addCategory, setAddCategory] = useState([])
     const token = localStorage.getItem("UserTokenDetails");
 
 
     useEffect(() => {
         if (id !== 0 && id !== undefined) {
+            setOn(false);
+            setOff(true);
+
             axios.get(("http://localhost:40073/api/Category/Get/" + id),
                 { headers: { "Authorization": `Bearer ${token}` } }
             )
@@ -26,7 +33,8 @@ const AddCategory = () => {
                 .catch(err => {
                     console.log(err)
                 })
-        } else {
+        }
+        else {
             setCategoryName('');
         }
     }, [id, token])
@@ -42,44 +50,45 @@ const AddCategory = () => {
 
     }, [categoryDetails])
 
-    const Onsubmit_Function = () => {
+    const CategoryDetailsSubmit = () => {
 
-        if (categoryDetails !== null && id !== undefined) {
 
-            if (categoryName === '') {
-                alert("Please Add category");
-                return false;
-            } else {
-                axios.put("http://localhost:40073/api/Category/Update", {
-                    "id": categoryDetails.id,
-                    "name": categoryName
-                }, { headers: { "Authorization": `Bearer ${token}` } })
-                    .then((res) => { JSON.stringify(res) })
-                    .catch(Error => {
-                        console.log(Error)
-                    })
-                navigate("/ZeroDotOne/CategoryDetails");
-            }
-        } else {
+        if (categoryName === '' || categoryName === undefined || categoryName === null) {
+            alert("Please Add category");
+            return false;
+        }
+        else {
 
-            if (categoryName === '') {
-                alert("Please Add category");
-                return false;
-            } else {
-                axios.post("http://localhost:40073/api/Category/Add", {
-                    "id": 0,
-                    "name": categoryName
+            axios.post("http://localhost:40073/api/Category/Add", {
+                "id": 0,
+                "name": categoryName
+            })
+                .then((res) => { JSON.stringify(res) })
+                .catch(Error => {
+                    console.log(Error)
                 })
-                    .then((res) => { JSON.stringify(res) })
-                    .catch(Error => {
-                        console.log(Error)
-                    })
+            navigate("/ZeroDotOne/CategoryDetails");
+        }
 
-            }
+    }
+    const CategoryDetailsUpdate = () => {
 
+        if (categoryName === '' || categoryName === undefined || categoryName === null) {
+            alert("Please Add category");
+            return false;
+        }
+        else {
+            axios.put("http://localhost:40073/api/Category/Update", {
+                "id": categoryDetails.id,
+                "name": categoryName
+            }, { headers: { "Authorization": `Bearer ${token}` } })
+                .then((res) => { JSON.stringify(res) })
+                .catch(Error => {
+                    console.log(Error)
+                })
+            navigate("/ZeroDotOne/CategoryDetails");
         }
     }
-
     return (
         <div>
             <Row>
@@ -93,11 +102,20 @@ const AddCategory = () => {
                             </FormGroup>
                         </Form>
                     </CardHeader>
-                    <Button onClick={() => Onsubmit_Function()}>Submit</Button>
+
+                    {<Button href="/ZeroDotOne/CategoryDetails">Back </Button>}
+
+                    {on ?
+                        <Button onClick={() => { CategoryDetailsSubmit() }}>Submit</Button>
+                        : ''}
+
+                    {off ?
+
+                        <Button onClick={() => { CategoryDetailsUpdate() }}>Update </Button>
+                        : ''}
                 </Col>
             </Row>
         </div>
-
     )
 }
 export default AddCategory;

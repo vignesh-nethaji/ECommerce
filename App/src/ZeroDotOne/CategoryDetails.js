@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Table } from "reactstrap";
 import AddCategory from "./AddCategory";
+import swal from "sweetalert";
 
 export const Context = React.createContext();
 
@@ -12,8 +13,7 @@ const CategoryDetails = () => {
     const [categoryEditID, setCategoryEditID] = useState(0);
     const [on, setOn] = useState(true);
     const [off, setOff] = useState(false);
-
-    const getCategoryDetails = () => {
+    const getallCategoryDetails = () => {
         axios.get(("http://localhost:40073/api/Category/GetAll"),
             { headers: { "Authorization": `Bearer ${token}` } }
         )
@@ -21,24 +21,39 @@ const CategoryDetails = () => {
     }
 
     useEffect(() => {
-        getCategoryDetails();
+        getallCategoryDetails();
     }, [token])
     console.log(categoryDetails);
 
     const CategoryDetailsEdit = (id) => {
         setCategoryEditID(id);
         setOff(true);
-        setOn(false);
+        setOn(false); {
+
+        }
     }
     const CategoryDetailsDelete = (id) => {
+        if (window.confirm(' a category ')) {
+            axios.delete(("http://localhost:40073/api/Category/Delete/" + id),
+                { headers: { "Authorization": `Bearer ${token}` } }
+            )
+                .then(res => {
+                    getallCategoryDetails();
+                    swal({
+                        title: "Done",
+                        text: "*category Name is deleted*",
+                        icon: "success",
+                        timer: 2000,
+                        button: false
+                    })
 
-        axios.delete(("http://localhost:40073/api/Category/Delete/" + id),
-            { headers: { "Authorization": `Bearer ${token}` } }
-        )
-            .catch(error => {
-                console.log(error);
-            });
-        getCategoryDetails()
+                    this.setState({ redirect: this.state.redirect === false });
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+
     }
     return (
         <div>
@@ -63,9 +78,8 @@ const CategoryDetails = () => {
                                     <td>{UserDataTable.name}</td>
                                     <td>
                                         <Button onClick={() => { CategoryDetailsEdit(UserDataTable.id) }}>Edit</Button>{'  '}
-                                        <Button onClick={() => { CategoryDetailsDelete(UserDataTable.id) }}> Delete</Button>{'  '}
+                                        <Button onClick={() => { CategoryDetailsDelete(UserDataTable.id) }}> Delete</Button>
                                     </td></tr>
-
                             )}
                         </tbody>
                     </Table>
@@ -77,4 +91,5 @@ const CategoryDetails = () => {
         </div>
     )
 }
+
 export default CategoryDetails;

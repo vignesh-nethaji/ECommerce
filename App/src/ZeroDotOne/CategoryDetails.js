@@ -28,9 +28,7 @@ const CategoryDetails = () => {
     const CategoryDetailsEdit = (id) => {
         setCategoryEditID(id);
         setOff(true);
-        setOn(false); {
-
-        }
+        setOn(false);
     }
     const CategoryDetailsDelete = (id) => {
         if (window.confirm(' a category ')) {

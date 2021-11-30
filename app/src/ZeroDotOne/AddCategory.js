@@ -40,19 +40,15 @@ const AddCategory = () => {
     }, [id, token])
 
     console.log(categoryDetails);
-
     useEffect(() => {
         if (categoryDetails !== null && categoryDetails.id !== 0) {
             setCategoryName(categoryDetails.name);
         } else {
             setCategoryName('')
         }
-
     }, [categoryDetails])
 
     const CategoryDetailsSubmit = () => {
-
-
         if (categoryName === '' || categoryName === undefined || categoryName === null) {
             alert("Please Add category");
             return false;

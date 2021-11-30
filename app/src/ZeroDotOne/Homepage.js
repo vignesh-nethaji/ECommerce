@@ -26,7 +26,9 @@ const HomePage = () => {
         )
             .then(res => { setProduct(res.data.data) })
     }, [token])
+
     console.log(product);
+    
 
     const AddToCart = (productId) => {
         var today = new Date();

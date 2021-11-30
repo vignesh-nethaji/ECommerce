@@ -86,7 +86,7 @@ const AddCategory = () => {
                 .catch(Error => {
                     console.log(Error)
                 })
-            navigate("/ZeroDotOne/CategoryDetails");
+            window.location.reload();
         }
     }
     return (

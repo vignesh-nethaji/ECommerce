@@ -8,26 +8,17 @@ import SidePage from "./SidePage";
 
 const AddCategory = () => {
     const navigate = useNavigate()
-
     const id = useContext(Context);
-    console.log(id)
-
     const [categoryName, setCategoryName] = useState('');
-
     const [categoryDetails, setCategoryDetails] = useState([])
-
     const [on, setOn] = useState(true);
     const [off, setOff] = useState(false);
-
-    // const [addCategory, setAddCategory] = useState([])
     const token = localStorage.getItem("UserTokenDetails");
-
 
     useEffect(() => {
         if (id !== 0 && id !== undefined) {
             setOn(false);
             setOff(true);
-
             axios.get(("http://localhost:40073/api/Category/Get/" + id),
                 { headers: { "Authorization": `Bearer ${token}` } }
             )
@@ -40,8 +31,6 @@ const AddCategory = () => {
             setCategoryName('');
         }
     }, [id, token])
-
-    console.log(categoryDetails);
     useEffect(() => {
         if (categoryDetails !== null && categoryDetails.id !== 0) {
             setCategoryName(categoryDetails.name);

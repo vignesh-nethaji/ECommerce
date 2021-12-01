@@ -32,7 +32,6 @@ const CreateProduct = () => {
 
 
   useEffect(() => {
-    debugger
     if (singleProdDtls !== null && singleProdDtls !== "" && singleProdDtls !== undefined) {
 
       setDdlCategory(singleProdDtls.categoryId);
@@ -50,9 +49,7 @@ const CreateProduct = () => {
       })
         .then((res) => (res.data.data))
         .then((res) => (setSingleCategory(res)))
-        .then((res) => (console.log("nathan nan", res)))
       setOffVal(true);
-
     }
     else {
       axios.get("http://localhost:40073/api/Category/GetAll", {
@@ -62,7 +59,6 @@ const CreateProduct = () => {
         }
       })
         .then((res) => (res.data.data))
-        // .then(console.log("Single Product " + productId))
         .then((res) => (setCategory(res)))
       setOnVal(true);
     }
@@ -81,28 +77,15 @@ const CreateProduct = () => {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     }
-    // console.log(JSON.stringify(headers));
     axios.post("http://localhost:40073/api/Product/Add", ProductDtls, {
       headers: headers
     })
       .then((res) => (res))
-      //.then((res) => (console.log(res)))
       .then((res) => (setAddProduct(res)))
     if (addProduct.status === 200 && addProduct.data.data.message === "product data Added") {
       alert("product data Added");
     }
   }
-  console.log(addProduct);
-
-  // const EditProductDtls = (productId) => {
-
-  //   axios.get(("http://localhost:40073/api/Product/Get/" + productId),
-  //     { headers: { "Authorization": `Bearer ${token}` } }
-  //   )
-  //     .then(res => { setEditproductDtls(res.data.data) })
-
-  // }
-
   const UpdateProduct = () => {
     const edidProductDtls = {
       "Id": prodId,
@@ -130,9 +113,6 @@ const CreateProduct = () => {
     setTxtImg("");
     setTxtId(0);
   }
-  //   function changeHandler(colors) {
-  //     console.log(colors);
-  // }
 
   return (
 
@@ -148,7 +128,7 @@ const CreateProduct = () => {
           <Col md="3" > <SidePage /></Col>
           : ''}
         <Col md="9" >
-        <Button href="../ZeroDotOne/HomePage">Back</Button>
+          <Button href="../ZeroDotOne/HomePage">Back</Button>
           <CardHeader className="">
             <div >
               <Label id="lblCat">Category</Label>

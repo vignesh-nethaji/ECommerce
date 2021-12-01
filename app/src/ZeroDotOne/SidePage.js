@@ -12,7 +12,6 @@ const SidePage = () => {
         )
             .then(res => { setCategory(res.data.data) })
     }, [token])
-    console.log(category)
 
     const SelectCategory = () => {
         setOn(true)
@@ -25,8 +24,8 @@ const SidePage = () => {
 
     return (
         <div>
-            <CardHeader>
-                <h3 onClick={() => SelectCategory()}> Category </h3>
+            <CardHeader onClick={() => SelectCategory()}>
+                <h3> Category </h3>
                 {on ?
                     category.map((item, i) =>
                         <p key={i} onClick={() => CategoryName(item.id)}>{item.name}</p>

@@ -15,6 +15,7 @@ const UserDetails = () => {
     const [userEditID, setUserEditID] = useState(0);
     const [on, setOn] = useState(true);
     const [off, setOff] = useState(false);
+
     const getallUserDetails = () => {
         axios.get(("http://localhost:40073/api/User/GetAll"),
             { headers: { "Authorization": `Bearer ${token}` } }
@@ -25,18 +26,12 @@ const UserDetails = () => {
 
     useEffect(() => {
         getallUserDetails();
-    }, [token])
-    console.log(userDetails);
-
+    }, [token]);
     const UserDetailsEdit = (id) => {
         setUserEditID(id);
         setOff(true);
-        setOn(false); {
-
-
-        }
-
-    }
+        setOn(false);
+    };
     const UserDetailsDelete = (id) => {
         if (window.confirm('Sure want to delete this User?')) {
 
@@ -54,12 +49,9 @@ const UserDetails = () => {
                     })
                     this.setState({ redirect: this.state.redirect === false });
                 })
-                // .then(res => { getallUserDetails() })
                 .catch(error => {
                     console.log(error);
                 });
-
-            // Navigate("/ZeroDotOne/UserDetails");
         }
     }
 

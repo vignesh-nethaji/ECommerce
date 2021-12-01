@@ -2,16 +2,11 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText, Col, Row, CardHeader } from 'reactstrap';
 import axios from "axios";
 import { Context } from "./UserDetails";
-import { useNavigate } from 'react-router-dom';
-import SidePage from './ZeroDotOne/SidePage';
 import HeaderPage from './ZeroDotOne/HeaderPage';
 
 
 const UserAdded = () => {
-    const navigate = useNavigate();
     const id = useContext(Context);
-    console.log(id);
-
     const [emailidvld, setEmailidvld] = useState("");
     const [passwordvld, setPasswordvld] = useState("");
     const [usernamevld, setUsernamevld] = useState("");
@@ -21,7 +16,6 @@ const UserAdded = () => {
     const [addressvld, setAddressvld] = useState("");
     const [zipcodevld, setZipcodevld] = useState("");
     const [PhoneNumbervld, setphoneNumvervld] = useState("");
-
     const [userDetails, setUserDetails] = useState([])
     const token = localStorage.getItem("UserTokenDetails");
     const [on, setOn] = useState(true);
@@ -51,7 +45,6 @@ const UserAdded = () => {
         }
 
     }, [id, token])
-    console.log(userDetails);
     useEffect(() => {
         if (userDetails !== null && userDetails.id !== 0) {
             setEmailidvld(userDetails.email);

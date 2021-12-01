@@ -1,87 +1,86 @@
 import React, { useState } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText, Col, Row, CardHeader } from 'reactstrap';
 import axios from "axios";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const SignUpPage = () => {
     const navigate = useNavigate();
     var [emailidvld, setEmailidvld] = useState("");
-    var [passwordvld, setPasswordvld] = useState( "");
-    var [usernamevld, setUsernamevld] = useState( "");
-    var [firstnamevld, setFirstnamevld] = useState( "");
-    var [lastnamevld, setLastnamevld] = useState( "");
-    var [cityvld, setCityvld] = useState( "");
-    var [addressvld, setAddressvld] = useState( "");
-    var [zipcodevld, setZipcodevld] = useState( "");
-    var [PhoneNumbervld, setphoneNumvervld] = useState( "");
+    var [passwordvld, setPasswordvld] = useState("");
+    var [usernamevld, setUsernamevld] = useState("");
+    var [firstnamevld, setFirstnamevld] = useState("");
+    var [lastnamevld, setLastnamevld] = useState("");
+    var [cityvld, setCityvld] = useState("");
+    var [addressvld, setAddressvld] = useState("");
+    var [zipcodevld, setZipcodevld] = useState("");
+    var [PhoneNumbervld, setphoneNumvervld] = useState("");
 
-   
+
     const Onsubmit_Function = () => {
-        debugger;
         if (!emailidvld) {
             alert('Enter Valid Email')
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(emailidvld)) {
             alert('Invalid email address')
             return false;
         }
-    
-         else if( passwordvld.length < 7) {
+
+        else if (passwordvld.length < 7) {
             alert('Enter Password');
             return false;
         }
-        else if(usernamevld ==='') {
+        else if (usernamevld === '') {
             alert("Enter Username");
             return false;
         }
-        else if(firstnamevld ==='') {
+        else if (firstnamevld === '') {
             alert("Enter FirstName");
             return false;
         }
-        else if(lastnamevld===''){
+        else if (lastnamevld === '') {
             alert("Enter LastName");
             return false;
         }
-        else  if(cityvld===''){
+        else if (cityvld === '') {
             alert("Enter your city");
             return false;
         }
-        else if(addressvld===''){
+        else if (addressvld === '') {
             alert("Enter Your Address");
             return false;
         }
-        else if(zipcodevld.length<6){
+        else if (zipcodevld.length < 6) {
             alert("Enter Your Correct Zipcode");
             return false;
         }
-         
-        else if(PhoneNumbervld.length>10){
+
+        else if (PhoneNumbervld.length > 10) {
             alert("Enter Phone Number");
             return false;
-       }else{
+        } else {
             navigate('/')
         }
 
         axios.post("http://localhost:40073/api/User/Add", {
-        "id": 0,
-        "email": emailidvld,
-        "username": usernamevld,
-        "password": passwordvld,
-        "firstname": firstnamevld,
-        "lastname": lastnamevld,
-        "address": addressvld,
-        "city": cityvld,
-        "zipcode": zipcodevld,
-        "phoneNumber": PhoneNumbervld
+            "id": 0,
+            "email": emailidvld,
+            "username": usernamevld,
+            "password": passwordvld,
+            "firstname": firstnamevld,
+            "lastname": lastnamevld,
+            "address": addressvld,
+            "city": cityvld,
+            "zipcode": zipcodevld,
+            "phoneNumber": PhoneNumbervld
 
-         })
-         .then((response) => { JSON.stringify(response)})
-         .catch(error => {
-            console.log(error);
-          });
+        })
+            .then((response) => { JSON.stringify(response) })
+            .catch(error => {
+                console.log(error);
+            });
     }
-    
+
     return (
         <div>
             <Row>
@@ -91,7 +90,7 @@ const SignUpPage = () => {
                         <Form>
                             <FormGroup>
                                 <Label>Email</Label>
-                                <Input type="email" name="email" placeholder="Email ID" value={emailidvld} onChange={(e) => setEmailidvld(e.currentTarget.value)}/>
+                                <Input type="email" name="email" placeholder="Email ID" value={emailidvld} onChange={(e) => setEmailidvld(e.currentTarget.value)} />
                                 <FormText >Please Fill Email Format</FormText>
                             </FormGroup>
                             <FormGroup>
@@ -104,7 +103,7 @@ const SignUpPage = () => {
                                 <Input type="text" name="Username" placeholder="User Name" value={usernamevld} onChange={(e) => setUsernamevld(e.currentTarget.value)} />
                                 <FormText >Fill User Name</FormText>
                             </FormGroup>
-                            
+
                             <FormGroup>
                                 <Row>
                                     <Col md="6">
@@ -129,12 +128,12 @@ const SignUpPage = () => {
                                 <Input type="number" name="text" value={zipcodevld} onChange={(e) => { setZipcodevld(e.currentTarget.value) }} />
                             </FormGroup>
                             <FormGroup>
-                                <Label>phoneNumber</Label><br/>
-                                <Input type="number" placeholder="+91"  value={PhoneNumbervld}  onChange={(e) => { setphoneNumvervld(e.currentTarget.value) }} required></Input>
+                                <Label>phoneNumber</Label><br />
+                                <Input type="number" placeholder="+91" value={PhoneNumbervld} onChange={(e) => { setphoneNumvervld(e.currentTarget.value) }} required></Input>
                             </FormGroup>
                             <FormGroup>
                                 <Button href="/">Back</Button>{"  "}
-                                <Button onClick={()=>Onsubmit_Function()}>Submit</Button>
+                                <Button onClick={() => Onsubmit_Function()}>Submit</Button>
                             </FormGroup>
                         </Form>
                     </CardHeader>

@@ -38,7 +38,7 @@ const HeaderPage = () => {
                         <FaUserCircle className="CartIcons" />
                     </Col>
                     <Col md="1">
-                        <BsCartCheckFill className="CartIcons" onClick={() => CartPage()} />
+                        <BsCartCheckFill className="CartIcons " onClick={() => CartPage()} />
                     </Col>
                     <Col md="1">
                         <div className="HeaderCart">

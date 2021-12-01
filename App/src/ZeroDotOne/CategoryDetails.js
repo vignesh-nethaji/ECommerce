@@ -24,7 +24,6 @@ const CategoryDetails = () => {
     useEffect(() => {
         getallCategoryDetails();
     }, [token])
-    console.log(categoryDetails);
 
     const CategoryDetailsEdit = (id) => {
         setCategoryEditID(id);

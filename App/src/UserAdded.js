@@ -122,7 +122,7 @@ const UserAdded = () => {
             return true;
 
         }
-        navigate("/ZeroDotOne/UserDetails");
+        window.location.reload();
     }
     const UserDetailsSubmit = () => {
 
@@ -144,7 +144,7 @@ const UserAdded = () => {
             .catch(error => {
                 console.log(error);
             })
-        navigate("/ZeroDotOne/UserDetails");
+        window.location.reload();
     }
 
     const UserDetailsUpdate = () => {
@@ -166,14 +166,18 @@ const UserAdded = () => {
             .catch(error => {
                 console.log(error)
             })
-        navigate("/ZeroDotOne/UserDetails");
+        window.location.reload();
     }
 
     return (
         <div>
+            {on ?
+                <HeaderPage />
+                : ''}
             <Row>
-                <Col md="2"> <SidePage /> </Col>
-                <Col md="10">
+
+                <Col md="2"> </Col>
+                <Col md="8">
                     <CardHeader>
                         <Form>
                             <FormGroup>
@@ -234,7 +238,7 @@ const UserAdded = () => {
                         <Button onClick={() => { UserDetailsUpdate() }} backgroundColor='#3fffff' >Update</Button>
                         : ''}
                 </Col>
-
+                <Col md="2"> </Col>
             </Row>
         </div>
 

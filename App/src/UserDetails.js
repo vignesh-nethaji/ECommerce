@@ -119,7 +119,6 @@ const UserDetails = () => {
                             : ''}
                     </Context.Provider>
                 </Col>
-
             </Row>
         </div >
     )

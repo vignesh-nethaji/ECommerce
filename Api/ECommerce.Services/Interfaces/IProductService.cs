@@ -14,7 +14,8 @@ namespace ECommerce.Services.Interfaces
         Task<Product> Insert(Product product);
         Task<Product> Update(Product product);
         Task Delete(int id);
-        
+        Task<List<Product>> GetProductByCategory(int categoryId);
+
     }
 }
 

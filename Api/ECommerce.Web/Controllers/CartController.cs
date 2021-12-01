@@ -142,6 +142,26 @@ namespace ECommerce.Web.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
         }
+
+        [HttpGet("GetProducts/{id}")]
+        [Authorize]
+        public async Task<IActionResult> GetProducts(int id)
+        {
+            ResponseData<Cart> response = new ResponseData<Cart>();
+            try
+            {
+                response.Message = "Cart by id";
+                response.Data = await _cartService.Get(id);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+                response.Data = null;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
+
+        }
     }
 }
 

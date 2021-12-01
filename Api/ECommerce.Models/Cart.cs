@@ -12,6 +12,5 @@ namespace ECommerce.Models
 
         public virtual User User { get; set; }
         public virtual Product Product { get; set; }
-
     }
 }

@@ -141,5 +141,29 @@ namespace ECommerce.Web.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
         }
+
+        /// <summary>
+        /// Get Category by id
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetProductByCategory/{categoryId}")]
+        [Authorize]
+        public async Task<IActionResult> GetProductByCategory(int categoryId)
+        {
+            ResponseData<List<Product>> response = new ResponseData<List<Product>>();
+            try
+            {
+                response.Message = "Product Data Read by CategoryId";
+                response.Data = await _productService.GetProductByCategory(categoryId);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+                response.Data = null;
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
+
+        }
     }
 }

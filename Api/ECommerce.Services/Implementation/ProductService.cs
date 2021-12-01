@@ -4,6 +4,7 @@ using ECommerce.Repository.Migrations;
 using ECommerce.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -31,6 +32,11 @@ namespace ECommerce.Services.Implementation
         {
             return await _productRepository.GetById(id);
         }
+        public async Task<List<Product>> GetProductByCategory(int categoryId)
+        {
+            var data = (await _productRepository.GetAll()).Where(o => o.CategoryId == categoryId).ToList();
+            return data;
+        }
 
         public async Task<Product> Insert(Product Product)
         {
@@ -50,6 +56,6 @@ namespace ECommerce.Services.Implementation
     }
 }
 
-       
-   
+
+
 

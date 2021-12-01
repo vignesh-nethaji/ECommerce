@@ -13,6 +13,7 @@ namespace ECommerce.Services.Interfaces
         Task<Cart> Insert(Cart cart);
         Task<Cart> Update(Cart cart);
         Task Delete(int id);
+        Task<List<Product>> GetProducts(int userId);
     }
 
 }

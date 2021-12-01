@@ -3,22 +3,26 @@ using ECommerce.Repository.Interfaces;
 using ECommerce.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ECommerce.Services.Implementation
 {
-     public class CartService : ICartService, IDisposable
+    public class CartService : ICartService, IDisposable
     {
         private readonly ICartRepository _cartRepository;
-        public CartService(ICartRepository cartRepository)
+        private readonly IProductRepository _productRepository;
+        public CartService(ICartRepository cartRepository, IProductRepository productRepository)
         {
             _cartRepository = cartRepository;
+            _productRepository = productRepository;
         }
 
         public void Dispose()
         {
             _cartRepository.Dispose();
+            _productRepository.Dispose();
         }
 
         public async Task<List<Cart>> GetAll()
@@ -51,6 +55,13 @@ namespace ECommerce.Services.Implementation
             await _cartRepository.Delete(id);
         }
 
+
+        public async Task<List<Product>> GetProducts(int userId)
+        {
+            var productIds = (await _cartRepository.GetAll()).Where(o => o.UserId == userId).Select(o => o.ProductId);
+            var products = (await _productRepository.GetAll()).Where(o => productIds.Contains(o.Id)).ToList();
+            return products;
+        }
     }
 
 }

@@ -62,7 +62,6 @@ const UserDetails = () => {
     return (
         <div>
             <HeaderPage />
-
             <Row>
                 <Col md='12'>
                     <Context.Provider value={userEditID}>

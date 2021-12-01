@@ -144,7 +144,7 @@ const UserAdded = () => {
                 console.log(error);
 
             })
-        navigate("/ZeroDotOne/UserDetails");
+        window.location.reload();
     }
 
     const UserDetailsUpdate = () => {
@@ -170,7 +170,6 @@ const UserAdded = () => {
 
     return (
         <div>
-            <HeaderPage />
             <Row>
 
                 <Col md="2"> <SidePage /> </Col>

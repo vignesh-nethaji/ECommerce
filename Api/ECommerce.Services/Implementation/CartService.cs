@@ -58,7 +58,7 @@ namespace ECommerce.Services.Implementation
 
         public async Task<List<Product>> GetProducts(int userId)
         {
-            var productIds = (await _cartRepository.GetAll()).Where(o => o.UserId == userId).Select(o => o.ProductId);
+            var productIds = (await _cartRepository.GetAll()).Where(o => o.UserId == userId).Select(o => o.ProductId).ToList();
             var products = (await _productRepository.GetAll()).Where(o => productIds.Contains(o.Id)).ToList();
             return products;
         }

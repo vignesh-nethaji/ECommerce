@@ -147,11 +147,11 @@ namespace ECommerce.Web.Controllers
         [Authorize]
         public async Task<IActionResult> GetProducts(int id)
         {
-            ResponseData<Cart> response = new ResponseData<Cart>();
+            ResponseData<List<Product>> response = new ResponseData<List<Product>>();
             try
             {
                 response.Message = "Cart by id";
-                response.Data = await _cartService.Get(id);
+                response.Data = await _cartService.GetProducts(id);
                 return Ok(response);
             }
             catch (Exception ex)

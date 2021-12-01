@@ -8,6 +8,7 @@ import swal from 'sweetalert';
 import SidePage from "./ZeroDotOne/SidePage";
 export const Context = React.createContext();
 
+
 const UserDetails = () => {
     const token = localStorage.getItem("UserTokenDetails")
     const [userDetails, setUserDetails] = useState([])
@@ -30,7 +31,10 @@ const UserDetails = () => {
     const UserDetailsEdit = (id) => {
         setUserEditID(id);
         setOff(true);
-        setOn(false);
+        setOn(false); {
+
+
+        }
 
     }
     const UserDetailsDelete = (id) => {
@@ -40,22 +44,20 @@ const UserDetails = () => {
                 { headers: { "Authorization": `Bearer ${token}` } }
             )
                 .then(res => {
-                    getallUserDetails();
                     swal({
                         title: "Done!",
-                        text: "User is Deleted Sucessfully ",
+                        text: "User is Deleted into Database",
                         icon: "success",
                         timer: 2000,
                         button: false
                     })
                     this.setState({ redirect: this.state.redirect === false });
-
                 })
                 // .then(res => { getallUserDetails() })
                 .catch(error => {
                     console.log(error);
                 });
-
+            getallUserDetails();
             // Navigate("/ZeroDotOne/UserDetails");
         }
     }
@@ -101,7 +103,7 @@ const UserDetails = () => {
                                                 <td>{UserDataTable.phoneNumber}</td>
                                                 <td>
                                                     <Button onClick={() => { UserDetailsEdit(UserDataTable.id) }}>Edit</Button>{'  '}
-                                                    <Button onClick={() => { UserDetailsDelete(UserDataTable.id) }} >Delete</Button></td>
+                                                    <Button onClick={() => { UserDetailsDelete(UserDataTable.id) }} backgroundColor='#3fffff' >Delete</Button></td>
                                             </tr>
                                         )
                                     }
@@ -113,11 +115,10 @@ const UserDetails = () => {
                             : ''}
                         {off ?
                             <UserAdded />
-
-
                             : ''}
                     </Context.Provider>
                 </Col>
+
             </Row>
         </div >
     )

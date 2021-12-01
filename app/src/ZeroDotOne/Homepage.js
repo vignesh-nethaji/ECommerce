@@ -12,11 +12,13 @@ import {
 import HeaderPage from "./HeaderPage";
 import SidePage from "./SidePage";
 import axios from "axios";
+
 import { AiOutlineMore } from "react-icons/ai";
 
 import { AiOutlineMore } from "react-icons/ai";
 
 const HomePage = () => {
+
     const [product, setProduct] = useState([]);
     const token = localStorage.getItem("UserTokenDetails")
     useEffect(() => {
@@ -26,9 +28,7 @@ const HomePage = () => {
         )
             .then(res => { setProduct(res.data.data) })
     }, [token])
-
     console.log(product);
-    
 
     const [product, setProduct] = useState([]);
     const token = localStorage.getItem("UserTokenDetails")

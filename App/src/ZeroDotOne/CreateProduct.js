@@ -6,6 +6,7 @@ import SidePage from "./SidePage";
 import { Context } from "./ProductDetails";
 // import ColorPicker from 'react-input-colorpicker';
 
+
 const CreateProduct = () => {
 
   const [category, setCategory] = useState([]);
@@ -147,6 +148,7 @@ const CreateProduct = () => {
           <Col md="3" > <SidePage /></Col>
           : ''}
         <Col md="9" >
+        <Button href="../ZeroDotOne/HomePage">Back</Button>
           <CardHeader className="">
             <div >
               <Label id="lblCat">Category</Label>

@@ -7,7 +7,7 @@ import CreateProduct from "./ZeroDotOne/CreateProduct"
 import 'bootstrap/dist/css/bootstrap.css';
 import AddCategory from './ZeroDotOne/AddCategory';
 import UserDetails from './UserDetails';
-import UserAdded from './UserAdded.js';
+import UserAdded from './UserAdded';
 import ProductDetails from './ZeroDotOne/ProductDetails';
 import CategoryDetails from './ZeroDotOne/CategoryDetails';
 import CartDetailsPage from './ZeroDotOne/CartDetailsPage';

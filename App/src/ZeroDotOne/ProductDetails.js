@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Table, Button } from "reactstrap";
- //import { useNavigate } from "react-router";
+import { Table, Button, Row, Col } from "reactstrap";
+//import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import React from "react";
 import CreateProduct from "./CreateProduct";
-
+import SidePage from "./SidePage";
+import HeaderPage from "./HeaderPage";
 
 export const Context = React.createContext();
 
@@ -102,45 +103,51 @@ const ProductDetails = () => {
     // console.log(editProductDtls);
     return (
         <div>
-            <Context.Provider value={productId}>
-                {on ?
-                    <Table responsive>
-                        <thead>
-                            <tr>
-                                <th>S.No</th>
-                                <th>Id</th>
-                                <th>Title</th>
-                                <th>Price</th>
-                                <th>Description</th>
-                                <th>Image</th>
-                                <th>CateId</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+            <HeaderPage />
+            <Row>
+                <Col md="3"><SidePage /></Col>
+                <Col md="9">
+                    <Button href="/ZeroDotOne/CreateProduct">Add Product</Button>
+                    <Context.Provider value={productId}>
+                        {on ?
+                            <Table responsive>
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Id</th>
+                                        <th>Title</th>
+                                        <th>Price</th>
+                                        <th>Description</th>
+                                        <th>Image</th>
+                                        <th>CateId</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {productDetails.map((items, i) =>
+                                        <tr key={i}>
+                                            <td>{i + 1}</td>
+                                            <td>{items.id}</td>
+                                            <td>{items.title}</td>
+                                            <td>{items.price}</td>
+                                            <td>{items.description}</td>
+                                            <td>{items.image}</td>
+                                            <td>{items.categoryId}</td>
+                                            <td><Button id="btnEdit" value={items.id} onClick={(e) => EditProductDtls(items)}>Edit</Button></td>
+                                            <td><Button id="btnDelete" value={items.id} onClick={() => DeleteProductDtls(items.id)}>Delete</Button></td>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {productDetails.map((items, i) =>
-                                <tr key={i}>
-                                    <td>{i + 1}</td>
-                                    <td>{items.id}</td>
-                                    <td>{items.title}</td>
-                                    <td>{items.price}</td>
-                                    <td>{items.description}</td>
-                                    <td>{items.image}</td>
-                                    <td>{items.categoryId}</td>
-                                    <td><Button id="btnEdit" value={items.id} onClick={(e) => EditProductDtls(items)}>Edit</Button></td>
-                                    <td><Button id="btnDelete" value={items.id} onClick={() => DeleteProductDtls(items.id)}>Delete</Button></td>
-
-                                </tr>
-                            )}
-                        </tbody>
-                    </Table>
-                    : ''}
-                {off ?
-                    <CreateProduct />
-                    : ''}
-            </Context.Provider>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </Table>
+                            : ''}
+                        {off ?
+                            <CreateProduct />
+                            : ''}
+                    </Context.Provider>
+                </Col>
+            </Row>
         </div>
 
     )

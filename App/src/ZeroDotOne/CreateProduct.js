@@ -49,7 +49,7 @@ const CreateProduct = () => {
       })
         .then((res) => (res.data.data))
         .then((res) => (setSingleCategory(res)))
-        .then((res) => (console.log("nathan nan",res)))
+        .then((res) => (console.log("nathan nan", res)))
       setOffVal(true);
 
     }
@@ -129,19 +129,23 @@ const CreateProduct = () => {
     setTxtImg("");
     setTxtId(0);
   }
-//   function changeHandler(colors) {
-//     console.log(colors);
-// }
+  //   function changeHandler(colors) {
+  //     console.log(colors);
+  // }
 
   return (
 
     <div>
 
       <div>
-        <HeaderPage />
+        {on ?
+          <HeaderPage />
+          : ''}
       </div>
       <Row>
-        <Col md="3" > <SidePage /></Col>
+        {on ?
+          <Col md="3" > <SidePage /></Col>
+          : ''}
         <Col md="9" >
           <CardHeader className="">
             <div >
@@ -188,7 +192,6 @@ const CreateProduct = () => {
             </div>
 
           </CardHeader>
-
         </Col>
       </Row>
     </div>

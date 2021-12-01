@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from 'axios';
 import { Context } from './CategoryDetails';
 import { useNavigate } from 'react-router';
+import HeaderPage from "./HeaderPage";
+import SidePage from "./SidePage";
 
 const AddCategory = () => {
     const navigate = useNavigate()
@@ -85,8 +87,14 @@ const AddCategory = () => {
     }
     return (
         <div>
+            {on ?
+                <HeaderPage />
+                : ''}
             <Row>
-                <Col md="12">
+                {on ?
+                    <Col md="3"><SidePage /></Col>
+                    : ''}
+                <Col md="9">
                     <CardHeader>
                         <Form>
                             <FormGroup>
@@ -109,7 +117,7 @@ const AddCategory = () => {
                         : ''}
                 </Col>
             </Row>
-        </div>
+        </div >
     )
 }
 export default AddCategory;

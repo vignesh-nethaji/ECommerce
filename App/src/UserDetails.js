@@ -44,6 +44,7 @@ const UserDetails = () => {
                 { headers: { "Authorization": `Bearer ${token}` } }
             )
                 .then(res => {
+                    getallUserDetails();
                     swal({
                         title: "Done!",
                         text: "User is Deleted into Database",
@@ -57,7 +58,7 @@ const UserDetails = () => {
                 .catch(error => {
                     console.log(error);
                 });
-            getallUserDetails();
+
             // Navigate("/ZeroDotOne/UserDetails");
         }
     }

@@ -122,7 +122,7 @@ const UserAdded = () => {
             return true;
 
         }
-        navigate("/ZeroDotOne/UserDetails");
+        window.location.reload();
     }
     const UserDetailsSubmit = () => {
 
@@ -144,7 +144,7 @@ const UserAdded = () => {
             .catch(error => {
                 console.log(error);
             })
-        navigate("/ZeroDotOne/UserDetails");
+        window.location.reload();
     }
 
     const UserDetailsUpdate = () => {
@@ -166,7 +166,7 @@ const UserAdded = () => {
             .catch(error => {
                 console.log(error)
             })
-        navigate("/ZeroDotOne/UserDetails");
+        window.location.reload();
     }
 
     return (

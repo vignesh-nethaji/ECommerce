@@ -51,7 +51,7 @@ namespace ECommerce.Web.Controllers
         }
 
         /// <summary>
-        /// Get Cart Details using category id
+        /// Get Cart Details 
         /// </summary>
         /// <returns></returns>
         [HttpGet("Get/{id}")]
@@ -121,7 +121,7 @@ namespace ECommerce.Web.Controllers
         }
 
         /// <summary>
-        /// Delete cart product using category id
+        /// Delete cart product 
         /// </summary>
         /// <returns></returns>
         [HttpDelete("Delete/{id}")]

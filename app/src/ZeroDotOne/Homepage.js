@@ -12,14 +12,11 @@ import {
 import HeaderPage from "./HeaderPage";
 import SidePage from "./SidePage";
 import axios from "axios";
+import { AiOutlineMore } from "react-icons/ai";
 
 const HomePage = () => {
-
-    const [UserName, setUserName] = useState([]);
-    // let [order, setOrder] = useState([]);
-    let [orderID, setOrderID] = useState([]);
-    // localStorage.setItem('OrdersProducts', JSON.stringify(order));
-
+    const [product, setProduct] = useState([]);
+    const token = localStorage.getItem("UserTokenDetails")
     useEffect(() => {
 
         axios.get(("http://localhost:40073/api/Product/GetAll"),

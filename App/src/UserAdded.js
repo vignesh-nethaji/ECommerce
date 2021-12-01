@@ -4,6 +4,7 @@ import axios from "axios";
 import { Context } from "./UserDetails";
 import { useNavigate } from 'react-router-dom';
 import SidePage from './ZeroDotOne/SidePage';
+import HeaderPage from './ZeroDotOne/HeaderPage';
 
 
 const UserAdded = () => {

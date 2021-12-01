@@ -12,9 +12,6 @@ const HeaderPage = () => {
     const UserDetails = () => {
         navigate("/ZeroDotOne/UserDetails")
     }
-    const CategoryDetails = () => {
-        navigate("/ZeroDotOne/CategoryDetails")
-    }
     return (
         <div>
             <CardHeader>
@@ -37,7 +34,7 @@ const HeaderPage = () => {
                     <Col md="1">
                         <Row>
                             <Col md="6">
-                                <BsCartCheckFill className="CartIcons" onClick={() => CartPage()} /><span style={{ background: "red", border: "1px", color: "white" }}>100</span>
+                                <BsCartCheckFill className="CartIcons" onClick={() => CartPage()} />
                             </Col>
                             <Col md="6" className="HeaderCart">
                                 <UncontrolledDropdown >
@@ -45,7 +42,7 @@ const HeaderPage = () => {
                                         <BsThreeDotsVertical />
                                     </DropdownToggle>
                                     <DropdownMenu >
-                                        <DropdownItem onClick={() => { CategoryDetails() }}>Category </DropdownItem>
+                                        <DropdownItem >Category </DropdownItem>
                                         <DropdownItem >Products</DropdownItem>
                                         <DropdownItem onClick={() => UserDetails()} >User Details</DropdownItem>
                                     </DropdownMenu>

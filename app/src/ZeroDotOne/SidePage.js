@@ -1,38 +1,30 @@
 import { useEffect, useState } from "react/cjs/react.development";
-import { CardHeader } from "reactstrap";
-import axios from "axios";
+import { Button, CardHeader } from "reactstrap";
 const SidePage = () => {
     const [category, setCategory] = useState([]);
-    const [on, setOn] = useState(false);
-    const token = localStorage.getItem("UserTokenDetails");
-
+    const [on, setOn] = useState(false)
     useEffect(() => {
-        axios.get(("http://localhost:40073/api/Category/GetAll"),
-            { headers: { "Authorization": `Bearer ${token}` } }
-        )
-            .then(res => { setCategory(res.data.data) })
-    }, [token])
+        fetch("http://localhost:40073/api/Category/GetAll")
+            .then((response) => response.json())
+            .then((data) => setCategory(data.data));
+    }, [])
     console.log(category)
-
     const SelectCategory = () => {
         setOn(true)
     }
-
     const CategoryName = (id) => {
         localStorage.setItem("CategoryIds", id)
 
     }
-
     return (
         <div>
             <CardHeader>
-                <h3 onClick={() => SelectCategory()}> Category </h3>
+                <h3 onClick={() => SelectCategory()}> Category <Button href="/ZeroDotOne/AddCategory">+</Button> </h3>
                 {on ?
-                    category.map((item, i) =>
-                        <p key={i} onClick={() => CategoryName(item.id)}>{item.name}</p>
+                    category.map((item) =>
+                        <p onClick={() => CategoryName(item.id)}>{item.name}</p>
                     )
                     : ''}
-
             </CardHeader>
         </div>
 

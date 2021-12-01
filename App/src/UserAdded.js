@@ -4,13 +4,11 @@ import axios from "axios";
 import { Context } from "./UserDetails";
 import { useNavigate } from 'react-router-dom';
 import SidePage from './ZeroDotOne/SidePage';
-
+import HeaderPage from './ZeroDotOne/HeaderPage';
 
 const UserAdded = () => {
     const navigate = useNavigate();
     const id = useContext(Context);
-    console.log(id);
-
     const [emailidvld, setEmailidvld] = useState("");
     const [passwordvld, setPasswordvld] = useState("");
     const [usernamevld, setUsernamevld] = useState("");
@@ -23,9 +21,13 @@ const UserAdded = () => {
 
     const [userDetails, setUserDetails] = useState([])
     const token = localStorage.getItem("UserTokenDetails");
+    const [on, setOn] = useState(true);
+    const [off, setOff] = useState(false);
 
     useEffect(() => {
         if (id !== 0 && id !== undefined) {
+            setOff(true);
+            setOn(false);
             axios.get(("http://localhost:40073/api/User/Get/" + id),
                 { headers: { "Authorization": `Bearer ${token}` } }
             )
@@ -73,138 +75,104 @@ const UserAdded = () => {
         }
     }, [userDetails])
 
-    const Onsubmit_Function = () => {
-        if (userDetails !== null && id !== undefined) {
+    const validation = () => {
 
-            if (!emailidvld) {
-                alert('Enter Valid Email')
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(emailidvld)) {
-                alert('Invalid email address')
-                return false;
-            }
-
-            else if (passwordvld.length < 7) {
-                alert('Enter Password');
-                return false;
-            }
-            else if (usernamevld === '') {
-                alert("Enter Username");
-                return false;
-            }
-            else if (firstnamevld === '') {
-                alert("Enter FirstName");
-                return false;
-            }
-            else if (lastnamevld === '') {
-                alert("Enter LastName");
-                return false;
-            }
-            else if (cityvld === '') {
-                alert("Enter your city");
-                return false;
-            }
-            else if (addressvld === '') {
-                alert("Enter Your Address");
-                return false;
-            }
-            else if (zipcodevld.length < 6) {
-                alert("Enter Your Correct Zipcode");
-                return false;
-            }
-
-            else if (PhoneNumbervld.length > 10) {
-                alert("Enter Phone Number");
-                return false;
-
-            } else {
-
-                axios.put("http://localhost:40073/api/User/Update", {
-                    "id": userDetails.id,
-                    "email": emailidvld,
-                    "username": usernamevld,
-                    "password": passwordvld,
-                    "firstname": firstnamevld,
-                    "lastname": lastnamevld,
-                    "address": addressvld,
-                    "city": cityvld,
-                    "zipcode": zipcodevld,
-                    "phoneNumber": PhoneNumbervld
-
-
-                }, { headers: { "Authorization": `Bearer ${token}` } })
-                    .then((response) => { JSON.stringify(response) })
-                    .catch(error => {
-                        console.log(error)
-                    })
-                navigate("/ZeroDotOne/UserDetails");
-            }
-        } else {
-
-            if (!emailidvld) {
-                alert('Enter Valid Email')
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(emailidvld)) {
-                alert('Invalid email address')
-                return false;
-            }
-
-            else if (passwordvld.length < 7) {
-                alert('Enter Password');
-                return false;
-            }
-            else if (usernamevld === '') {
-                alert("Enter Username");
-                return false;
-            }
-            else if (firstnamevld === '') {
-                alert("Enter FirstName");
-                return false;
-            }
-            else if (lastnamevld === '') {
-                alert("Enter LastName");
-                return false;
-            }
-            else if (cityvld === '') {
-                alert("Enter your city");
-                return false;
-            }
-            else if (addressvld === '') {
-                alert("Enter Your Address");
-                return false;
-            }
-            else if (zipcodevld.length < 6) {
-                alert("Enter Your Correct Zipcode");
-                return false;
-            }
-
-            else if (PhoneNumbervld.length > 10) {
-                alert("Enter Phone Number");
-                return false;
-            } else {
-                axios.post("http://localhost:40073/api/User/Add", {
-
-                    "id": 0,
-                    "email": emailidvld,
-                    "username": usernamevld,
-                    "password": passwordvld,
-                    "firstname": firstnamevld,
-                    "lastname": lastnamevld,
-                    "address": addressvld,
-                    "city": cityvld,
-                    "zipcode": zipcodevld,
-                    "phoneNumber": PhoneNumbervld
-                })
-                    .then((response) => { JSON.stringify(response) })
-                    .catch(error => {
-                        console.log(error);
-                    })
-            }
+        if (!emailidvld) {
+            alert('Enter Valid Email')
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(emailidvld)) {
+            alert('Invalid email address')
+            return false;
         }
+        else if (passwordvld.length < 7) {
+            alert('Enter Password');
+            return false;
+        }
+        else if (usernamevld === '') {
+            alert("Enter Username");
+            return false;
+        }
+        else if (firstnamevld === '') {
+            alert("Enter FirstName");
+            return false;
+        }
+        else if (lastnamevld === '') {
+            alert("Enter LastName");
+            return false;
+        }
+        else if (cityvld === '') {
+            alert("Enter your city");
+            return false;
+        }
+        else if (addressvld === '') {
+            alert("Enter Your Address");
+            return false;
+        }
+        else if (zipcodevld.length < 6) {
+            alert("Enter Your Correct Zipcode");
+            return false;
+        }
+
+        else if (PhoneNumbervld.length > 10) {
+            alert("Enter Phone Number");
+            return false;
+        }
+        else {
+            navigate("/ZeroDotOne/UserDetails");
+
+        }
+
+    }
+    const UserDetailsSubmit = () => {
+        validation();
+        axios.post("http://localhost:40073/api/User/Add", {
+
+            "id": 0,
+            "email": emailidvld,
+            "username": usernamevld,
+            "password": passwordvld,
+            "firstname": firstnamevld,
+            "lastname": lastnamevld,
+            "address": addressvld,
+            "city": cityvld,
+            "zipcode": zipcodevld,
+            "phoneNumber": PhoneNumbervld,
+
+        })
+
+            .then((response) => { JSON.stringify(response) })
+            .catch(error => {
+                console.log(error);
+
+            })
+        navigate("/ZeroDotOne/UserDetails");
+    }
+
+    const UserDetailsUpdate = () => {
+        validation();
+        axios.put("http://localhost:40073/api/User/Update", {
+            "id": userDetails.id,
+            "email": emailidvld,
+            "username": usernamevld,
+            "password": passwordvld,
+            "firstname": firstnamevld,
+            "lastname": lastnamevld,
+            "address": addressvld,
+            "city": cityvld,
+            "zipcode": zipcodevld,
+            "phoneNumber": PhoneNumbervld
+        }, { headers: { "Authorization": `Bearer ${token}` } })
+            .then((response) => { JSON.stringify(response) })
+            .catch(error => {
+                console.log(error)
+            })
+        window.location.reload();
     }
 
     return (
         <div>
-
+            <HeaderPage />
             <Row>
+
                 <Col md="2"> <SidePage /> </Col>
                 <Col md="10">
                     <CardHeader>
@@ -224,7 +192,6 @@ const UserAdded = () => {
                                 <Input type="text" name="Username" placeholder="User Name" value={usernamevld} onChange={(e) => setUsernamevld(e.currentTarget.value)} />
                                 <FormText >Fill User Name</FormText>
                             </FormGroup>
-
                             <FormGroup>
                                 <Row>
                                     <Col md="6">
@@ -253,12 +220,20 @@ const UserAdded = () => {
                                 <Input type="number" placeholder="+91" value={PhoneNumbervld} onChange={(e) => { setphoneNumvervld(e.currentTarget.value) }} required></Input>
                             </FormGroup>
                             <FormGroup>
-                                <Button href="/ZeroDotOne/UserDetails">Back</Button>{"  "}
-                                <Button onClick={() => Onsubmit_Function()} color="#ff5c5c">Update</Button>
+
                                 {/* <Input type="submit" value="Submit" /> */}
                             </FormGroup>
                         </Form>
+
                     </CardHeader>
+                    <Button href="/ZeroDotOne/UserDetails" color="#f194ff">Back</Button>{"  "}
+                    {on ?
+                        <Button onClick={() => { UserDetailsSubmit() }} color="#f194ff">Submit</Button>
+
+                        : ''}
+                    {off ?
+                        <Button onClick={() => { UserDetailsUpdate() }} color="#f194ff" >Update</Button>
+                        : ''}
                 </Col>
 
             </Row>

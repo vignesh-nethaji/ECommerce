@@ -1,13 +1,11 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Button, Table, Row } from "reactstrap";
+import { Button, Table, Row, Col } from "reactstrap";
 import UserAdded from "./UserAdded";
 import HeaderPage from "./ZeroDotOne/HeaderPage";
 import swal from 'sweetalert';
-
 export const Context = React.createContext();
-
 
 const UserDetails = () => {
     const token = localStorage.getItem("UserTokenDetails")
@@ -41,20 +39,22 @@ const UserDetails = () => {
                 { headers: { "Authorization": `Bearer ${token}` } }
             )
                 .then(res => {
+                    getallUserDetails();
                     swal({
                         title: "Done!",
-                        text: "User is Deleted into Database",
+                        text: "User is Deleted Sucessfully ",
                         icon: "success",
                         timer: 2000,
                         button: false
                     })
                     this.setState({ redirect: this.state.redirect === false });
+
                 })
                 // .then(res => { getallUserDetails() })
                 .catch(error => {
                     console.log(error);
                 });
-            getallUserDetails();
+
             // Navigate("/ZeroDotOne/UserDetails");
         }
     }
@@ -64,58 +64,56 @@ const UserDetails = () => {
             <HeaderPage />
 
             <Row>
+                <Col md='12'>
+                    <Context.Provider value={userEditID}>
+                        <Button href="/ZeroDotOne/AddUser">Add User</Button>
+                        {on ?
+                            <Table responsive>
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Email Id</th>
+                                        <th>Password</th>
+                                        <th>User Name</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>City</th>
+                                        <th>Address</th>
+                                        <th>Zip Code</th>
+                                        <th>Phone Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {userDetails.map((UserDataTable, i) => {
+                                        return (
+                                            <tr key={i}>
+                                                <td>{i + 1}</td>
+                                                <td>{UserDataTable.email}</td>
+                                                <td>{UserDataTable.password}</td>
+                                                <td>{UserDataTable.username}</td>
+                                                <td>{UserDataTable.firstname}</td>
+                                                <td>{UserDataTable.lastname}</td>
+                                                <td>{UserDataTable.city}</td>
+                                                <td>{UserDataTable.address}</td>
+                                                <td>{UserDataTable.zipcode}</td>
+                                                <td>{UserDataTable.phoneNumber}</td>
+                                                <td>
+                                                    <Button onClick={() => { UserDetailsEdit(UserDataTable.id) }}>Edit</Button>{'  '}
+                                                    <Button onClick={() => { UserDetailsDelete(UserDataTable.id) }} >Delete</Button></td>
+                                            </tr>
+                                        )
+                                    }
+                                        // <Datatable UserDataTable={items} i={i} key={items.id} />
 
-
-                <Context.Provider value={userEditID}>
-                    <Button href="/ZeroDotOne/AddUser">Add User</Button>
-                    {on ?
-                        <Table responsive>
-                            <thead>
-                                <tr>
-                                    <th>S.No</th>
-                                    <th>Email Id</th>
-                                    <th>Password</th>
-                                    <th>User Name</th>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
-                                    <th>City</th>
-                                    <th>Address</th>
-                                    <th>Zip Code</th>
-                                    <th>Phone Number</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {userDetails.map((UserDataTable, i) => {
-                                    return (
-                                        <tr key={i}>
-                                            <td>{i + 1}</td>
-                                            <td>{UserDataTable.email}</td>
-                                            <td>{UserDataTable.password}</td>
-                                            <td>{UserDataTable.username}</td>
-                                            <td>{UserDataTable.firstname}</td>
-                                            <td>{UserDataTable.lastname}</td>
-                                            <td>{UserDataTable.city}</td>
-                                            <td>{UserDataTable.address}</td>
-                                            <td>{UserDataTable.zipcode}</td>
-                                            <td>{UserDataTable.phoneNumber}</td>
-                                            <td>
-                                                <Button onClick={() => { UserDetailsEdit(UserDataTable.id) }}>Edit</Button>{'  '}
-                                                <Button onClick={() => { UserDetailsDelete(UserDataTable.id) }} backgroundColor='#3fffff' >Delete</Button></td>
-                                        </tr>
-                                    )
-                                }
-                                    // <Datatable UserDataTable={items} i={i} key={items.id} />
-
-                                )}
-                            </tbody>
-                        </Table>
-                        : ''}
-                    {off ?
-                        <UserAdded />
-                        : ''}
-                </Context.Provider>
-
-
+                                    )}
+                                </tbody>
+                            </Table>
+                            : ''}
+                        {off ?
+                            <UserAdded />
+                            : ''}
+                    </Context.Provider>
+                </Col>
             </Row>
         </div >
     )

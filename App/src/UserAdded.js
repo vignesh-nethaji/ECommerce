@@ -6,9 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import SidePage from './ZeroDotOne/SidePage';
 import HeaderPage from './ZeroDotOne/HeaderPage';
 
+
 const UserAdded = () => {
     const navigate = useNavigate();
     const id = useContext(Context);
+    console.log(id);
+
     const [emailidvld, setEmailidvld] = useState("");
     const [passwordvld, setPasswordvld] = useState("");
     const [usernamevld, setUsernamevld] = useState("");
@@ -117,12 +120,13 @@ const UserAdded = () => {
             return false;
         }
         else {
-            navigate("/ZeroDotOne/UserDetails");
+            return true;
 
         }
-
+        window.location.reload();
     }
     const UserDetailsSubmit = () => {
+
         validation();
         axios.post("http://localhost:40073/api/User/Add", {
 
@@ -135,19 +139,17 @@ const UserAdded = () => {
             "address": addressvld,
             "city": cityvld,
             "zipcode": zipcodevld,
-            "phoneNumber": PhoneNumbervld,
-
+            "phoneNumber": PhoneNumbervld
         })
-
             .then((response) => { JSON.stringify(response) })
             .catch(error => {
                 console.log(error);
-
             })
         window.location.reload();
     }
 
     const UserDetailsUpdate = () => {
+
         validation();
         axios.put("http://localhost:40073/api/User/Update", {
             "id": userDetails.id,
@@ -170,10 +172,13 @@ const UserAdded = () => {
 
     return (
         <div>
+            {on ?
+                <HeaderPage />
+                : ''}
             <Row>
 
-                <Col md="2"> <SidePage /> </Col>
-                <Col md="10">
+                <Col md="2"> </Col>
+                <Col md="8">
                     <CardHeader>
                         <Form>
                             <FormGroup>
@@ -225,16 +230,16 @@ const UserAdded = () => {
                         </Form>
 
                     </CardHeader>
-                    <Button href="/ZeroDotOne/UserDetails" color="#f194ff">Back</Button>{"  "}
+                    <Button href="/ZeroDotOne/UserDetails">Back</Button>{"  "}
                     {on ?
-                        <Button onClick={() => { UserDetailsSubmit() }} color="#f194ff">Submit</Button>
+                        <Button onClick={() => { UserDetailsSubmit() }}>Submit</Button>
 
                         : ''}
                     {off ?
-                        <Button onClick={() => { UserDetailsUpdate() }} color="#f194ff" >Update</Button>
+                        <Button onClick={() => { UserDetailsUpdate() }} backgroundColor='#3fffff' >Update</Button>
                         : ''}
                 </Col>
-
+                <Col md="2"> </Col>
             </Row>
         </div>
 

@@ -15,11 +15,14 @@ const HeaderPage = () => {
     const CategoryDetails = () => {
         navigate("/ZeroDotOne/CategoryDetails")
     }
+    const ProductDetails = () => {
+        navigate("/ZeroDotOne/productdetails")
+    }
     return (
         <div>
             <CardHeader>
                 <Row>
-                    <Col md="3"><h4 style={{ fontFamily: "monospace" }}>Zero Dot One</h4></Col>
+                    <Col md="2"><h4 style={{ fontFamily: "monospace" }}>Zero Dot One</h4></Col>
                     <Col md="6">
                         <InputGroup>
                             <Input placeholder="Search Product" />
@@ -35,23 +38,21 @@ const HeaderPage = () => {
                         <FaUserCircle className="CartIcons" />
                     </Col>
                     <Col md="1">
-                        <Row>
-                            <Col md="6">
-                                <BsCartCheckFill className="CartIcons" onClick={() => CartPage()} /><span style={{ background: "red", border: "1px", color: "white" }}>100</span>
-                            </Col>
-                            <Col md="6" className="HeaderCart">
-                                <UncontrolledDropdown >
-                                    <DropdownToggle>
-                                        <BsThreeDotsVertical />
-                                    </DropdownToggle>
-                                    <DropdownMenu >
-                                        <DropdownItem onClick={() => { CategoryDetails() }}>Category </DropdownItem>
-                                        <DropdownItem >Products</DropdownItem>
-                                        <DropdownItem onClick={() => UserDetails()} >User Details</DropdownItem>
-                                    </DropdownMenu>
-                                </UncontrolledDropdown>
-                            </Col>
-                        </Row>
+                        <BsCartCheckFill className="CartIcons" onClick={() => CartPage()} />
+                    </Col>
+                    <Col md="1">
+                        <div className="HeaderCart">
+                            <UncontrolledDropdown >
+                                <DropdownToggle>
+                                    Admin {/* <BsThreeDotsVertical /> */}
+                                </DropdownToggle>
+                                <DropdownMenu >
+                                    <DropdownItem onClick={() => { CategoryDetails() }}>Category </DropdownItem>
+                                    <DropdownItem onClick={() => { ProductDetails() }}>Products</DropdownItem>
+                                    <DropdownItem onClick={() => UserDetails()} >User Details</DropdownItem>
+                                </DropdownMenu>
+                            </UncontrolledDropdown>
+                        </div>
                     </Col>
                 </Row>
             </CardHeader>
@@ -61,3 +62,4 @@ const HeaderPage = () => {
 }
 
 export default HeaderPage;
+

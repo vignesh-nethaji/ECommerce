@@ -1,22 +1,19 @@
-import { useContext,useEffect, useState } from "react";
-import { Input, Button, CardHeader,Label,Row,Col } from "reactstrap";
+import React, { useContext, useEffect, useState } from "react";
+import { Input, Button, CardHeader, Label, Row, Col } from "reactstrap";
 import axios from "axios";
 import HeaderPage from "./HeaderPage";
 import SidePage from "./SidePage";
 import { Context } from "./ProductDetails";
-import Swal from "sweetalert2";
 // import ColorPicker from 'react-input-colorpicker';
-import { SketchPicker } from 'react-color';
-
 
 
 const CreateProduct = () => {
 
   const [category, setCategory] = useState([]);
   const [Singlecategory, setSingleCategory] = useState([]);
-  var [colorHexCode, setColorHexCode] = useState('#000000');
 
   const [addProduct, setAddProduct] = useState([]);
+  // const [editProductDtls, setEditproductDtls] = useState([])
 
   const singleProdDtls = useContext(Context)
 
@@ -65,6 +62,7 @@ const CreateProduct = () => {
         }
       })
         .then((res) => (res.data.data))
+        // .then(console.log("Single Product " + productId))
         .then((res) => (setCategory(res)))
       setOnVal(true);
     }
@@ -76,41 +74,34 @@ const CreateProduct = () => {
       "Title": txtProduct,
       "Price": parseFloat(txtPrice),
       "Description": txtDesc,
-      "Image": colorHexCode.substring(1),
+      "Image": txtImg,
       "CategoryId": parseInt(ddlCategory)
     }
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     }
+    // console.log(JSON.stringify(headers));
     axios.post("http://localhost:40073/api/Product/Add", ProductDtls, {
       headers: headers
     })
+      .then((res) => (res))
+      //.then((res) => (console.log(res)))
       .then((res) => (setAddProduct(res)))
-      .then(res => {
-        var toastMixin = Swal.mixin({
-          toast: true,
-          icon: 'success',
-          title: 'General Title',
-          animation: false,
-          position: 'top-right',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        });
-
-        toastMixin.fire({
-          animation: true,
-          title: 'Product Added Successfully'
-        });
-        CancelProduct();
-      })
-
+    if (addProduct.status === 200 && addProduct.data.data.message === "product data Added") {
+      alert("product data Added");
+    }
   }
+  console.log(addProduct);
+
+  // const EditProductDtls = (productId) => {
+
+  //   axios.get(("http://localhost:40073/api/Product/Get/" + productId),
+  //     { headers: { "Authorization": `Bearer ${token}` } }
+  //   )
+  //     .then(res => { setEditproductDtls(res.data.data) })
+
+  // }
 
   const UpdateProduct = () => {
     const edidProductDtls = {
@@ -118,7 +109,7 @@ const CreateProduct = () => {
       "Title": txtProduct,
       "Price": parseFloat(txtPrice),
       "Description": txtDesc,
-      "Image": colorHexCode.substring(1),
+      "Image": txtImg,
       "CategoryId": parseInt(ddlCategory)
     }
     const headers = {
@@ -129,29 +120,6 @@ const CreateProduct = () => {
       headers: headers
     })
       .then((res) => (res))
-      .then(res => {
-        var toastMixin = Swal.mixin({
-          toast: true,
-          icon: 'success',
-          title: 'General Title',
-          animation: false,
-          position: 'top-right',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        });
-
-
-        toastMixin.fire({
-          animation: true,
-          title: 'Product Updated Successfully'
-        });
-        CancelProduct();
-      })
   }
 
   const CancelProduct = () => {
@@ -171,17 +139,21 @@ const CreateProduct = () => {
     <div>
 
       <div>
-        <HeaderPage />
+        {on ?
+          <HeaderPage />
+          : ''}
       </div>
       <Row>
-        <Col md="3" > <SidePage /></Col>
+        {on ?
+          <Col md="3" > <SidePage /></Col>
+          : ''}
         <Col md="9" >
         <Button href="../ZeroDotOne/HomePage">Back</Button>
           <CardHeader className="">
             <div >
               <Label id="lblCat">Category</Label>
               <select className="form-control" onChange={e => setDdlCategory(e.target.value)}>
-                <option value={0}>Select Category</option>
+                <option>Select Category</option>
 
                 {off ?
                   <option value={Singlecategory.id}>{Singlecategory.name}</option>
@@ -204,24 +176,27 @@ const CreateProduct = () => {
               <Label id="lblPrice"> Price</Label>
               <Input value={txtPrice} className="form-control" onChange={e => setTxtPrice(e.target.value)} /><br /><br />
 
+              <Label id="lblDes">Product Description</Label>
+              <Input value={txtDesc} className="form-control" onChange={e => setTxtDesc(e.target.value)} /><br /><br />
+
               <Label id="lblImg">Image</Label>
-              <Input readOnly value={colorHexCode} className="form-control" onChange={e => setTxtImg({colorHexCode})} /><br /><br />
+              <Input value={txtImg} className="form-control" onChange={e => setTxtImg(e.target.value)} /><br /><br />
+              {/* <ColorPicker
+                label='Color: '
+                color={'#36c'}
+                onChange={changeHandler}
+                mode='RGB'
+              /> */}
 
-              <SketchPicker
-                color={colorHexCode}
-                onChange={e => setColorHexCode(e.hex)} /><br/>
+              {on ? <Button onClick={AddProduct} color="danger" >Add Product</Button> : ''}{" "}
+              {off ? <Button onClick={UpdateProduct} color="danger" >Update Product</Button> : ''}{" "}
+              <Button color="danger" onClick={CancelProduct} >Cancel</Button>{" "}
+            </div>
 
-              {/* <br />
-              <b>Selected Hex Color: </b>{colorHexCode} */}
-
-                    <Button color="danger">Add Product</Button>
-                </div>
-                
-            </CardHeader>
-            </Col>
-            </Row>
-            
-        </div>
-    )
+          </CardHeader>
+        </Col>
+      </Row>
+    </div>
+  )
 }
 export default CreateProduct;

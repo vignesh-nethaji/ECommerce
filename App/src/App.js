@@ -8,7 +8,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import AddCategory from './ZeroDotOne/AddCategory';
 import UserDetails from './UserDetails';
 import UserAdded from './UserAdded';
+import ProductDetails from './ZeroDotOne/ProductDetails';
 import CategoryDetails from './ZeroDotOne/CategoryDetails';
+import CartDetailsPage from './ZeroDotOne/CartDetailsPage';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path="/ZeroDotOne/AddCategory" element={<AddCategory />}></Route>
           <Route path="/ZeroDotOne/CategoryDetails" element={<CategoryDetails />}></Route>
           <Route path="/ZeroDotOne/AddUser" element={<UserAdded />}></Route>
+          <Route path="/ZeroDotOne/CartDetailsPage" element={<CartDetailsPage />}></Route>
+          <Route path="/ZeroDotOne/ProductDetails" element={<ProductDetails />}></Route>
         </Routes>
       </Router>
     </div>

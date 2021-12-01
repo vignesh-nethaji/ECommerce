@@ -26,7 +26,7 @@ const HomePage = () => {
     }, [token])
 
     console.log(product);
-    
+
 
     const AddToCart = (productId) => {
         var today = new Date();
@@ -47,7 +47,7 @@ const HomePage = () => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         }
-        
+
         axios.post("http://localhost:40073/api/Cart/Add", cartDtls, {
             headers: headers
         })

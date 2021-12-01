@@ -171,9 +171,13 @@ const UserAdded = () => {
 
     return (
         <div>
+            {on ?
+                <HeaderPage />
+                : ''}
             <Row>
-                <Col md="2"> <SidePage /> </Col>
-                <Col md="10">
+
+                <Col md="2"> </Col>
+                <Col md="8">
                     <CardHeader>
                         <Form>
                             <FormGroup>
@@ -234,7 +238,7 @@ const UserAdded = () => {
                         <Button onClick={() => { UserDetailsUpdate() }} backgroundColor='#3fffff' >Update</Button>
                         : ''}
                 </Col>
-
+                <Col md="2"> </Col>
             </Row>
         </div>
 

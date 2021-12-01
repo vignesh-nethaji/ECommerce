@@ -5,7 +5,7 @@ import { Button, Table, Row, Col } from "reactstrap";
 import UserAdded from "./UserAdded";
 import HeaderPage from "./ZeroDotOne/HeaderPage";
 import swal from 'sweetalert';
-
+import SidePage from "./ZeroDotOne/SidePage";
 export const Context = React.createContext();
 
 
@@ -68,7 +68,8 @@ const UserDetails = () => {
             <HeaderPage />
 
             <Row>
-                <Col md='12'>
+                <Col md="3"><SidePage /></Col>
+                <Col md='8'>
                     <Context.Provider value={userEditID}>
                         <Button href="/ZeroDotOne/AddUser">Add User</Button>
                         {on ?

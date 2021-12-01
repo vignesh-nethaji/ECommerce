@@ -15,7 +15,20 @@ import axios from "axios";
 
 import { AiOutlineMore } from "react-icons/ai";
 
+import { AiOutlineMore } from "react-icons/ai";
+
 const HomePage = () => {
+
+    const [product, setProduct] = useState([]);
+    const token = localStorage.getItem("UserTokenDetails")
+    useEffect(() => {
+
+        axios.get(("http://localhost:40073/api/Product/GetAll"),
+            { headers: { "Authorization": `Bearer ${token}` } }
+        )
+            .then(res => { setProduct(res.data.data) })
+    }, [token])
+    console.log(product);
 
     const [product, setProduct] = useState([]);
     const token = localStorage.getItem("UserTokenDetails")
@@ -59,10 +72,11 @@ const HomePage = () => {
             <div>
                 <HeaderPage />
             </div>
-
+            
             <Row>
                 <Col md="3" > <SidePage /></Col>
                 <Col md="9" >
+                    <Button href="../ZeroDotOne/CreateProduct">Add Product</Button>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridGap: 10, }}>
                         {product.map((postDetails, i) =>
                             <div key={i} className="mt-5">

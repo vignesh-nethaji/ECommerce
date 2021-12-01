@@ -204,9 +204,6 @@ const CreateProduct = () => {
               <Label id="lblPrice"> Price</Label>
               <Input value={txtPrice} className="form-control" onChange={e => setTxtPrice(e.target.value)} /><br /><br />
 
-                    <Label>Price</Label>
-                    <Input className="form-control" /><br /><br />
-
               <Label id="lblImg">Image</Label>
               <Input readOnly value={colorHexCode} className="form-control" onChange={e => setTxtImg({colorHexCode})} /><br /><br />
 

@@ -13,13 +13,12 @@ import HeaderPage from "./HeaderPage";
 import SidePage from "./SidePage";
 import axios from "axios";
 
+import { AiOutlineMore } from "react-icons/ai";
+
 const HomePage = () => {
 
-    const [UserName, setUserName] = useState([]);
-    // let [order, setOrder] = useState([]);
-    let [orderID, setOrderID] = useState([]);
-    // localStorage.setItem('OrdersProducts', JSON.stringify(order));
-
+    const [product, setProduct] = useState([]);
+    const token = localStorage.getItem("UserTokenDetails")
     useEffect(() => {
 
         axios.get(("http://localhost:40073/api/Product/GetAll"),
@@ -27,9 +26,7 @@ const HomePage = () => {
         )
             .then(res => { setProduct(res.data.data) })
     }, [token])
-
     console.log(product);
-    
 
     const AddToCart = (productId) => {
         var today = new Date();
@@ -50,7 +47,7 @@ const HomePage = () => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
         }
-        
+
         axios.post("http://localhost:40073/api/Cart/Add", cartDtls, {
             headers: headers
         })
@@ -72,7 +69,7 @@ const HomePage = () => {
                                 <Col md="10">
                                     <Card className="homecard">
                                         <CardBody>
-                                            <CardTitle tag="h4">{postDetails.catagory} <AiOutlineMore id="Popover1" /></CardTitle>
+                                            <CardTitle>{postDetails.category} </CardTitle>
                                         </CardBody>
                                         <CardBody>
                                             <img src={"https://via.placeholder.com/150/" + postDetails.image + "/placeholder.com/"}></img>

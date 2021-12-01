@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Input, Button, CardHeader,Label,Row,Col } from "reactstrap";
+import { useEffect, useState, useContext } from "react";
+import { Input, Button, CardHeader, Label, Row, Col } from "reactstrap";
 import axios from "axios";
 import HeaderPage from "./HeaderPage";
 import SidePage from "./SidePage";
@@ -7,7 +7,6 @@ import { Context } from "./ProductDetails";
 import Swal from "sweetalert2";
 // import ColorPicker from 'react-input-colorpicker';
 import { SketchPicker } from 'react-color';
-
 
 
 const CreateProduct = () => {
@@ -176,7 +175,7 @@ const CreateProduct = () => {
       <Row>
         <Col md="3" > <SidePage /></Col>
         <Col md="9" >
-        <Button href="../ZeroDotOne/HomePage">Back</Button>
+          <Button href="../ZeroDotOne/HomePage">Back</Button>
           <CardHeader className="">
             <div >
               <Label id="lblCat">Category</Label>
@@ -204,27 +203,27 @@ const CreateProduct = () => {
               <Label id="lblPrice"> Price</Label>
               <Input value={txtPrice} className="form-control" onChange={e => setTxtPrice(e.target.value)} /><br /><br />
 
-                    <Label>Price</Label>
-                    <Input className="form-control" /><br /><br />
+              <Label>Price</Label>
+              <Input className="form-control" /><br /><br />
 
               <Label id="lblImg">Image</Label>
-              <Input readOnly value={colorHexCode} className="form-control" onChange={e => setTxtImg({colorHexCode})} /><br /><br />
+              <Input readOnly value={colorHexCode} className="form-control" onChange={e => setTxtImg({ colorHexCode })} /><br /><br />
 
               <SketchPicker
                 color={colorHexCode}
-                onChange={e => setColorHexCode(e.hex)} /><br/>
+                onChange={e => setColorHexCode(e.hex)} /><br />
 
               {/* <br />
               <b>Selected Hex Color: </b>{colorHexCode} */}
 
-                    <Button color="danger">Add Product</Button>
-                </div>
-                
-            </CardHeader>
-            </Col>
-            </Row>
-            
-        </div>
-    )
+              <Button color="danger">Add Product</Button>
+            </div>
+
+          </CardHeader>
+        </Col>
+      </Row>
+
+    </div>
+  )
 }
 export default CreateProduct;

@@ -31,7 +31,7 @@ namespace ECommerce.Repository.Implementation
         {
             return await DbContext.Set<T>().FindAsync(id);
         }
-
+        
         public async Task<T> Insert(T obj)
         {
             var data = DbContext.Set<T>().Add(obj);

@@ -11,6 +11,7 @@ namespace ECommerce.Repository.Interfaces
         Task<T> GetById(int id);
         Task<T> Insert(T obj);
         Task Delete(int id);
-        Task<T> Update(T obj);
+        Task<T> Update(T obj); 
+        
     }
 }

@@ -144,7 +144,7 @@ const UserAdded = () => {
                 console.log(error);
 
             })
-        navigate("/ZeroDotOne/UserDetails");
+        window.location.reload();
     }
 
     const UserDetailsUpdate = () => {
@@ -222,6 +222,8 @@ const UserAdded = () => {
                                 <Input type="number" placeholder="+91" value={PhoneNumbervld} onChange={(e) => { setphoneNumvervld(e.currentTarget.value) }} required></Input>
                             </FormGroup>
                             <FormGroup>
+
+                                {/* <Input type="submit" value="Submit" /> */}
                             </FormGroup>
                         </Form>
 
@@ -229,6 +231,7 @@ const UserAdded = () => {
                     <Button href="/ZeroDotOne/UserDetails" color="#f194ff">Back</Button>{"  "}
                     {on ?
                         <Button onClick={() => { UserDetailsSubmit() }} color="#f194ff">Submit</Button>
+
                         : ''}
                     {off ?
                         <Button onClick={() => { UserDetailsUpdate() }} color="#f194ff" >Update</Button>

@@ -12,11 +12,9 @@ namespace ECommerce.Models
         public string Quantity { get; set; }
         [ForeignKey("UserId")]
         public int UserId { get; set; }
-
-        [ForeignKey ("ProductId")]
+        [ForeignKey("ProductId")]
         public int ProductId { get; set; }
         public virtual User User { get; set; }
         public virtual Product Product { get; set; }
-
     }
 }

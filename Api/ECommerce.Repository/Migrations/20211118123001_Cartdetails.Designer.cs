@@ -4,14 +4,16 @@ using ECommerce.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ECommerce.Repository.Migrations
 {
     [DbContext(typeof(ECommerceContext))]
-    partial class ECommerceContextModelSnapshot : ModelSnapshot
+    [Migration("20211118123001_Cartdetails")]
+    partial class Cartdetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,32 +31,32 @@ namespace ECommerce.Repository.Migrations
                     b.Property<string>("Date")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Quantity")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
+                    b.Property<int?>("productId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("userId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("productId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("userId");
 
-                    b.ToTable("Cart");
+                    b.ToTable("cart");
                 });
 
-            modelBuilder.Entity("ECommerce.Models.Category", b =>
+            modelBuilder.Entity("ECommerce.Models.Catagory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("category")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -69,24 +71,24 @@ namespace ECommerce.Repository.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int?>("CatagoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("image")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Price")
+                    b.Property<double>("price")
                         .HasColumnType("float");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CatagoryId");
 
                     b.ToTable("Product");
                 });
@@ -127,25 +129,25 @@ namespace ECommerce.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ECommerce.Models.Cart", b =>
                 {
-                    b.HasOne("ECommerce.Models.Product", "Product")
+                    b.HasOne("ECommerce.Models.Product", "product")
                         .WithMany()
-                        .HasForeignKey("ProductId");
+                        .HasForeignKey("productId");
 
-                    b.HasOne("ECommerce.Models.User", "User")
+                    b.HasOne("ECommerce.Models.User", "user")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("userId");
                 });
 
             modelBuilder.Entity("ECommerce.Models.Product", b =>
                 {
-                    b.HasOne("ECommerce.Models.Category", "Category")
+                    b.HasOne("ECommerce.Models.Catagory", "Catagory")
                         .WithMany("Product")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CatagoryId");
                 });
 #pragma warning restore 612, 618
         }

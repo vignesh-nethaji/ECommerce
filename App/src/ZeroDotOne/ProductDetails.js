@@ -23,8 +23,6 @@ const ProductDetails = () => {
     const [productId, setSingproductDtls] = useState([])
 
 
-    //const navigate = useNavigate();
-
     const GetProductDtls = () => {
         axios.get(("http://localhost:40073/api/Product/GetAll"),
             { headers: { "Authorization": `Bearer ${token}` } }
@@ -34,26 +32,14 @@ const ProductDetails = () => {
     useEffect(() => {
         GetProductDtls();
     }, [token])
-    console.log(productDetails);
-    /////////////////////////////////////////////////////////////////////////////////////////
+
     const EditProductDtls = (id) => {
 
         setSingproductDtls(id);
         setOnVal(false);
         setOffVal(true);
-
-        // axios.get(("http://localhost:40073/api/Product/Get/" + id),
-        //     { headers: { "Authorization": `Bearer ${token}` } }
-        // )
-        //     .then(res => { setEditproductDtls(res.data.data) })
-
-        // navigate('/ZeroDotOne/CreateProduct')
-        //     localStorage.setItem("ProductEditID",id)    
     }
-    console.log(productId);
-    console.log(editProductDtls);
 
-    ////////////////////////////////////////////////////////////////////////////////////////
 
     const DeleteProductDtls = (id) => {
         if (window.confirm('Do You Want To Delete This Product?')) {
@@ -79,29 +65,20 @@ const ProductDetails = () => {
                         }
                     });
 
-                    //document.querySelector(".second").addEventListener('click', function(){
                     toastMixin.fire({
                         animation: true,
                         title: 'Product Deleted Successfully'
                     });
                     GetProductDtls();
                 })
-
-            //});
-            console.log(deleteProductDtls);
         } else {
 
-            console.log('Thing was not saved to the database.');
+            return false;
         }
     }
-    // const sdergfsy=()=>{
-    //     if (editProductDtls !== null) {
-    //         alert(editProductDtls.id);
-    //     }
-    // }
 
-    // console.log(editProductDtls);
     return (
+
         <div>
             <HeaderPage />
             <Row>

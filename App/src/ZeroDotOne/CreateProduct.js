@@ -86,8 +86,6 @@ const CreateProduct = () => {
     axios.post("http://localhost:40073/api/Product/Add", ProductDtls, {
       headers: headers
     })
-      .then((res) => (res))
-      //.then((res) => (console.log(res)))
       .then((res) => (setAddProduct(res)))
       .then(res => {
         var toastMixin = Swal.mixin({

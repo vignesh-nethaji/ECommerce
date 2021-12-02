@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react/cjs/react.development";
 import { CardHeader } from "reactstrap";
 import axios from "axios";
-const SidePage = () => {
+
+const SidePage = (props) => {
     const [category, setCategory] = useState([]);
     const [on, setOn] = useState(false);
     const token = localStorage.getItem("UserTokenDetails");
@@ -19,11 +20,12 @@ const SidePage = () => {
 
     const CategoryName = (id) => {
         localStorage.setItem("CategoryIds", id)
-
+         props.callback();
     }
 
     return (
         <div>
+            {/* <HomePage clickMe={CategoryName}/> */}
             <CardHeader onClick={() => SelectCategory()}>
                 <h3> Category </h3>
                 {on ?

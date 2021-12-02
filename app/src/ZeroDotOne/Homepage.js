@@ -25,6 +25,7 @@ const HomePage = () => {
             { headers: { "Authorization": `Bearer ${token}` } }
         )
             .then(res => { setProduct(res.data.data) })
+            
     }, [token])
 
     const AddToCart = (productId) => {
@@ -54,8 +55,9 @@ const HomePage = () => {
             .then((res) => (console.log(res)))
     }
 
-    const OnChangeCategory=(Catid)=>{
-        axios.get("http://localhost:40073/api/Product/GetProducts/"+Catid,{
+    const OnChangeCategory=()=>{
+        let Catid= localStorage.getItem("CategoryIds")
+        axios.get("http://localhost:40073/api/Product/GetProductByCategory/"+Catid,{
           headers: {
             'Content-Type': 'application/json',
             "Authorization": `Bearer ${token}`
@@ -70,7 +72,7 @@ const HomePage = () => {
             </div>
 
             <Row>
-                <Col md="3" > <SidePage /></Col>
+                <Col md="3" > <SidePage callback={OnChangeCategory}/></Col>
                 <Col md="9" >
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridGap: 10, }}>
                         {product.map((postDetails, i) =>

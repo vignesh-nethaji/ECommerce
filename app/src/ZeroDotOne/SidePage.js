@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react/cjs/react.development";
-import { CardHeader } from "reactstrap";
 import axios from "axios";
+import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import 'react-pro-sidebar/dist/css/styles.css';
+import { MdCategory } from "react-icons/md";
+
 const SidePage = () => {
     const [category, setCategory] = useState([]);
-    const [on, setOn] = useState(false);
     const token = localStorage.getItem("UserTokenDetails");
 
     useEffect(() => {
@@ -13,26 +15,17 @@ const SidePage = () => {
             .then(res => { setCategory(res.data.data) })
     }, [token])
 
-    const SelectCategory = () => {
-        setOn(true)
-    }
-
-    const CategoryName = (id) => {
-        localStorage.setItem("CategoryIds", id)
-
-    }
-
     return (
-        <div>
-            <CardHeader onClick={() => SelectCategory()}>
-                <h3> Category </h3>
-                {on ?
-                    category.map((item, i) =>
-                        <p key={i} onClick={() => CategoryName(item.id)}>{item.name}</p>
-                    )
-                    : ''}
-
-            </CardHeader>
+        <div style={{ height: "100%" }}>
+            <ProSidebar>
+                <Menu iconShape="square">
+                    <SubMenu title="Categorys" icon={<MdCategory />}>
+                        {category.map((item, i) =>
+                            <MenuItem key={i}>{item.name}</MenuItem>
+                        )}
+                    </SubMenu>
+                </Menu>
+            </ProSidebar>;
         </div>
 
     )

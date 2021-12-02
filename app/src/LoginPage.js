@@ -52,7 +52,7 @@ const LoginPage = ({ initialValue, ...rest }) => {
     }
     return (
         <div>
-            <CardHeader className="LoginPageHeader">
+            <CardHeader className="LoginPageHeader sidepage">
                 <div >
                     <Label>User Name</Label>
                     <Input type="text" onChange={(e) => UserNamevld(e)} value={userNameVld} />

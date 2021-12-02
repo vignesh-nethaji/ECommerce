@@ -70,7 +70,8 @@
 .CartIcons{
   width: 30px;
   height: 30px;
-  margin-left: 63px;
+  margin-left: 47px;
+  margin-top: 5px;
 }
 .homecard{
   width: 100%;
@@ -94,4 +95,31 @@
 .dotted{
   border-style: dotted;
   padding: 1rem;
+}
+.sidepage{
+  background: #313a46 !important;
+  color: #FFFFFF;
+  height: 100% !important;
+}
+.LoginBg{
+  background: #313a46 !important;
+  color: #FFFFFF;
+}
+.HeaderUserIcon{
+  color: #fff;
+  background-color: #313a46 !important; 
+  border-color: #313a46 !important;
+}
+.UserIcons{
+  margin-left: 4rem !important;
+}
+.UserIconsss{
+  height: 30px;
+  width: 30px;
+}
+.HeaderHome{
+  margin-left: 6rem;
+  height: 30px;
+  width: 30px;
+  margin-top: 5px;
 }

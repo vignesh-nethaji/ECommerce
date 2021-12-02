@@ -60,7 +60,7 @@ const CartDetailsPage = () => {
                                             <b>{items.title}</b>
                                             <p className="text-justify">{items.description}</p>
                                             <CardText tag="h5"> $ {items.price}{" "}<s> ${items.price + 199}</s></CardText>
-                                            <p style={{ display: "none" }}>{total = total + items.price}</p>
+                                            <p style={{ display: "none" }}>{total = total + items.price}</p><br />
                                         </Col>
                                         <Col md="4">
                                             <h6>Delivery by Sun Dec 5 | Free₹40</h6>

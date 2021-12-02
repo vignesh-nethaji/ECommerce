@@ -1,7 +1,7 @@
 import { CardHeader, Row, Col, Input, InputGroup, InputGroupText, Button, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { IoSearchSharp } from "react-icons/io5";
 import { BsCartCheckFill, BsThreeDotsVertical } from "react-icons/bs";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle,FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const HeaderPage = () => {
@@ -18,11 +18,14 @@ const HeaderPage = () => {
     const ProductDetails = () => {
         navigate("/ZeroDotOne/productdetails")
     }
+    const HomePageLink = () => {
+        navigate("/ZeroDotOne/HomePage");
+    }
     return (
         <div>
-            <CardHeader>
+            <CardHeader className="sidepage">
                 <Row>
-                    <Col md="2"><h4 style={{ fontFamily: "monospace" }}>Zero Dot One</h4></Col>
+                    <Col md="3"><h4 style={{ fontFamily: "monospace" }} className="mt-2">Zero Dot One</h4></Col>
                     <Col md="6">
                         <InputGroup>
                             <Input placeholder="Search Product" />
@@ -31,28 +34,36 @@ const HeaderPage = () => {
                             </InputGroupText>
                         </InputGroup>
                     </Col>
-                    <Col md="1">
-                        <Button href="/">LogOut</Button>
-                    </Col>
-                    <Col md="1">
-                        <FaUserCircle className="CartIcons" />
-                    </Col>
-                    <Col md="1">
-                        <BsCartCheckFill className="CartIcons " onClick={() => CartPage()} />
-                    </Col>
-                    <Col md="1">
-                        <div className="HeaderCart">
-                            <UncontrolledDropdown >
-                                <DropdownToggle>
-                                    Admin {/* <BsThreeDotsVertical /> */}
-                                </DropdownToggle>
-                                <DropdownMenu >
-                                    <DropdownItem onClick={() => { CategoryDetails() }}>Category </DropdownItem>
-                                    <DropdownItem onClick={() => { ProductDetails() }}>Products</DropdownItem>
-                                    <DropdownItem onClick={() => UserDetails()} >User Details</DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
-                        </div>
+                    <Col md="3">
+                        <Row>
+                            <Col md="3"><FaHome onClick={() => CartPage()} className="HeaderHome" /></Col>
+                            <Col md="3" >
+                                <UncontrolledDropdown className="UserIcons ">
+                                    <DropdownToggle className="HeaderUserIcon">
+                                        <FaUserCircle className="UserIconsss" />
+                                    </DropdownToggle>
+                                    <DropdownMenu >
+                                        <DropdownItem href="/">Logout </DropdownItem>
+                                        <DropdownItem>Your Profile</DropdownItem>
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
+                            </Col>
+                            <Col md="3"><BsCartCheckFill className="CartIcons " onClick={() => CartPage()} /></Col>
+                            <Col md="3">
+                                <div className="HeaderCart">
+                                    <UncontrolledDropdown >
+                                        <DropdownToggle className="HeaderUserIcon">
+                                            <BsThreeDotsVertical />
+                                        </DropdownToggle>
+                                        <DropdownMenu >
+                                            <DropdownItem onClick={() => { CategoryDetails() }}>Category </DropdownItem>
+                                            <DropdownItem onClick={() => { ProductDetails() }}>Products</DropdownItem>
+                                            <DropdownItem onClick={() => UserDetails()} >User Details</DropdownItem>
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
+                                </div>
+                            </Col>
+                        </Row>
                     </Col>
                 </Row>
             </CardHeader>

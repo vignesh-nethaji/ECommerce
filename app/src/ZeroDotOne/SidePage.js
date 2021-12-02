@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react/cjs/react.development";
 import axios from "axios";
-import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
-import 'react-pro-sidebar/dist/css/styles.css';
-import { MdCategory } from "react-icons/md";
 
-const SidePage = () => {
+const SidePage = (props) => {
     const [category, setCategory] = useState([]);
     const token = localStorage.getItem("UserTokenDetails");
 
@@ -14,6 +11,15 @@ const SidePage = () => {
         )
             .then(res => { setCategory(res.data.data) })
     }, [token])
+
+    const SelectCategory = () => {
+        setOn(true)
+    }
+
+    const CategoryName = (id) => {
+        localStorage.setItem("CategoryIds", id)
+
+    }
 
     return (
         <div style={{ height: "100%" }}>

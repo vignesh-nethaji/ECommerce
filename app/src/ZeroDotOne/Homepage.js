@@ -18,13 +18,7 @@ const HomePage = () => {
 
     const [product, setProduct] = useState([]);
     const token = localStorage.getItem("UserTokenDetails")
-    useEffect(() => {
 
-        axios.get(("http://localhost:40073/api/Product/GetAll"),
-            { headers: { "Authorization": `Bearer ${token}` } }
-        )
-            .then(res => { setProduct(res.data.data) })
-    }, [token])
     useEffect(() => {
 
         axios.get(("http://localhost:40073/api/Product/GetAll"),
@@ -59,6 +53,16 @@ const HomePage = () => {
             .then((res) => (res))
             .then((res) => (console.log(res)))
     }
+
+    const OnChangeCategory=(Catid)=>{
+        axios.get("http://localhost:40073/api/Product/GetProducts/"+Catid,{
+          headers: {
+            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${token}`
+          }
+        })
+        .then(res=>{ setProduct(res.data.data) })
+      }
     return (
         <div>
             <div>
@@ -68,7 +72,6 @@ const HomePage = () => {
             <Row>
                 <Col md="3" > <SidePage /></Col>
                 <Col md="9" >
-                    <Button href="../ZeroDotOne/CreateProduct">Add Product</Button>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridGap: 10, }}>
                         {product.map((postDetails, i) =>
                             <div key={i} className="mt-5">

@@ -4,6 +4,8 @@ import axios from "axios";
 import HeaderPage from "./HeaderPage";
 import SidePage from "./SidePage";
 import { Context } from "./ProductDetails";
+import Swal from "sweetalert2";
+import { SketchPicker } from 'react-color';
 // import ColorPicker from 'react-input-colorpicker';
 
 
@@ -11,7 +13,7 @@ const CreateProduct = () => {
 
   const [category, setCategory] = useState([]);
   const [Singlecategory, setSingleCategory] = useState([]);
-
+  var [colorHexCode, setColorHexCode] = useState('#000000');
   const [addProduct, setAddProduct] = useState([]);
   // const [editProductDtls, setEditproductDtls] = useState([])
 
@@ -70,7 +72,7 @@ const CreateProduct = () => {
       "Title": txtProduct,
       "Price": parseFloat(txtPrice),
       "Description": txtDesc,
-      "Image": txtImg,
+      "Image":  colorHexCode.substring(1),
       "CategoryId": parseInt(ddlCategory)
     }
     const headers = {
@@ -80,11 +82,29 @@ const CreateProduct = () => {
     axios.post("http://localhost:40073/api/Product/Add", ProductDtls, {
       headers: headers
     })
-      .then((res) => (res))
       .then((res) => (setAddProduct(res)))
-    if (addProduct.status === 200 && addProduct.data.data.message === "product data Added") {
-      alert("product data Added");
-    }
+      .then(res => {
+        var toastMixin = Swal.mixin({
+          toast: true,
+          icon: 'success',
+          title: 'General Title',
+          animation: false,
+          position: 'top-right',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        });
+
+        toastMixin.fire({
+          animation: true,
+          title: 'Product Added Successfully'
+        });
+        CancelProduct();
+      })
   }
   const UpdateProduct = () => {
     const edidProductDtls = {
@@ -92,7 +112,7 @@ const CreateProduct = () => {
       "Title": txtProduct,
       "Price": parseFloat(txtPrice),
       "Description": txtDesc,
-      "Image": txtImg,
+      "Image": colorHexCode.substring(1),
       "CategoryId": parseInt(ddlCategory)
     }
     const headers = {
@@ -103,6 +123,29 @@ const CreateProduct = () => {
       headers: headers
     })
       .then((res) => (res))
+      .then(res => {
+        var toastMixin = Swal.mixin({
+          toast: true,
+          icon: 'success',
+          title: 'General Title',
+          animation: false,
+          position: 'top-right',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        });
+
+
+        toastMixin.fire({
+          animation: true,
+          title: 'Product Updated Successfully'
+        });
+        CancelProduct();
+      })
   }
 
   const CancelProduct = () => {
@@ -160,14 +203,14 @@ const CreateProduct = () => {
               <Input value={txtDesc} className="form-control" onChange={e => setTxtDesc(e.target.value)} /><br /><br />
 
               <Label id="lblImg">Image</Label>
-              <Input value={txtImg} className="form-control" onChange={e => setTxtImg(e.target.value)} /><br /><br />
-              {/* <ColorPicker
-                label='Color: '
-                color={'#36c'}
-                onChange={changeHandler}
-                mode='RGB'
-              /> */}
+              <Input readOnly value={colorHexCode} className="form-control" onChange={e => setTxtImg({colorHexCode})} /><br /><br />
 
+              <SketchPicker
+                color={colorHexCode}
+                onChange={e => setColorHexCode(e.hex)} /><br/>
+
+              {/* <br />
+              <b>Selected Hex Color: </b>{colorHexCode} */}
               {on ? <Button onClick={AddProduct} color="danger" >Add Product</Button> : ''}{" "}
               {off ? <Button onClick={UpdateProduct} color="danger" >Update Product</Button> : ''}{" "}
               <Button color="danger" onClick={CancelProduct} >Cancel</Button>{" "}

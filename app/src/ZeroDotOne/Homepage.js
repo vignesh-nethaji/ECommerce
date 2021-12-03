@@ -21,12 +21,16 @@ const HomePage = () => {
 
     useEffect(() => {
 
-        axios.get(("http://localhost:40073/api/Product/GetAll"),
-            { headers: { "Authorization": `Bearer ${token}` } }
-        )
-            .then(res => { setProduct(res.data.data) })
+        GetAllProduct();
             
     }, [token])
+
+    const GetAllProduct=()=>{
+        axios.get(("http://localhost:40073/api/Product/GetAll"),
+        { headers: { "Authorization": `Bearer ${token}` } }
+    )
+        .then(res => { setProduct(res.data.data) })
+    }
 
     const AddToCart = (productId) => {
         var today = new Date();

@@ -76,14 +76,14 @@ const AddCategory = () => {
     }
     return (
         <div>
+
             {on ?
                 <HeaderPage />
                 : ''}
             <Row>
-                {on ?
-                    <Col md="3"><SidePage /></Col>
-                    : ''}
-                <Col md="9">
+                <Col md="3"></Col>
+                <Col md="6">
+
                     <CardHeader>
                         <Form>
                             <FormGroup>
@@ -105,6 +105,7 @@ const AddCategory = () => {
                         <Button onClick={() => { CategoryDetailsUpdate() }}>Update </Button>
                         : ''}
                 </Col>
+                <Col md="6"></Col>
             </Row>
         </div >
     )

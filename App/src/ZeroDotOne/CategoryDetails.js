@@ -55,10 +55,11 @@ const CategoryDetails = () => {
     return (
         <div>
             <HeaderPage />
-
             <Row>
-                <Col md="3" > <SidePage /></Col>
-                <Col md="9" >
+                <Col md="3"></Col>
+                <Col md="6">
+
+
                     <Context.Provider value={categoryEditID}>
                         <Button href="/ZeroDotOne/AddCategory">Add Category</Button>
                         {on ?
@@ -90,7 +91,10 @@ const CategoryDetails = () => {
                             <AddCategory />
                             : ''}
                     </Context.Provider>
-                </Col></Row>
+                </Col>
+                <Col md="3"></Col>
+            </Row>
+
 
         </div >
     )

@@ -11,17 +11,27 @@ import HeaderPage from "./HeaderPage";
 import axios from "axios";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { ImLocation2 } from "react-icons/im"
+import swal from "sweetalert";
 
 const CartDetailsPage = () => {
     const [productDetails, setProductDetails] = useState([]);
     let total = 0;
     const token = localStorage.getItem("UserTokenDetails");
     const userId = localStorage.getItem("UserIdDetails");
+    const [cartDetails, setCartDetails] = useState([])
 
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
     }
+    const getallCartDetails = () => {
+        axios.get(("http://localhost:40073/api/Cart/GetAll"),
+            { headers: { "Authorization": `Bearer ${token}` } }
+        )
+            .then(res => { setCartDetails(res.data.data) })
+
+    }
+
 
     useEffect(() => {
         axios.get(("http://localhost:40073/api/Cart/GetProducts/" + userId),
@@ -29,6 +39,28 @@ const CartDetailsPage = () => {
         )
             .then(res => { setProductDetails(res.data.data) })
     }, [userId, headers]);
+    const CartDetailsDelete = (id) => {
+        if (window.confirm('Sure  U want to delete this Product?')) {
+
+            axios.delete(("http://localhost:40073/api/Cart/Delete/" + id),
+                { headers: { "Authorization": `Bearer ${token}` } }
+            )
+                .then(res => {
+                    getallCartDetails();
+                    swal({
+                        title: "Done!",
+                        text: "Product is deleted into a Cart",
+                        icon: "success",
+                        timer: 2000,
+                        button: false
+                    })
+                    this.setState({ redirect: this.state.redirect === false });
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+    }
 
     return (
         <div>
@@ -60,7 +92,8 @@ const CartDetailsPage = () => {
                                             <b>{items.title}</b>
                                             <p className="text-justify">{items.description}</p>
                                             <CardText tag="h5"> $ {items.price}{" "}<s> ${items.price + 199}</s></CardText>
-                                            <p style={{ display: "none" }}>{total = total + items.price}</p><br />
+                                            <p style={{ display: "none" }}>{total = total + items.price}</p>
+                                            <a href="#" value={items.id} onClick={() => { CartDetailsDelete(items.id) }} >Delete</a>
                                         </Col>
                                         <Col md="4">
                                             <h6>Delivery by Sun Dec 5 | Free₹40</h6>

@@ -11,7 +11,8 @@ import UserAdded from './UserAdded';
 import ProductDetails from './ZeroDotOne/ProductDetails';
 import CategoryDetails from './ZeroDotOne/CategoryDetails';
 import CartDetailsPage from './ZeroDotOne/CartDetailsPage';
-import SingleProductDtls from './ZeroDotOne/SingleProductDtls';
+import YourProfile from './YourProfile';
+
 
 function App() {
   return (
@@ -28,7 +29,8 @@ function App() {
           <Route path="/ZeroDotOne/AddUser" element={<UserAdded />}></Route>
           <Route path="/ZeroDotOne/CartDetailsPage" element={<CartDetailsPage />}></Route>
           <Route path="/ZeroDotOne/ProductDetails" element={<ProductDetails />}></Route>
-          <Route path="/ZeroDotOne/SingleProductDtls" element={<SingleProductDtls />}></Route>
+          <Route path="/ZeroDotOne/YourProfile" element={<YourProfile />}></Route>
+
         </Routes>
       </Router>
     </div>

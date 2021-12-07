@@ -157,6 +157,7 @@ debugger;
     setTxtDesc("");
     setTxtImg("");
     setTxtId(0);
+    setColorHexCode("");
   }
  
   return (

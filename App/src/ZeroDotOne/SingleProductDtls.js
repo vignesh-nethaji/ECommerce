@@ -89,10 +89,13 @@ const SingleProductDtls = (props) => {
                         <h5 className="mt-3">{singleProduct.title}</h5>
                         <CardText>{singleProduct.description}</CardText>
                         <CardText tag="h5"> $ {singleProduct.price}{" "}<s> ${singleProduct.price + 199}</s></CardText>
-
-                    </CardBody>
-                    {/* <h1><center>Available Offers</center></h1> */}
-
+                        <br /> <h5>Available offers</h5>
+                        <p><strong> Special Price </strong> Get extra 10% off (price inclusive of discount)T&C</p>
+                        <p><strong>Bank Offer </strong> Flat ₹100 off on first ZDO Pay Later order of ₹500 and aboveT&C</p>
+                        <p><strong> Bank Offer</strong> 5% Unlimited Cashback on ZDO Axis Bank Credit CardT&C</p>
+                        <p><strong>Bank Offer</strong> 20% off on 1st txn with Amex Network Cards issued by ICICI Bank,IndusInd Bank,SBI Cards and MobikwikT&C</p>
+                        <p><strong>Partner Offer</strong> Wishlist Now, Get ₹50 Off, during EOSS Sale</p>
+                    </CardBody> 
                 </Card>
             </Col>
         </Row>

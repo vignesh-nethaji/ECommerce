@@ -37,12 +37,12 @@ const CreateProduct = () => {
 
   useEffect(() => {
     if (singleProdDtls !== null && singleProdDtls !== "" && singleProdDtls !== undefined) {
-
+debugger;
       setDdlCategory(singleProdDtls.categoryId);
       setTxtProduct(singleProdDtls.title);
       setTxtPrice(singleProdDtls.price);
       setTxtDesc(singleProdDtls.description);
-      setTxtImg(singleProdDtls.image);
+      setColorHexCode(singleProdDtls.image);
       setTxtId(singleProdDtls.id);
 
       axios.get("http://localhost:40073/api/Category/Get/" + singleProdDtls.categoryId, {
@@ -173,7 +173,7 @@ const CreateProduct = () => {
           <Col md="3" > <SidePage /></Col>
           : ''} */}
         <Col md="12" >
-          <Button href="../ZeroDotOne/HomePage"><IoMdArrowRoundBack /></Button>
+          <Button href="../ZeroDotOne/ProductDetails"><IoMdArrowRoundBack /></Button>
           <CardHeader className="">
             <div >
               <Label id="lblCat">Category</Label>

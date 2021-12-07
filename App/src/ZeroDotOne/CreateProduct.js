@@ -6,6 +6,8 @@ import SidePage from "./SidePage";
 import { Context } from "./ProductDetails";
 import Swal from "sweetalert2";
 import { SketchPicker } from 'react-color';
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 // import ColorPicker from 'react-input-colorpicker';
 
 
@@ -156,7 +158,7 @@ const CreateProduct = () => {
     setTxtImg("");
     setTxtId(0);
   }
-
+ 
   return (
 
     <div>
@@ -167,11 +169,11 @@ const CreateProduct = () => {
           : ''}
       </div>
       <Row>
-        {on ?
+        {/* {on ?
           <Col md="3" > <SidePage /></Col>
-          : ''}
-        <Col md="9" >
-          <Button href="../ZeroDotOne/HomePage">Back</Button>
+          : ''} */}
+        <Col md="12" >
+          <Button href="../ZeroDotOne/HomePage"><IoMdArrowRoundBack /></Button>
           <CardHeader className="">
             <div >
               <Label id="lblCat">Category</Label>
@@ -179,7 +181,7 @@ const CreateProduct = () => {
                 <option>Select Category</option>
 
                 {off ?
-                  <option value={Singlecategory.id}>{Singlecategory.name}</option>
+                  <option selected={true} value={Singlecategory.id}>{Singlecategory.name}</option>
 
                   : category.map((catDetails, i) => {
                     return (
@@ -188,7 +190,7 @@ const CreateProduct = () => {
                       </option>
                     )
                   })
-                }
+                  }
               </select>
 
 
@@ -197,10 +199,10 @@ const CreateProduct = () => {
               <Input value={txtProduct} className="form-control" onChange={e => setTxtProduct(e.target.value)} /><br /><br />
 
               <Label id="lblPrice"> Price</Label>
-              <Input value={txtPrice} className="form-control" onChange={e => setTxtPrice(e.target.value)} /><br /><br />
+              <Input type="number" value={txtPrice} className="form-control" onChange={e => setTxtPrice(e.target.value)} /><br /><br />
 
               <Label id="lblDes">Product Description</Label>
-              <Input value={txtDesc} className="form-control" onChange={e => setTxtDesc(e.target.value)} /><br /><br />
+              <Input type="textarea" value={txtDesc} className="form-control" onChange={e => setTxtDesc(e.target.value)} /><br /><br />
 
               <Label id="lblImg">Image</Label>
               <Input readOnly value={colorHexCode} className="form-control" onChange={e => setTxtImg({colorHexCode})} /><br /><br />

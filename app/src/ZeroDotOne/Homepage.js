@@ -65,15 +65,25 @@ const HomePage = (props) => {
             .then((res) => (console.log(res)))
     }
 
-    const OnChangeCategory = () => {
-        let Catid = localStorage.getItem("CategoryIds")
+    const OnChangeCategory = () => { 
+        let Catid = localStorage.getItem("CategoryIds") 
+        if(Catid!=="0"){
         axios.get("http://localhost:40073/api/Product/GetProductByCategory/" + Catid, {
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": `Bearer ${token}`
             }
         })
+
             .then(res => { setProduct(res.data.data) })
+    }
+            else{
+                axios.get(("http://localhost:40073/api/Product/GetAll"),
+                { headers: { "Authorization": `Bearer ${token}` } }
+            )
+                .then(res => { setProduct(res.data.data) })
+            }
+      
     }
 
     const GetSingleProduct = (details) => {

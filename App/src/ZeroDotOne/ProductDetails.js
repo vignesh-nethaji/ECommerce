@@ -82,8 +82,8 @@ const ProductDetails = () => {
         <div>
             <HeaderPage />
             <Row>
-                <Col md="3"><SidePage /></Col>
-                <Col md="9">
+                {/* <Col md="3"><SidePage /></Col> */}
+                <Col md="12">
                     <Button href="/ZeroDotOne/CreateProduct">Add Product</Button>
                     <Context.Provider value={productId}>
                         {on ?

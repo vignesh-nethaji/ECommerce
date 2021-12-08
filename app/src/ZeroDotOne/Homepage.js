@@ -99,8 +99,10 @@ const HomePage = () => {
                         </Col>
                     </Row>
                     : ''}
+
+
                 {off ? <div><Button href="/ZeroDotOne/HomePage"><IoMdArrowRoundBack /></Button>{"   "} < SingleProductDtls details={detailsAddCart} /></div> : ''}
-                
+
             </div>
         </div >
 

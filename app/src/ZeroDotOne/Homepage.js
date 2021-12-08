@@ -12,6 +12,7 @@ import HeaderPage from "./HeaderPage";
 import SidePage from "./SidePage";
 import axios from "axios";
 import SingleProductDtls from "./SingleProductDtls";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 
 const HomePage = () => {
@@ -98,7 +99,8 @@ const HomePage = () => {
                         </Col>
                     </Row>
                     : ''}
-                {off ? <div><Button onClick={() => { BacktoHome() }}>Back</Button> < SingleProductDtls details={detailsAddCart} /></div> : ''}
+                {off ? <div><Button href="/ZeroDotOne/HomePage"><IoMdArrowRoundBack /></Button>{"   "} < SingleProductDtls details={detailsAddCart} /></div> : ''}
+                
             </div>
         </div >
 

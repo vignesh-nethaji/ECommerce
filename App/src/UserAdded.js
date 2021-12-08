@@ -5,7 +5,6 @@ import { Context } from "./UserDetails";
 import { YourProfileId } from './YourProfile';
 import HeaderPage from './ZeroDotOne/HeaderPage';
 
-
 const UserAdded = () => {
     const id = useContext(Context);
     const ProfileId = useContext(YourProfileId);
@@ -127,11 +126,6 @@ const UserAdded = () => {
             alert("Enter Phone Number");
             return false;
         }
-        else {
-            return true;
-
-        }
-        window.location.reload();
     }
     const UserDetailsSubmit = () => {
 
@@ -148,10 +142,14 @@ const UserAdded = () => {
             "city": cityvld,
             "zipcode": zipcodevld,
             "phoneNumber": PhoneNumbervld
+        }, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
         })
             .then((response) => { JSON.stringify(response) })
             .catch(error => {
-                console.log(error);
+                console.log(error)
             })
         window.location.reload();
     }
@@ -187,6 +185,7 @@ const UserAdded = () => {
 
                 <Col md="2"> </Col>
                 <Col md="8">
+
                     <CardHeader>
                         <Form>
                             <FormGroup>
@@ -240,11 +239,11 @@ const UserAdded = () => {
                     </CardHeader>
                     <Button href="/ZeroDotOne/UserDetails">Back</Button>{"  "}
                     {on ?
-                        <Button onClick={() => { UserDetailsSubmit() }}>Submit</Button>
+                        <Button href="/ZeroDotOne/UserDetails" onClick={() => { UserDetailsSubmit() }}>Submit</Button>
 
                         : ''}
                     {off ?
-                        <Button onClick={() => { UserDetailsUpdate() }} backgroundColor='#3fffff' >Update</Button>
+                        <Button onClick={() => { UserDetailsUpdate() }} >Update</Button>
                         : ''}
                 </Col>
                 <Col md="2"> </Col>

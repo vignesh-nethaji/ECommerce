@@ -91,9 +91,11 @@ const CartDetailsPage = () => {
                                         <Col md="5">
                                             <b>{items.title}</b>
                                             <p className="text-justify">{items.description}</p>
-                                            <CardText tag="h5"> $ {items.price}{" "}<s> ${items.price + 199}</s></CardText>
-                                            <p style={{ display: "none" }}>{total = total + items.price}</p>
-                                            <a href="#" value={items.id} onClick={() => { CartDetailsDelete(items.id) }} >Delete</a>
+                                            <Row>
+                                                <Col md='6'><CardText tag="h5"> $ {items.price}{" "}<s> ${items.price + 199}</s></CardText><p style={{ display: "none" }}>{total = total + items.price}</p></Col>
+                                                <Col md='6'><a href="#" value={items.id} onClick={() => { CartDetailsDelete(items.id) }} >Delete</a></Col>
+                                            </Row>
+                                            <br /><br />
                                         </Col>
                                         <Col md="4">
                                             <h6>Delivery by Sun Dec 5 | Free₹40</h6>

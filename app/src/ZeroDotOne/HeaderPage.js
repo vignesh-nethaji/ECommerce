@@ -1,8 +1,10 @@
-import { CardHeader, Row, Col, Input, InputGroup, InputGroupText, Button, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { CardHeader, Row, Col, Input, InputGroup, InputGroupText, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { IoSearchSharp } from "react-icons/io5";
 import { BsCartCheckFill, BsThreeDotsVertical } from "react-icons/bs";
-import { FaUserCircle,FaHome } from "react-icons/fa";
+import { FaUserCircle, FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+
+
 
 const HeaderPage = () => {
     let navigate = useNavigate();
@@ -18,9 +20,13 @@ const HeaderPage = () => {
     const ProductDetails = () => {
         navigate("/ZeroDotOne/productdetails")
     }
-    const HomePageLink = () => {
-        navigate("/ZeroDotOne/HomePage");
+    const YourProfile = () => {
+        navigate("/ZeroDotOne/YourProfile");
     }
+    const HomePageLink = () => {
+        navigate("/ZeroDotOne/HomePage")
+    }
+
     return (
         <div>
             <CardHeader className="sidepage">
@@ -36,7 +42,7 @@ const HeaderPage = () => {
                     </Col>
                     <Col md="3">
                         <Row>
-                            <Col md="3"><FaHome onClick={() => CartPage()} className="HeaderHome" /></Col>
+                            <Col md="3"><FaHome onClick={() => HomePageLink()} className="HeaderHome" /></Col>
                             <Col md="3" >
                                 <UncontrolledDropdown className="UserIcons ">
                                     <DropdownToggle className="HeaderUserIcon">
@@ -44,7 +50,7 @@ const HeaderPage = () => {
                                     </DropdownToggle>
                                     <DropdownMenu >
                                         <DropdownItem href="/">Logout </DropdownItem>
-                                        <DropdownItem>Your Profile</DropdownItem>
+                                        <DropdownItem onClick={() => YourProfile()}>Your Profile</DropdownItem>
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
                             </Col>
@@ -71,6 +77,7 @@ const HeaderPage = () => {
 
     );
 }
+
 
 export default HeaderPage;
 

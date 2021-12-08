@@ -2,11 +2,13 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText, Col, Row, CardHeader } from 'reactstrap';
 import axios from "axios";
 import { Context } from "./UserDetails";
+import { YourProfileId } from './YourProfile';
 import HeaderPage from './ZeroDotOne/HeaderPage';
 
 
 const UserAdded = () => {
     const id = useContext(Context);
+    const ProfileId = useContext(YourProfileId);
     const [emailidvld, setEmailidvld] = useState("");
     const [passwordvld, setPasswordvld] = useState("");
     const [usernamevld, setUsernamevld] = useState("");
@@ -22,16 +24,29 @@ const UserAdded = () => {
     const [off, setOff] = useState(false);
 
     useEffect(() => {
-        if (id !== 0 && id !== undefined) {
+        if ((id !== 0 && id !== undefined) || (ProfileId !== 0 && ProfileId !== undefined)) {
             setOff(true);
             setOn(false);
-            axios.get(("http://localhost:40073/api/User/Get/" + id),
-                { headers: { "Authorization": `Bearer ${token}` } }
-            )
-                .then(res => { setUserDetails(res.data.data) })
-                .catch(err => {
-                    console.log(err)
-                })
+            if (id !== 0 && id !== undefined) {
+                axios.get(("http://localhost:40073/api/User/Get/" + id),
+                    { headers: { "Authorization": `Bearer ${token}` } }
+                )
+                    .then(res => { setUserDetails(res.data.data) })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            } else if (ProfileId !== 0 && ProfileId !== undefined) {
+                axios.get(("http://localhost:40073/api/User/Get/" + ProfileId),
+                    { headers: { "Authorization": `Bearer ${token}` } }
+                )
+                    .then(res => { setUserDetails(res.data.data) })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            } else {
+                alert("Error");
+            }
+
         } else {
             setEmailidvld('');
             setUsernamevld('');

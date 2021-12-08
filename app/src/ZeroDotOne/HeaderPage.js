@@ -3,11 +3,22 @@ import { IoSearchSharp } from "react-icons/io5";
 import { BsCartCheckFill, BsThreeDotsVertical } from "react-icons/bs";
 import { FaUserCircle, FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import axios from "axios";
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 
 
 const HeaderPage = () => {
     let navigate = useNavigate();
+    const token = localStorage.getItem("UserTokenDetails");
+    const CartCount = localStorage.getItem("CartCount");
+    const [myOptions, setMyOptions] = useState([]);
+
+    useEffect(() => {
+        getDataFromAPI();
+    }, [])
     const CartPage = () => {
         navigate("/ZeroDotOne/CartDetailsPage")
     }
@@ -26,6 +37,18 @@ const HeaderPage = () => {
     const HomePageLink = () => {
         navigate("/ZeroDotOne/HomePage")
     }
+    const getDataFromAPI = () => {
+
+        axios.get(("http://localhost:40073/api/Category/GetAll"),
+            { headers: { "Authorization": `Bearer ${token}` } }
+        )
+            .then((res) => {
+                for (var i = 0; i < res.data.data.length; i++) {
+                    myOptions.push(res.data.data[i].name)
+                }
+                setMyOptions(myOptions)
+            })
+    }
 
     return (
         <div>
@@ -33,11 +56,26 @@ const HeaderPage = () => {
                 <Row>
                     <Col md="3"><h4 style={{ fontFamily: "monospace" }} className="mt-2">Zero Dot One</h4></Col>
                     <Col md="6">
-                        <InputGroup>
-                            <Input placeholder="Search Product" />
-                            <InputGroupText>
+                        <InputGroup >
+                            <Autocomplete
+                                className="AutocompleteHeader"
+                                freeSolo
+                                autoComplete
+                                autoHighlight
+                                options={myOptions}
+                                renderInput={(params) => (
+                                    <TextField {...params}
+                                        // onChange={getDataFromAPI}
+                                        // variant="outlined"
+                                        // label="Search Box"
+                                        // style={{ height: "2rem" }}
+                                        placeholder="search Products"
+                                    />
+                                )}
+                            />
+                            {/* <InputGroupText>
                                 <IoSearchSharp />
-                            </InputGroupText>
+                            </InputGroupText> */}
                         </InputGroup>
                     </Col>
                     <Col md="3">
@@ -54,7 +92,12 @@ const HeaderPage = () => {
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
                             </Col>
-                            <Col md="3"><BsCartCheckFill className="CartIcons " onClick={() => CartPage()} /></Col>
+                            <Col md="3">
+                                {/* <BsCartCheckFill className="CartIcons " onClick={() => CartPage()} /><span className="CartSpan ">{CartCount}</span> */}
+                                <div>
+                                    <div><BsCartCheckFill className="CartIcons " onClick={() => CartPage()} /><span className='counter'>{CartCount}</span></div>
+                                </div>
+                            </Col>
                             <Col md="3">
                                 <div className="HeaderCart">
                                     <UncontrolledDropdown >

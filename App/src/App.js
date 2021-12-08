@@ -30,7 +30,6 @@ function App() {
           <Route path="/ZeroDotOne/CartDetailsPage" element={<CartDetailsPage />}></Route>
           <Route path="/ZeroDotOne/ProductDetails" element={<ProductDetails />}></Route>
           <Route path="/ZeroDotOne/YourProfile" element={<YourProfile />}></Route>
-
         </Routes>
       </Router>
     </div>

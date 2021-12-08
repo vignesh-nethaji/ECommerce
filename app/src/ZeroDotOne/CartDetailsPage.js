@@ -75,6 +75,7 @@ const CartDetailsPage = () => {
                             <Row>
                                 <Col md="6">
                                     <h5>My Cart ({productDetails.length})</h5>
+                                {localStorage.setItem("CartCount",productDetails.length)}
                                 </Col>
                                 <Col md="6">
                                     <Row>

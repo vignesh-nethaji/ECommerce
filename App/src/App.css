@@ -34,6 +34,12 @@
   margin-left: 47px;
   margin-top: 5px;
 }
+.CartSpan{
+  width: 30px;
+  height: 30px;
+  margin-left: 55px;
+  margin-top: -2px;
+}
 .homecard{
   width: auto;
   height: 390px;
@@ -104,3 +110,26 @@
   /* margin-top: 0rem !important; */
   margin-bottom: 0rem !important;
 }
+.AutocompleteHeader{
+  width: 100% ;
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  height: 40px;
+}
+.MuiAutocomplete-inputRoot[class*="MuiInput-root"]{
+  padding-bottom: 14px !important;
+}
+span.counter{
+	width: 24px !important;
+	height: 24px !important;
+	font-size: 16px;
+	color: #fff;
+	border-radius: 4px;
+	background: rgb(212, 13, 13);
+  margin-left: 58px;
+}
+
+/* span.counter {
+	left: 48px;
+	bottom: 48px;
+} */

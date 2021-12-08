@@ -5,7 +5,6 @@ import { Context } from "./UserDetails";
 import { YourProfileId } from './YourProfile';
 import HeaderPage from './ZeroDotOne/HeaderPage';
 
-
 const UserAdded = () => {
     const id = useContext(Context);
     const ProfileId = useContext(YourProfileId);
@@ -187,6 +186,7 @@ const UserAdded = () => {
 
                 <Col md="2"> </Col>
                 <Col md="8">
+
                     <CardHeader>
                         <Form>
                             <FormGroup>
@@ -244,7 +244,7 @@ const UserAdded = () => {
 
                         : ''}
                     {off ?
-                        <Button onClick={() => { UserDetailsUpdate() }} backgroundColor='#3fffff' >Update</Button>
+                        <Button onClick={() => { UserDetailsUpdate() }} >Update</Button>
                         : ''}
                 </Col>
                 <Col md="2"> </Col>

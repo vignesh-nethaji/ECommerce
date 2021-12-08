@@ -1,14 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Input, Button, CardHeader, Label, Row, Col } from "reactstrap";
 import axios from "axios";
-import HeaderPage from "./HeaderPage";
-import SidePage from "./SidePage";
+import HeaderPage from "./HeaderPage"; 
 import { Context } from "./ProductDetails";
 import Swal from "sweetalert2";
 import { SketchPicker } from 'react-color';
-import { IoMdArrowRoundBack } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
-// import ColorPicker from 'react-input-colorpicker';
+import { IoMdArrowRoundBack } from "react-icons/io"; 
 
 
 const CreateProduct = () => {
@@ -16,8 +13,7 @@ const CreateProduct = () => {
   const [category, setCategory] = useState([]);
   const [Singlecategory, setSingleCategory] = useState([]);
   var [colorHexCode, setColorHexCode] = useState('#000000');
-  const [addProduct, setAddProduct] = useState([]);
-  // const [editProductDtls, setEditproductDtls] = useState([])
+  const [addProduct, setAddProduct] = useState([]); 
 
   const singleProdDtls = useContext(Context)
 
@@ -169,10 +165,7 @@ debugger;
           <HeaderPage />
           : ''}
       </div>
-      <Row>
-        {/* {on ?
-          <Col md="3" > <SidePage /></Col>
-          : ''} */}
+      <Row> 
         <Col md="12" >
           <Button href="../ZeroDotOne/ProductDetails"><IoMdArrowRoundBack /></Button>
           <CardHeader className="">

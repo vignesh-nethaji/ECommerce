@@ -6,6 +6,7 @@ import UserAdded from "./UserAdded";
 import swal from 'sweetalert';
 import SidePage from "./ZeroDotOne/SidePage";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import HeaderPage from "./ZeroDotOne/HeaderPage";
 export const Context = React.createContext();
 
 const UserDetails = () => {
@@ -55,11 +56,12 @@ const UserDetails = () => {
     }
     return (
         <div>
+            <HeaderPage />
             <Row>
-                <Col md="3"><SidePage /></Col>
-                <Col md='8'>
+                {/* <Col md="3"><SidePage /></Col> */}
+                <Col md='12'>
                     <Context.Provider value={userEditID}>
-                        <Button href="/ZeroDotOne/HomePage"><IoMdArrowRoundBack /></Button>
+                        <Button href="/ZeroDotOne/HomePage"><IoMdArrowRoundBack /></Button>{"   "}
 
                         <Button href="/ZeroDotOne/AddUser">Add User</Button>
                         {on ?
@@ -96,7 +98,7 @@ const UserDetails = () => {
                                                 <td>{UserDataTable.phoneNumber}</td>
                                                 <td>
                                                     <Button onClick={() => { UserDetailsEdit(UserDataTable.id) }}>Edit</Button>{'  '}</td>
-                                                <td><Button onClick={() => { UserDetailsDelete(UserDataTable.id) }} backgroundColor='#3fffff' >Delete</Button></td>
+                                                <td><Button onClick={() => { UserDetailsDelete(UserDataTable.id) }}>Delete</Button></td>
                                             </tr>
                                         )
                                     }

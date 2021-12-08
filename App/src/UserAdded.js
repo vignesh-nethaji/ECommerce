@@ -126,11 +126,6 @@ const UserAdded = () => {
             alert("Enter Phone Number");
             return false;
         }
-        else {
-            return true;
-
-        }
-        window.location.reload();
     }
     const UserDetailsSubmit = () => {
 
@@ -147,10 +142,14 @@ const UserAdded = () => {
             "city": cityvld,
             "zipcode": zipcodevld,
             "phoneNumber": PhoneNumbervld
+        }, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
         })
             .then((response) => { JSON.stringify(response) })
             .catch(error => {
-                console.log(error);
+                console.log(error)
             })
         window.location.reload();
     }

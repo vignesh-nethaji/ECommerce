@@ -4,7 +4,6 @@ import {
     Col,
     Card,
     CardBody,
-    CardTitle,
     CardText,
     CardFooter,
     Button
@@ -15,7 +14,7 @@ import axios from "axios";
 import SingleProductDtls from "./SingleProductDtls";
 
 
-const HomePage = (props) => {
+const HomePage = () => {
 
     const [product, setProduct] = useState([]);
     const [detailsAddCart, setDetailsAddCart] = useState([]);
@@ -38,52 +37,25 @@ const HomePage = (props) => {
             .then(res => { setProduct(res.data.data) })
     }
 
-    const AddToCart = (productId) => {
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
+    const OnChangeCategory = () => {
+        let Catid = localStorage.getItem("CategoryIds")
+        if (Catid !== "0") {
+            axios.get("http://localhost:40073/api/Product/GetProductByCategory/" + Catid, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${token}`
+                }
+            })
 
-        today = dd + '/' + mm + '/' + yyyy;
-
-        const cartDtls = {
-            "Id": 0,
-            "Date": today,
-            "Quantity": "1",
-            "userId": parseInt(localStorage.getItem("UserIdDetails")),
-            "productId": productId
+                .then(res => { setProduct(res.data.data) })
         }
-        const headers = {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        }
-
-        axios.post("http://localhost:40073/api/Cart/Add", cartDtls, {
-            headers: headers
-        })
-            .then((res) => (res))
-            .then((res) => (console.log(res)))
-    }
-
-    const OnChangeCategory = () => { 
-        let Catid = localStorage.getItem("CategoryIds") 
-        if(Catid!=="0"){
-        axios.get("http://localhost:40073/api/Product/GetProductByCategory/" + Catid, {
-            headers: {
-                'Content-Type': 'application/json',
-                "Authorization": `Bearer ${token}`
-            }
-        })
-
-            .then(res => { setProduct(res.data.data) })
-    }
-            else{
-                axios.get(("http://localhost:40073/api/Product/GetAll"),
+        else {
+            axios.get(("http://localhost:40073/api/Product/GetAll"),
                 { headers: { "Authorization": `Bearer ${token}` } }
             )
                 .then(res => { setProduct(res.data.data) })
-            }
-      
+        }
+
     }
 
     const GetSingleProduct = (details) => {
@@ -110,7 +82,6 @@ const HomePage = (props) => {
                                             <Card className="homecard">
                                                 <CardBody className="mt-3 text-justify">
                                                     <img src={"https://via.placeholder.com/150/" + postDetails.image + "/placeholder.com/"}></img>
-                                                    {/* {postDetails.image} */}
                                                     <h5 className="mt-3">{postDetails.title}</h5>
                                                     <CardText>{postDetails.description}</CardText>
                                                     <CardText tag="h5"> $ {postDetails.price}{" "}<s> ${postDetails.price + 199}</s></CardText>
@@ -127,8 +98,6 @@ const HomePage = (props) => {
                             </div>
                             : ''}
                         {off ? <div><Button onClick={() => { BacktoHome() }}>Back</Button> < SingleProductDtls details={detailsAddCart} /></div> : ''}
-                        {/* <Button onClick={() => { AddToCart(detailsAddCart) }} className="Addbtn">AddToCart</Button> */}
-
                     </Col>
                 </Row>
             </div>

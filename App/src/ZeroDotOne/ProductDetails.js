@@ -1,21 +1,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Table, Button, Row, Col } from "reactstrap";
-//import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import React from "react";
 import CreateProduct from "./CreateProduct";
-import SidePage from "./SidePage";
 import HeaderPage from "./HeaderPage";
-import { IoMdArrowRoundBack } from "react-icons/io";
 
 export const Context = React.createContext();
 
 const ProductDetails = () => {
 
     const token = localStorage.getItem("UserTokenDetails")
-    const [productDetails, setproductDtls] = useState([])
-    const [editProductDtls, setEditproductDtls] = useState([])
+    const [productDetails, setproductDtls] = useState([]) 
     const [deleteProductDtls, setDelproductDtls] = useState([])
 
     const [on, setOnVal] = useState(true);
@@ -85,7 +81,6 @@ const ProductDetails = () => {
             <Row>
                 {/* <Col md="3"><SidePage /></Col> */}
                 <Col md="12">
-                <Button href="/ZeroDotOne/HomePage"><IoMdArrowRoundBack /></Button>{" "}
                     <Button href="/ZeroDotOne/CreateProduct">Add Product</Button>
                     <Context.Provider value={productId}>
                         {on ?

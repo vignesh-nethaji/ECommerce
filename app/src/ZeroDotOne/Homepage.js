@@ -71,37 +71,35 @@ const HomePage = () => {
         <div>
             <div>
                 <HeaderPage />
-                <Row>
-                    {on ? <Col md="3" > <SidePage callback={OnChangeCategory} /></Col> : ''}
-                    <Col md="9" >
-                        {on ?
+                {on ?
+                    <Row>
+                        {on ? <Col md="3" > <SidePage callback={OnChangeCategory} /></Col> : ''}
+                        <Col md="9" >
+
                             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridGap: 10, }}>
                                 {product.map((postDetails, i) =>
                                     <div key={i} className="mt-5">
                                         <Col md="10">
                                             <Card className="homecard">
                                                 <CardBody className="mt-3 text-justify">
-                                                    <img src={"https://via.placeholder.com/150/" + postDetails.image + "/placeholder.com/"}></img>
-                                                    <h5 className="mt-3">{postDetails.title}</h5>
-                                                    <CardText>{postDetails.description}</CardText>
-                                                    <CardText tag="h5"> $ {postDetails.price}{" "}<s> ${postDetails.price + 199}</s></CardText>
+                                                    <img src={"https://via.placeholder.com/150/" + postDetails.image + "/placeholder.com/"} className="Homepageimg"></img>
+                                                    <CardText className="mt-3  text-center">{postDetails.title}</CardText>
+                                                    <CardText tag="h5" className="text-center"> $ {postDetails.price}{" "}<s> ${postDetails.price + 199}</s></CardText>
                                                 </CardBody>
-                                                <CardFooter>
-                                                    <Button className="mobilebtn" onClick={() => GetSingleProduct(postDetails)}>
-                                                        View Detail's
-                                                    </Button>
-                                                </CardFooter>
+                                                <Button className="mobilebtn" onClick={() => GetSingleProduct(postDetails)}>
+                                                    View Detail's
+                                                </Button>
                                             </Card>
                                         </Col>
                                     </div>
                                 )}
                             </div>
-                            : ''}
-                        {off ? <div><Button onClick={() => { BacktoHome() }}>Back</Button> < SingleProductDtls details={detailsAddCart} /></div> : ''}
-                    </Col>
-                </Row>
+                        </Col>
+                    </Row>
+                    : ''}
+                {off ? <div><Button onClick={() => { BacktoHome() }}>Back</Button> < SingleProductDtls details={detailsAddCart} /></div> : ''}
             </div>
-        </div>
+        </div >
 
     )
 }

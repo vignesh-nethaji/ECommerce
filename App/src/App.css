@@ -117,7 +117,7 @@
   height: 40px;
 }
 .MuiAutocomplete-inputRoot[class*="MuiInput-root"]{
-  padding-bottom: 14px !important;
+  padding-bottom: 9px !important;
 }
 span.counter{
 	width: 24px !important;

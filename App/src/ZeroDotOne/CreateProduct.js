@@ -166,7 +166,8 @@ debugger;
           : ''}
       </div>
       <Row> 
-        <Col md="12" >
+        <Col md="2"></Col>
+        <Col md="8" >
           <Button href="../ZeroDotOne/ProductDetails"><IoMdArrowRoundBack /></Button>
           <CardHeader className="">
             <div >

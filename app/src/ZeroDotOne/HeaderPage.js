@@ -10,14 +10,24 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 
 
 
-const HeaderPage = () => {
+const HeaderPage = (props) => {
     let navigate = useNavigate();
     const token = localStorage.getItem("UserTokenDetails");
     const CartCount = localStorage.getItem("CartCount");
     const [myOptions, setMyOptions] = useState([]);
 
+    const [On, setOn] = useState(false);
+    const [Off, setOff] = useState(false);
+    const userName = localStorage.getItem("UserName")
+
     useEffect(() => {
-        getDataFromAPI();
+        getDataFromAPI(); 
+        if (userName === "Admin") {
+            setOn(true);
+        }
+        else{
+            setOff(true);
+        }
     }, [])
     const CartPage = () => {
         navigate("/ZeroDotOne/CartDetailsPage")
@@ -38,16 +48,25 @@ const HeaderPage = () => {
         navigate("/ZeroDotOne/HomePage")
     }
     const getDataFromAPI = () => {
-
+       
         axios.get(("http://localhost:40073/api/Category/GetAll"),
             { headers: { "Authorization": `Bearer ${token}` } }
         )
             .then((res) => {
                 for (var i = 0; i < res.data.data.length; i++) {
                     myOptions.push(res.data.data[i].name)
+
                 }
                 setMyOptions(myOptions)
             })
+    }
+    const OnchangeAuto = (id) => {
+        localStorage.setItem("CategoryIds", id)
+        props.clickMe();
+    }
+    const LogoutFun=()=>{
+        localStorage.removeItem("UserName")
+        navigate("/")
     }
 
     return (
@@ -59,13 +78,14 @@ const HeaderPage = () => {
                         <InputGroup >
                             <Autocomplete
                                 className="AutocompleteHeader"
+                                //onChange={OnchangeAuto}
                                 freeSolo
                                 autoComplete
                                 autoHighlight
                                 options={myOptions}
                                 renderInput={(params) => (
                                     <TextField {...params}
-                                        // onChange={getDataFromAPI}
+                                        //onChange={OnchangeAuto}
                                         // variant="outlined"
                                         // label="Search Box"
                                         // style={{ height: "2rem" }}
@@ -87,8 +107,8 @@ const HeaderPage = () => {
                                         <FaUserCircle className="UserIconsss" />
                                     </DropdownToggle>
                                     <DropdownMenu >
-                                        <DropdownItem href="/">Logout </DropdownItem>
                                         <DropdownItem onClick={() => YourProfile()}>Your Profile</DropdownItem>
+                                        <DropdownItem onClick={()=>{LogoutFun()}}>Logout </DropdownItem>
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
                             </Col>
@@ -99,7 +119,7 @@ const HeaderPage = () => {
                                 </div>
                             </Col>
                             <Col md="3">
-                                <div className="HeaderCart">
+                               {On ? <div className="HeaderCart">
                                     <UncontrolledDropdown >
                                         <DropdownToggle className="HeaderUserIcon">
                                             <BsThreeDotsVertical />
@@ -110,7 +130,7 @@ const HeaderPage = () => {
                                             <DropdownItem onClick={() => UserDetails()} >User Details</DropdownItem>
                                         </DropdownMenu>
                                     </UncontrolledDropdown>
-                                </div>
+                                </div>:''} 
                             </Col>
                         </Row>
                     </Col>

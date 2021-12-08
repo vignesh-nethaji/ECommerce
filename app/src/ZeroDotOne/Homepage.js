@@ -71,6 +71,7 @@ const HomePage = () => {
         <div>
             <div>
                 <HeaderPage />
+                {/* clickMe={OnChangeCategory} */}
                 {on ?
                     <Row>
                         {on ? <Col md="3" > <SidePage callback={OnChangeCategory} /></Col> : ''}

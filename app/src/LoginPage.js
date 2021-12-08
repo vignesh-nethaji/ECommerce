@@ -36,7 +36,8 @@ const LoginPage = ({ initialValue, ...rest }) => {
 
         }).then((data) => {
             if (data.data.data !== null) {
-                navigate("../ZeroDotOne/Homepage")
+                window.location.replace("/ZeroDotOne/Homepage")
+                //navigate("../ZeroDotOne/Homepage")
             }
             else {
                 setErrorMessagePsd("please enter the correct password");
@@ -44,6 +45,7 @@ const LoginPage = ({ initialValue, ...rest }) => {
             }
             localStorage.setItem("UserIdDetails", data.data.data.id)
             localStorage.setItem("UserTokenDetails", data.data.data.token)
+            localStorage.setItem("UserName", data.data.data.username)
         })
             .catch(error => {
                 console.log(error);

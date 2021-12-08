@@ -239,7 +239,7 @@ const UserAdded = () => {
                     </CardHeader>
                     <Button href="/ZeroDotOne/UserDetails">Back</Button>{"  "}
                     {on ?
-                        <Button onClick={() => { UserDetailsSubmit() }}>Submit</Button>
+                        <Button href="/ZeroDotOne/UserDetails" onClick={() => { UserDetailsSubmit() }}>Submit</Button>
 
                         : ''}
                     {off ?

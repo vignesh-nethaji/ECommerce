@@ -5,7 +5,6 @@ import { Button, Table, Row, Col } from "reactstrap";
 import AddCategory from "./AddCategory";
 import swal from "sweetalert";
 import HeaderPage from "./HeaderPage";
-import SidePage from "./SidePage";
 export const Context = React.createContext();
 
 const CategoryDetails = () => {
@@ -55,12 +54,10 @@ const CategoryDetails = () => {
     return (
         <div>
             <HeaderPage />
-            <Row>
-                <Col md="3"></Col>
-                <Col md="6">
-
-
-                    <Context.Provider value={categoryEditID}>
+            <Context.Provider value={categoryEditID}>
+                <Row>
+                    <Col md="3"></Col>
+                    <Col md="6">
                         <Button href="/ZeroDotOne/AddCategory">Add Category</Button>
                         {on ?
                             <Table responsive>
@@ -87,13 +84,14 @@ const CategoryDetails = () => {
                                 </tbody>
                             </Table>
                             : ''}
-                        {off ?
-                            <AddCategory />
-                            : ''}
-                    </Context.Provider>
-                </Col>
-                <Col md="3"></Col>
-            </Row>
+                    </Col>
+                    <Col md="6"></Col>
+                </Row>
+                {off ?
+                    <AddCategory />
+                    : ''}
+            </Context.Provider>
+
 
 
         </div >

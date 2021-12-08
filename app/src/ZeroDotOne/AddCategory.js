@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Context } from './CategoryDetails';
 import { useNavigate } from 'react-router';
 import HeaderPage from "./HeaderPage";
-import SidePage from "./SidePage";
+
 
 const AddCategory = () => {
     const navigate = useNavigate()
@@ -94,7 +94,7 @@ const AddCategory = () => {
                         </Form>
                     </CardHeader>
 
-                    {<Button href="/ZeroDotOne/CategoryDetails">Back </Button>}
+                    <Button href="/ZeroDotOne/CategoryDetails">Back </Button>{" "}
 
                     {on ?
                         <Button onClick={() => { CategoryDetailsSubmit() }}>Submit</Button>

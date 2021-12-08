@@ -23,6 +23,9 @@ const HeaderPage = () => {
     const YourProfile = () => {
         navigate("/ZeroDotOne/YourProfile");
     }
+    const HomePageLink = () => {
+        navigate("/ZeroDotOne/HomePage")
+    }
 
     return (
         <div>
@@ -39,7 +42,7 @@ const HeaderPage = () => {
                     </Col>
                     <Col md="3">
                         <Row>
-                            <Col md="3"><FaHome onClick={() => CartPage()} className="HeaderHome" /></Col>
+                            <Col md="3"><FaHome onClick={() => HomePageLink()} className="HeaderHome" /></Col>
                             <Col md="3" >
                                 <UncontrolledDropdown className="UserIcons ">
                                     <DropdownToggle className="HeaderUserIcon">

@@ -72,18 +72,15 @@ const SingleProductDtls = (props) => {
         navigate("/ZeroDotOne/CartDetailsPage")
     }
     return (
-
-        <Row>
-            <Col md="6">
-                <Card >
+        <Card >
+            <Row>
+                <Col md="6">
                     <CardBody className="mt-3 text-justify">
-                        <img src={"https://via.placeholder.com/250/" + singleProduct.image + "/placeholder.com/"}></img>
-                        <button value={singleProduct.id} onClick={() => AddToCart(singleProduct.id)} className="CartPlaceOrder btn btn-secondary"><h5>Add To Cart</h5></button>
+                        <img src={"https://via.placeholder.com/250/" + singleProduct.image + "/placeholder.com/"} style={{ width: "100%" }}></img>
+                        <Button value={singleProduct.id} onClick={() => AddToCart(singleProduct.id)} className="CartPlaceOrder btn btn-secondary"><h5>Add To Cart</h5></Button>
                     </CardBody>
-                </Card>
-            </Col>
-            <Col md="6" >
-                <Card className="homecard">
+                </Col>
+                <Col md="6" >
                     <CardBody className="mt-3 text-justify">
 
                         <h5 className="mt-3">{singleProduct.title}</h5>
@@ -95,10 +92,10 @@ const SingleProductDtls = (props) => {
                         <p><strong> Bank Offer</strong> 5% Unlimited Cashback on ZDO Axis Bank Credit CardT&C</p>
                         <p><strong>Bank Offer</strong> 20% off on 1st txn with Amex Network Cards issued by ICICI Bank,IndusInd Bank,SBI Cards and MobikwikT&C</p>
                         <p><strong>Partner Offer</strong> Wishlist Now, Get ₹50 Off, during EOSS Sale</p>
-                    </CardBody> 
-                </Card>
-            </Col>
-        </Row>
+                    </CardBody>
+                </Col>
+            </Row>
+        </Card>
 
     )
 

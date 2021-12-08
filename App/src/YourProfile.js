@@ -42,6 +42,7 @@ const YourProfile = () => {
                 <HeaderPage />
                 {on ?
                     <div>
+                        <Button href="/ZeroDotOne/HomePage">Back</Button>{"  "}
                         <Button onClick={() => { AdminDetailsEdit(userDetails.id) }}><FiEdit2 />{'  '} Edit</Button>
                         <Row>
                             <Col md="4">

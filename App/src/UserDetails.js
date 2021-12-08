@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Table, Row, Col } from "reactstrap";
 import UserAdded from "./UserAdded";
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import SidePage from "./ZeroDotOne/SidePage";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import HeaderPage from "./ZeroDotOne/HeaderPage";
@@ -33,25 +33,36 @@ const UserDetails = () => {
         setOn(false);
     };
     const UserDetailsDelete = (id) => {
-        if (window.confirm('Sure want to delete this User?')) {
+        if (window.confirm('Do You Want To Delete this User?')) {
 
             axios.delete(("http://localhost:40073/api/User/Delete/" + id),
                 { headers: { "Authorization": `Bearer ${token}` } }
             )
                 .then(res => {
                     getallUserDetails();
-                    swal({
-                        title: "Done!",
-                        text: "User is Deleted into Database",
-                        icon: "success",
-                        timer: 2000,
-                        button: false
-                    })
-                    this.setState({ redirect: this.state.redirect === false });
+                    var toastMixin = Swal.mixin({
+                        toast: true,
+                        icon: 'success',
+                        title: 'General Title',
+                        animation: false,
+                        position: 'top-right',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    });
+
+                    toastMixin.fire({
+                        animation: true,
+                        title: 'User Deleted Successfully'
+                    });
                 })
-                .catch(error => {
-                    console.log(error);
-                });
+        } else {
+
+            return false;
         }
     }
     return (

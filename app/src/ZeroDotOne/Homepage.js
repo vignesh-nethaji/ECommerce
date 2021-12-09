@@ -83,7 +83,7 @@ const HomePage = () => {
                                     <div key={i} className="mt-5">
                                         <Col md="10">
                                             <Card className="homecard">
-                                                <CardBody className="mt-3 text-justify">
+                                                <CardBody className="mt-3">
                                                     <img src={"https://via.placeholder.com/150/" + postDetails.image + "/placeholder.com/"} className="Homepageimg"></img>
                                                     <CardText className="mt-3  text-center">{postDetails.title}</CardText>
                                                     <CardText tag="h5" className="text-center"> $ {postDetails.price}{" "}<s> ${postDetails.price + 199}</s></CardText>

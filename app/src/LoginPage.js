@@ -16,6 +16,7 @@ const LoginPage = ({ initialValue, ...rest }) => {
     const PassWordvld = (e) => { setPassWordVld(e.currentTarget.value) }
 
     const Onsubmit_Function = () => {
+        
         if (userNameVld.trim() === "") {
             setErrorMessageuser("Please Enter a UserName!");
             return false;
@@ -54,26 +55,48 @@ const LoginPage = ({ initialValue, ...rest }) => {
     }
     return (
         <div>
-            <CardHeader className="LoginPageHeader sidepage">
-                <div >
-                    <Label>User Name</Label>
-                    <Input type="text" onChange={(e) => UserNamevld(e)} value={userNameVld} />
-                    <div className="error" > {errorMessage} </div><br /><br />
-
-
-                    <Label>Password</Label>
-                    <Input type="password" onChange={(e) => PassWordvld(e)} value={passWordVld} />
-                    <div className="error" > {errorMessagePsd} </div> <br /><br />
-
-
-                    <Button onClick={() => Onsubmit_Function()} color="danger">Login</Button>
+        <div className="container-fluid login-1">
+            <div className="container">
+                <div className="login-form">
+                    <div className="row align-items-center">
+                        <div className="col-md-6">
+                            <div className="img-box">
+                                <img src="public\login-img.png" className="back-img" title="login" alt="welcome image" />
+                            </div>
+                        </div>
+                        <div className="col-md-6">
+                            <div className="login-box">
+                                <form>
+                                <div className="form-group">
+                                    <h4 className="login-title">Welcome back</h4>
+                                    <p className="login-p">Please login to your account.</p>
+                                </div>
+                                <div className="form-group">
+                                    <input type="text" onChange={(e) => UserNamevld(e)} value={userNameVld} placeholder="Enter your name" className="form-control"/>
+                                    <div className="error" > {errorMessage} </div><br /><br />
+                                    <input type="password" onChange={(e) => PassWordvld(e)} value={passWordVld} placeholder="Enter your password" className="form-control"/>
+                                    <div className="error" > {errorMessagePsd} </div> <br /><br />
+                                </div>
+                                <div className="input-group check-field">
+                                    <div>
+                                        <input type="checkbox" id="test" name="test" value=""/>
+                                        <label htmlFor="test"> Remember Me</label><br/>
+                                    </div>
+                                    <a href="#" className="forgot">Forgot password?</a>
+                                </div>
+                                <div className="form-group text-center">
+                                    {/* <Button type="submit" className="btn btn-primary" onClick={() => Onsubmit_Function()}> Login</Button> */}
+                                    <input type="button" value="Login" className="btn btn-primary" onClick={() => Onsubmit_Function()}></input>
+                                    <p className="mb-0"> <a href="#">New User? Sign Up</a></p>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <CardBody className="mt-5">
-                    New user <a href="/SignUpPage" alt="#">SignUp</a>
-                </CardBody>
-            </CardHeader>
+            </div>
         </div>
+    </div> 
     )
 }
 export default LoginPage

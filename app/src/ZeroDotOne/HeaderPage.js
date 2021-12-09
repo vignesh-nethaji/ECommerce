@@ -127,7 +127,7 @@ const HeaderPage = (props) => {
                             <Col md="3">
                                 {/* <BsCartCheckFill className="CartIcons " onClick={() => CartPage()} /><span className="CartSpan ">{CartCount}</span> */}
                                 <div>
-                                    <div><BsCartCheckFill className="CartIcons " onClick={() => CartPage()} /><span className='counter'>{cartDetails.length}</span></div>
+                                    <div><BsCartCheckFill className="CartIcons " onClick={() => CartPage()} /><span className='counter'>{cartDetails.length > 0 ? cartDetails.length : ''}</span></div>
                                 </div>
                             </Col>
                             <Col md="3">

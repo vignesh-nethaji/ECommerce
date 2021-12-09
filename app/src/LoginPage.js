@@ -61,7 +61,7 @@ const LoginPage = ({ initialValue, ...rest }) => {
                     <div className="row align-items-center">
                         <div className="col-md-6">
                             <div className="img-box">
-                                <img src="public\login-img.png" className="back-img" title="login" alt="welcome image" />
+                                <img  src="login-img.png" className="back-img" title="login" alt="welcome image" />
                             </div>
                         </div>
                         <div className="col-md-6">
@@ -87,7 +87,7 @@ const LoginPage = ({ initialValue, ...rest }) => {
                                 <div className="form-group text-center">
                                     {/* <Button type="submit" className="btn btn-primary" onClick={() => Onsubmit_Function()}> Login</Button> */}
                                     <input type="button" value="Login" className="btn btn-primary" onClick={() => Onsubmit_Function()}></input>
-                                    <p className="mb-0"> <a href="#">New User? Sign Up</a></p>
+                                    <p className="mb-0"> <a href="/SignUpPage">New User? Sign Up</a></p>
                                 </div>
                                 </form>
                             </div>

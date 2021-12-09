@@ -6,6 +6,7 @@ import { BsDot } from "react-icons/bs";
 import { FiEdit2 } from "react-icons/fi";
 import UserAdded from './UserAdded';
 import HeaderPage from './ZeroDotOne/HeaderPage';
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 export const YourProfileId = React.createContext();
 
@@ -42,7 +43,7 @@ const YourProfile = () => {
                 <HeaderPage />
                 {on ?
                     <div>
-                        <Button href="/ZeroDotOne/HomePage">Back</Button>{"  "}
+                        <Button href="/ZeroDotOne/HomePage"><IoMdArrowRoundBack /></Button>{"   "}
                         <Button onClick={() => { AdminDetailsEdit(userDetails.id) }}><FiEdit2 />{'  '} Edit</Button>
                         <Row>
                             <Col md="4">

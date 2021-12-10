@@ -83,76 +83,47 @@ const HeaderPage = (props) => {
 
     return (
         <div>
-            <CardHeader className="sidepage">
-                <Row>
-                    <Col md="3"><h4 style={{ fontFamily: "monospace" }} className="mt-2">Zero Dot One</h4></Col>
-                    <Col md="6">
-                        <InputGroup >
-                            <Autocomplete
-                                className="AutocompleteHeader"
-                                //onChange={OnchangeAuto}
-                                freeSolo
-                                autoComplete
-                                autoHighlight
-                                options={myOptions}
-                                renderInput={(params) => (
-                                    <TextField {...params}
-                                        //onChange={OnchangeAuto}
-                                        // variant="outlined"
-                                        // label="Search Box"
-                                        // style={{ height: "2rem" }}
-                                        placeholder="search Products"
-                                    />
-                                )}
-                            />
-                            {/* <InputGroupText>
-                                <IoSearchSharp />
-                            </InputGroupText> */}
-                        </InputGroup>
-                    </Col>
-                    <Col md="3">
-                        <Row>
-                            <Col md="3"><FaHome onClick={() => HomePageLink()} className="HeaderHome" /></Col>
-                            <Col md="3" >
-                                <UncontrolledDropdown className="UserIcons ">
-                                    <DropdownToggle className="HeaderUserIcon">
-                                        <FaUserCircle className="UserIconsss" />
-                                    </DropdownToggle>
-                                    <DropdownMenu >
-                                        <DropdownItem onClick={() => YourProfile()}>Your Profile</DropdownItem>
-                                        <DropdownItem onClick={() => { LogoutFun() }}>Logout </DropdownItem>
-                                    </DropdownMenu>
-                                </UncontrolledDropdown>
-                            </Col>
-                            <Col md="3">
-                                {/* <BsCartCheckFill className="CartIcons " onClick={() => CartPage()} /><span className="CartSpan ">{CartCount}</span> */}
-                                <div>
-                                    <div><BsCartCheckFill className="CartIcons " onClick={() => CartPage()} /><span className='counter'>{cartDetails.length > 0 ? cartDetails.length : ''}</span></div>
-                                </div>
-                            </Col>
-                            <Col md="3">
-                                {On ? <div className="HeaderCart">
-                                    <UncontrolledDropdown >
-                                        <DropdownToggle className="HeaderUserIcon">
-                                            <BsThreeDotsVertical />
-                                        </DropdownToggle>
-                                        <DropdownMenu >
-                                            <DropdownItem onClick={() => UserDetails()} >User Management</DropdownItem>
-                                            <DropdownItem onClick={() => { CategoryDetails() }}>Category Management</DropdownItem>
-                                            <DropdownItem onClick={() => { ProductDetails() }}>Products Management</DropdownItem>
-                                        </DropdownMenu>
-                                    </UncontrolledDropdown>
-                                </div> : ''}
-                            </Col>
-                        </Row>
-                    </Col>
-                </Row>
-            </CardHeader>
+
+
+            <nav className="navbar">
+                <div className="nav">
+                    <img src="/Image.png" className="brand-logo" alt="dddddd" />
+                    <div className="nav-items">
+                        <div className="search">
+                            <input type="text" className="search-box" placeholder="search brand, product" />
+                            <button className="search-btn">search</button>
+                        </div>
+
+                        <UncontrolledDropdown >
+                            <DropdownToggle >
+                                <img src="/user.png" alt="ddd" />
+                            </DropdownToggle>
+                            <DropdownMenu >
+                                <DropdownItem onClick={() => YourProfile()}>Your Profile</DropdownItem>
+                                <DropdownItem onClick={() => { LogoutFun() }}>Logout </DropdownItem>
+                            </DropdownMenu>
+                        </UncontrolledDropdown>
+
+                        <a href="#"><img src="/cart.png" alt="dddd" onClick={() => CartPage()} /></a>
+
+                        {On ? <div className="HeaderCart">
+                            <UncontrolledDropdown >
+                                <DropdownToggle className="HeaderUserIcon">
+                                    <BsThreeDotsVertical />
+                                </DropdownToggle>
+                                <DropdownMenu >
+                                    <DropdownItem onClick={() => UserDetails()} >User Management</DropdownItem>
+                                    <DropdownItem onClick={() => { CategoryDetails() }}>Category Management</DropdownItem>
+                                    <DropdownItem onClick={() => { ProductDetails() }}>Products Management</DropdownItem>
+                                </DropdownMenu>
+                            </UncontrolledDropdown>
+                        </div> : ''}
+                    </div>
+                </div>
+            </nav>
         </div >
 
     );
 }
-
-
 export default HeaderPage;
 

@@ -51,7 +51,7 @@
 }
 .sidepage{
   background: #1d1d1d !important;
-  color: #FFFFFF;
+  color: white;
   height: 100% !important;
 }
 .LoginBg{
@@ -596,4 +596,28 @@ a
 
 .product-links a:hover {
     color: #fbb72c;
+}
+.pro-sidebar > .pro-sidebar-inner, .pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item{
+  background: #FFFFFF !important;
+  color: #000;
+}
+/* .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item :hover{
+  background: #000 !important;
+  color: #e7e6e6;
+} */
+.pro-item-content :hover{
+  background: #000 !important;
+  color: #a9a9a9;
+
+}
+.categoryicon:hover {
+   color: #a9a9a9!important;
+  
+}
+
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item > .pro-item-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: black;
 }

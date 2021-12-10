@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Context } from './CategoryDetails';
 import { useNavigate } from 'react-router';
 import HeaderPage from "./HeaderPage";
+import { BsWindowSidebar } from 'react-icons/bs';
 
 
 const AddCategory = () => {
@@ -74,6 +75,10 @@ const AddCategory = () => {
             window.location.reload();
         }
     }
+    const CategoryDetailsBack = () => {
+        navigate("/ZeroDotOne/CategoryDetails");
+        window.location.reload();
+    }
     return (
         <div>
 
@@ -88,21 +93,22 @@ const AddCategory = () => {
                         <Form>
                             <FormGroup>
 
-                                <Label><h3>AddCategory</h3></Label>
+                                <Label><h3>Add Category</h3></Label>
                                 <Input type="text" name="text" placeholder="AddCategory" value={categoryName} onChange={(e) => { setCategoryName(e.currentTarget.value) }} />
                             </FormGroup>
                         </Form>
                     </CardHeader>
-
-                    <Button href="/ZeroDotOne/CategoryDetails">Back </Button>{" "}
+                    <input type="button" value="Back" className="btn btn-primary" onClick={() => { CategoryDetailsBack() }}></input>{" "}
+                    {/* <button className="btn-primary" href="/ZeroDotOne/CategoryDetails">Back</button>{" "} */}
 
                     {on ?
-                        <Button onClick={() => { CategoryDetailsSubmit() }}>Submit</Button>
+                        <input type="button" value="Submit" className="btn btn-primary" onClick={() => { CategoryDetailsSubmit() }}></input>
+
                         : ''}
 
                     {off ?
+                        <input type="button" value="Update" className="btn btn-primary" onClick={() => { CategoryDetailsUpdate() }}></input>
 
-                        <Button onClick={() => { CategoryDetailsUpdate() }}>Update </Button>
                         : ''}
                 </Col>
                 <Col md="6"></Col>

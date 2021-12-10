@@ -12,7 +12,7 @@ const CreateProduct = () => {
 
   const [category, setCategory] = useState([]);
   const [Singlecategory, setSingleCategory] = useState([]);
-  var [colorHexCode, setColorHexCode] = useState('#000000');
+  // var [colorHexCode, setColorHexCode] = useState('#000000');
   const [addProduct, setAddProduct] = useState([]); 
 
   const singleProdDtls = useContext(Context)
@@ -38,7 +38,8 @@ debugger;
       setTxtProduct(singleProdDtls.title);
       setTxtPrice(singleProdDtls.price);
       setTxtDesc(singleProdDtls.description);
-      setColorHexCode(singleProdDtls.image);
+      // setColorHexCode(singleProdDtls.image);
+      setTxtImg(singleProdDtls.image);
       setTxtId(singleProdDtls.id);
 
       axios.get("http://localhost:40073/api/Category/Get/" + singleProdDtls.categoryId, {
@@ -70,7 +71,8 @@ debugger;
       "Title": txtProduct,
       "Price": parseFloat(txtPrice),
       "Description": txtDesc,
-      "Image":  colorHexCode.substring(1),
+      "Image":  txtImg,
+      // colorHexCode.substring(1),
       "CategoryId": parseInt(ddlCategory)
     }
     const headers = {
@@ -110,7 +112,8 @@ debugger;
       "Title": txtProduct,
       "Price": parseFloat(txtPrice),
       "Description": txtDesc,
-      "Image": colorHexCode.substring(1),
+      "Image": txtImg,
+      // colorHexCode.substring(1),
       "CategoryId": parseInt(ddlCategory)
     }
     const headers = {
@@ -153,7 +156,7 @@ debugger;
     setTxtDesc("");
     setTxtImg("");
     setTxtId(0);
-    setColorHexCode("");
+    //setColorHexCode("");
   }
  
   return (
@@ -200,11 +203,12 @@ debugger;
               <Input type="textarea" value={txtDesc} className="form-control" onChange={e => setTxtDesc(e.target.value)} /><br /><br />
 
               <Label id="lblImg">Image</Label>
-              <Input readOnly value={colorHexCode} className="form-control" onChange={e => setTxtImg({colorHexCode})} /><br /><br />
+              {/* <Input readOnly value={colorHexCode} className="form-control" onChange={e => setTxtImg({colorHexCode})} /><br /><br /> */}
+              <Input value={txtImg} className="form-control" onChange={e => setTxtImg(e.target.txtImg)} /><br /><br />
 
-              <SketchPicker
+              {/* <SketchPicker
                 color={colorHexCode}
-                onChange={e => setColorHexCode(e.hex)} /><br/>
+                onChange={e => setColorHexCode(e.hex)} /><br/> */}
 
               {/* <br />
               <b>Selected Hex Color: </b>{colorHexCode} */}

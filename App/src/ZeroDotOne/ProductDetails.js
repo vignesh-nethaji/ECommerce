@@ -109,7 +109,7 @@ const ProductDetails = () => {
                                             <td>{items.title}</td>
                                             <td>{items.price}</td>
                                             <td>{items.description}</td>
-                                            <td>{items.image}</td>
+                                            <td><img src={items.image} width="50px" height="50px"></img></td>
                                             <td>{items.categoryId}</td>
                                             <td><Button id="btnEdit" value={items.id} onClick={(e) => EditProductDtls(items)}>Edit</Button></td>
                                             <td><Button id="btnDelete" value={items.id} onClick={() => DeleteProductDtls(items.id)}>Delete</Button></td>

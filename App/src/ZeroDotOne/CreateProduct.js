@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Input, Button, CardHeader, Label, Row, Col } from "reactstrap";
 import axios from "axios";
-import HeaderPage from "./HeaderPage"; 
+import HeaderPage from "./HeaderPage";
 import { Context } from "./ProductDetails";
 import Swal from "sweetalert2";
 import { SketchPicker } from 'react-color';
-import { IoMdArrowRoundBack } from "react-icons/io"; 
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 
 const CreateProduct = () => {
@@ -13,7 +13,7 @@ const CreateProduct = () => {
   const [category, setCategory] = useState([]);
   const [Singlecategory, setSingleCategory] = useState([]);
   // var [colorHexCode, setColorHexCode] = useState('#000000');
-  const [addProduct, setAddProduct] = useState([]); 
+  const [addProduct, setAddProduct] = useState([]);
 
   const singleProdDtls = useContext(Context)
 
@@ -32,8 +32,7 @@ const CreateProduct = () => {
 
 
   useEffect(() => {
-    if (singleProdDtls !== null && singleProdDtls !== "" && singleProdDtls !== undefined) {
-debugger;
+    if (singleProdDtls !== null && singleProdDtls !== "" && singleProdDtls !== undefined) { 
       setDdlCategory(singleProdDtls.categoryId);
       setTxtProduct(singleProdDtls.title);
       setTxtPrice(singleProdDtls.price);
@@ -71,7 +70,7 @@ debugger;
       "Title": txtProduct,
       "Price": parseFloat(txtPrice),
       "Description": txtDesc,
-      "Image":  txtImg,
+      "Image": txtImg,
       // colorHexCode.substring(1),
       "CategoryId": parseInt(ddlCategory)
     }
@@ -158,7 +157,7 @@ debugger;
     setTxtId(0);
     //setColorHexCode("");
   }
- 
+
   return (
 
     <div>
@@ -168,12 +167,70 @@ debugger;
           <HeaderPage />
           : ''}
       </div>
-      <Row> 
+      {/* <Row>
         <Col md="2"></Col>
-        <Col md="8" >
-          <Button href="../ZeroDotOne/ProductDetails"><IoMdArrowRoundBack /></Button>
-          
-          <CardHeader className="">
+        <Col md="8" > */}
+      <Button href="../ZeroDotOne/ProductDetails"><IoMdArrowRoundBack /></Button>
+
+      <div className="container-fluid login-2">
+        <div className="container">
+          <div className="login-form">
+            <div className="row align-items-center">
+              {/* <div className="col-md-12"> */}
+              <div className="login-box">
+                <form>
+                  <div className="form-group">
+                    <label id="lblCat">Category</label>
+                    <select className="form-control" onChange={e => setDdlCategory(e.target.value)}>
+                      <option>Select Category</option>
+
+                      {off ?
+                        <option selected={true} value={Singlecategory.id}>{Singlecategory.name}</option>
+
+                        : category.map((catDetails, i) => {
+                          return (
+                            <option key={i} value={catDetails.id}>
+                              {catDetails.name}
+                            </option>
+                          )
+                        })
+                      }
+                    </select>
+                  </div>
+
+                  <div className="form-group">
+                    <label id="lblProduct">Product Name</label>
+                    <input value={txtProduct} className="form-control" onChange={e => setTxtProduct(e.target.value)} />
+                  </div>
+                  <div className="form-group">
+                    <label id="lblPrice"> Price</label>
+                    <input type="number" value={txtPrice} className="form-control" onChange={e => setTxtPrice(e.target.value)} />
+                  </div>
+                  <div className="form-group">
+                    <label id="lblDes">Product Description</label>
+                    <input type="textarea" value={txtDesc} className="form-control" onChange={e => setTxtDesc(e.target.value)} />
+
+                  </div>
+                  <div className="form-group">
+                    <label id="lblImg">Image</label>
+                    {/* <Input readOnly value={colorHexCode} className="form-control" onChange={e => setTxtImg({colorHexCode})} /><br /><br /> */}
+                    <input value={txtImg} className="form-control" onChange={e => setTxtImg(e.target.value)} />
+                  </div>
+
+                  <div className="form-group text-center">
+                    {on ? <button onClick={AddProduct} className="btn btn-primary">Add Product</button> : ''}{" "}
+                    {off ? <button onClick={UpdateProduct} className="btn btn-primary">Update Product</button> : ''}{" "}
+                    <button color="danger" onClick={CancelProduct} className="btn btn-primary">Cancel</button>{" "}
+                  </div>
+                </form>
+              </div>
+              {/* </div> */}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* <CardHeader className="">
             <div >
               <Label id="lblCat">Category</Label>
               <select className="form-control" onChange={e => setDdlCategory(e.target.value)}>
@@ -189,10 +246,8 @@ debugger;
                       </option>
                     )
                   })
-                  }
-              </select>
-
-
+                }
+              </select> 
               <br /><br />
               <Label id="lblProduct">Product Name</Label>
               <input value={txtProduct} className="form-control" onChange={e => setTxtProduct(e.target.value)} /><br /><br />
@@ -205,22 +260,22 @@ debugger;
 
               <Label id="lblImg">Image</Label>
               {/* <Input readOnly value={colorHexCode} className="form-control" onChange={e => setTxtImg({colorHexCode})} /><br /><br /> */}
-              <Input value={txtImg} className="form-control" onChange={e => setTxtImg(e.target.value)} /><br /><br />
+      {/* <Input value={txtImg} className="form-control" onChange={e => setTxtImg(e.target.value)} /><br /><br /> */}
 
-              {/* <SketchPicker
+      {/* <SketchPicker
                 color={colorHexCode}
                 onChange={e => setColorHexCode(e.hex)} /><br/> */}
 
-              {/* <br />
+      {/* <br />
               <b>Selected Hex Color: </b>{colorHexCode} */}
-              {on ? <Button onClick={AddProduct} color="danger" >Add Product</Button> : ''}{" "}
+      {/* {on ? <Button onClick={AddProduct} color="danger" >Add Product</Button> : ''}{" "}
               {off ? <Button onClick={UpdateProduct} color="danger" >Update Product</Button> : ''}{" "}
               <Button color="danger" onClick={CancelProduct} >Cancel</Button>{" "}
             </div>
 
-          </CardHeader>
-        </Col>
-      </Row>
+          </CardHeader> */}
+      {/* </Col>
+      </Row> */}
     </div>
   )
 }

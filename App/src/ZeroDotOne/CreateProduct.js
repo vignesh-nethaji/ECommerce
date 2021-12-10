@@ -172,6 +172,7 @@ debugger;
         <Col md="2"></Col>
         <Col md="8" >
           <Button href="../ZeroDotOne/ProductDetails"><IoMdArrowRoundBack /></Button>
+          
           <CardHeader className="">
             <div >
               <Label id="lblCat">Category</Label>
@@ -194,7 +195,7 @@ debugger;
 
               <br /><br />
               <Label id="lblProduct">Product Name</Label>
-              <Input value={txtProduct} className="form-control" onChange={e => setTxtProduct(e.target.value)} /><br /><br />
+              <input value={txtProduct} className="form-control" onChange={e => setTxtProduct(e.target.value)} /><br /><br />
 
               <Label id="lblPrice"> Price</Label>
               <Input type="number" value={txtPrice} className="form-control" onChange={e => setTxtPrice(e.target.value)} /><br /><br />
@@ -204,7 +205,7 @@ debugger;
 
               <Label id="lblImg">Image</Label>
               {/* <Input readOnly value={colorHexCode} className="form-control" onChange={e => setTxtImg({colorHexCode})} /><br /><br /> */}
-              <Input value={txtImg} className="form-control" onChange={e => setTxtImg(e.target.txtImg)} /><br /><br />
+              <Input value={txtImg} className="form-control" onChange={e => setTxtImg(e.target.value)} /><br /><br />
 
               {/* <SketchPicker
                 color={colorHexCode}

@@ -568,6 +568,9 @@ a
     color: #fbb72c;
     font-weight: 600;
 }
+.product-title:hover{ 
+  color: #fbb72c;
+}
 
 .product-price small {
     font-size: 80%;

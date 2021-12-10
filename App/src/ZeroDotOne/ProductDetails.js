@@ -87,7 +87,7 @@ const ProductDetails = () => {
 
                     <Context.Provider value={productId}>
                         {on ?
-                            <Table responsive>
+                            <table className="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>S.No</th>
@@ -117,7 +117,7 @@ const ProductDetails = () => {
                                         </tr>
                                     )}
                                 </tbody>
-                            </Table>
+                            </table>
                             : ''}
                         {off ?
                             <CreateProduct />

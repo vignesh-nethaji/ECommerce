@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
 import {
     Row,
-    Col,
-    Card,
-    CardBody,
-    CardText,
-    CardFooter,
+    Col, 
     Button
 } from "reactstrap";
 import HeaderPage from "./HeaderPage";
 import SidePage from "./SidePage";
 import axios from "axios";
 import SingleProductDtls from "./SingleProductDtls";
-import { IoMdArrowRoundBack } from "react-icons/io";
+import { BsCartCheckFill } from "react-icons/bs";
 
 
 const HomePage = () => {
@@ -68,8 +64,13 @@ const HomePage = () => {
         window.location.reload();
     }
 
+    const GetCatValue=()=>{
+
+    }
+
     return (
         <div>
+
             <div>
                 <HeaderPage />
                 {/* clickMe={OnChangeCategory} */}
@@ -77,32 +78,48 @@ const HomePage = () => {
                     <Row>
                         {on ? <Col md="3" > <SidePage callback={OnChangeCategory} /></Col> : ''}
                         <Col md="9" >
-
                             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridGap: 10, }}>
                                 {product.map((postDetails, i) =>
-                                    <div key={i} className="mt-5">
-                                        <Col md="10">
-                                            <Card className="homecard">
-                                                <CardBody className="mt-3">
-                                                    <img src={"https://via.placeholder.com/150/" + postDetails.image + "/placeholder.com/"} className="Homepageimg"></img>
-                                                    <CardText className="mt-3  text-center">{postDetails.title}</CardText>
-                                                    <CardText tag="h5" className="text-center"> $ {postDetails.price}{" "}<s> ${postDetails.price + 199}</s></CardText>
-                                                </CardBody>
-                                                <Button className="mobilebtn" onClick={() => GetSingleProduct(postDetails)}>
-                                                    View Detail's
-                                                </Button>
-                                            </Card>
-                                        </Col>
+                                    <div key={i} className="product-card">
+                                        <div className="badge">Hot</div>
+                                        <div className="product-tumb">
+                                            {/* <img src={"https://assets.ajio.com/medias/sys_master/root/20210511/Ao2d/6099b6ddaeb269a9e3ba8757/-473Wx593H-462405155-blue-MODEL.jpg"} alt="" /> */}
+                                            <img src={postDetails.image} alt="" /> 
+
+                                        </div>
+                                        <div className="product-details">
+                                            {/* <span className="product-catagory"></span> */}
+                                            <h4><a href="#">{postDetails.title}</a></h4>
+                                            {/* <p>{postDetails.description}</p> */}
+                                            <div className="product-bottom-details">
+                                                <div className="product-price"><small>${postDetails.price + 199}</small>${postDetails.price}</div>
+                                                <div className="product-links">
+                                                    {/*<a href=""><i className="fa fa-heart"></i></a>*/}
+                                                    <a><BsCartCheckFill className="pointer" onClick={() => GetSingleProduct(postDetails)} ></BsCartCheckFill></a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                    // <div key={i} className="mt-5">
+                                    //     <Col md="10">
+                                    //         <Card className="homecard">
+                                    //             <CardBody className="mt-3">
+                                    //                 <img src={"https://via.placeholder.com/150/" + postDetails.image + "/placeholder.com/"} className="Homepageimg"></img>
+                                    //                 <CardText className="mt-3  text-center">{postDetails.title}</CardText>
+                                    //                 <CardText tag="h5" className="text-center"> $ {postDetails.price}{" "}<s> ${postDetails.price + 199}</s></CardText>
+                                    //             </CardBody>
+                                    //             <Button className="mobilebtn" onClick={() => GetSingleProduct(postDetails)}>
+                                    //                 View Detail's
+                                    //             </Button>
+                                    //         </Card>
+                                    //     </Col>
+                                    // </div>
                                 )}
                             </div>
                         </Col>
                     </Row>
                     : ''}
-
-
-                {off ? <div><Button href="/ZeroDotOne/HomePage"><IoMdArrowRoundBack /></Button>{"   "} < SingleProductDtls details={detailsAddCart} /></div> : ''}
-
+                {off ? <div><Button onClick={() => { BacktoHome() }}>Back</Button> < SingleProductDtls details={detailsAddCart} /></div> : ''}
             </div>
         </div >
 

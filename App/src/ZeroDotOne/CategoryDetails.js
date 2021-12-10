@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Table, Row, Col } from "reactstrap";
 import AddCategory from "./AddCategory";
-import swal from "sweetalert";
+import Swal from "sweetalert2"
 import HeaderPage from "./HeaderPage";
 export const Context = React.createContext();
 
@@ -30,27 +30,41 @@ const CategoryDetails = () => {
         setOn(false);
     }
     const CategoryDetailsDelete = (id) => {
-        if (window.confirm(' a category ')) {
+        if (window.confirm('Do You Want To Delete This Category?')) {
+
             axios.delete(("http://localhost:40073/api/Category/Delete/" + id),
                 { headers: { "Authorization": `Bearer ${token}` } }
             )
+
                 .then(res => {
                     getallCategoryDetails();
-                    swal({
-                        title: "Done",
-                        text: "*category Name is deleted*",
-                        icon: "success",
-                        timer: 2000,
-                        button: false
-                    })
-                    this.setState({ redirect: this.state.redirect === false });
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        }
+                    var toastMixin = Swal.mixin({
+                        toast: true,
+                        icon: 'success',
+                        title: 'General Title',
+                        animation: false,
+                        position: 'top-right',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    });
 
+                    toastMixin.fire({
+                        animation: true,
+                        title: 'Category Deleted Successfully'
+                    });
+
+                })
+        } else {
+
+            return false;
+        }
     }
+
     return (
         <div>
             <HeaderPage />

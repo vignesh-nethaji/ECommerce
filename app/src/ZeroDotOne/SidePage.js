@@ -14,7 +14,7 @@ const SidePage = (props) => {
         )
             .then(res => { setCategory(res.data.data) })
     }, [token])
-    const CategoryName = (id) => { 
+    const CategoryName = (id) => {
         localStorage.setItem("CategoryIds", id)
         props.callback();
     }
@@ -23,8 +23,8 @@ const SidePage = (props) => {
         <div style={{ height: "100%" }}>
             <ProSidebar>
                 <Menu iconShape="square">
-                    <SubMenu title="Categorys" icon={<MdCategory />}>
-                    <MenuItem onClick={()=>CategoryName(0)}>All Product</MenuItem>
+                    <SubMenu title="Categorys" className="categoryicon" icon={<MdCategory />}>
+                        <MenuItem onClick={() => CategoryName(0)}>All Product</MenuItem>
                         {category.map((item, i) =>
                             <MenuItem key={i} onClick={() => CategoryName(item.id)}>{item.name}</MenuItem>
                         )}

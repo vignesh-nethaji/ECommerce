@@ -674,7 +674,6 @@ button:active {
 .dim {
   color: var(--color-gray-400);
 }
-}
 .pro-sidebar > .pro-sidebar-inner, .pro-sidebar .pro-menu > ul > .pro-sub-menu > .pro-inner-list-item{
   background: #FFFFFF !important;
   color: #000;

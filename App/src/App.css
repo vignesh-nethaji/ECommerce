@@ -116,7 +116,9 @@ body {
     font-family: 'Raleway', sans-serif;
     background-color: #F7F7F7;
 }
-
+.errorMsg{
+  color: red;
+}
 .login-1 {
     height: 100vh;
     display: flex;

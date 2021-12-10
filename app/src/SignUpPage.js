@@ -22,6 +22,7 @@ const SignUpPage = () => {
     const Onsubmit_Function = () => {
         if (!emailidvld) {
             alert('Enter Valid Email')
+            return false;
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(emailidvld)) {
             alert('Invalid email address')
             return false;

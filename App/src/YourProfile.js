@@ -43,8 +43,8 @@ const YourProfile = () => {
                 <HeaderPage />
                 {on ?
                     <div>
-                        <Button href="/ZeroDotOne/HomePage"><IoMdArrowRoundBack /></Button>{"   "}
-                        <Button onClick={() => { AdminDetailsEdit(userDetails.id) }}><FiEdit2 />{'  '} Edit</Button>
+                        <h4><IoMdArrowRoundBack href="/ZeroDotOne/HomePage" />{"         "}
+                            <FiEdit2 onClick={() => { AdminDetailsEdit(userDetails.id) }} >Edit</FiEdit2></h4>
                         <Row>
                             <Col md="4">
                                 <FaUserCircle style={{ width: "200px", height: "200px" }} className='yourProfileImg' />

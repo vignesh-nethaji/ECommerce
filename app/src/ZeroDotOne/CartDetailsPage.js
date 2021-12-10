@@ -75,7 +75,7 @@ const CartDetailsPage = () => {
                             <Row>
                                 <Col md="6">
                                     <h5>My Cart ({productDetails.length})</h5>
-                                {localStorage.setItem("CartCount",productDetails.length)}
+                                    {localStorage.setItem("CartCount", productDetails.length)}
                                 </Col>
                                 <Col md="6">
                                     <Row>
@@ -88,7 +88,7 @@ const CartDetailsPage = () => {
                             {productDetails.map((items, i) =>
                                 <div key={i}>
                                     <Row className="mt-3">
-                                        <Col md="3" className="mt-5"> <img src={"https://via.placeholder.com/100/" + items.image + "/placeholder.com/"}></img></Col>
+                                        <Col md="3" className="mt-1"> <img src={items.image} style={{ width: "200px", height: "200px" }}></img></Col>
                                         <Col md="5">
                                             <b>{items.title}</b>
                                             <p className="text-justify">{items.description}</p>

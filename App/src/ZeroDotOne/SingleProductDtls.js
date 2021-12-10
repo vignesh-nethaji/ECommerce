@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Card, CardBody, CardText, Col, Row } from "reactstrap";
+import { Button } from "reactstrap";
 import Swal from "sweetalert2";
+import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai"
 
 const SingleProductDtls = (props) => {
 
@@ -10,8 +11,7 @@ const SingleProductDtls = (props) => {
     const token = localStorage.getItem("UserTokenDetails");
     const [singleProduct, setSingleProduct] = useState([]);
     const navigate = useNavigate();
-
-
+    const [countCart, setCountCart] = useState(0)
 
     useEffect(() => {
         axios.get(("http://localhost:40073/api/Product/Get/" + singleProductDtls),
@@ -31,7 +31,7 @@ const SingleProductDtls = (props) => {
         const cartDtls = {
             "Id": 0,
             "Date": today,
-            "Quantity": "1",
+            "Quantity": countCart.toString(),
             "userId": parseInt(localStorage.getItem("UserIdDetails")),
             "productId": productId
         }
@@ -72,6 +72,15 @@ const SingleProductDtls = (props) => {
         navigate("/ZeroDotOne/CartDetailsPage")
     }
 
+    const PlusIcon = () => {
+        setCountCart(countCart + 1);
+    }
+    const MinsIcon = () => {
+        if (countCart > 0) {
+            setCountCart(countCart - 1);
+        }
+
+    }
 
     return (
         <div className="container mt-6 mb-6">
@@ -98,7 +107,13 @@ const SingleProductDtls = (props) => {
                                         </div>
                                     </div>
                                     <p className="about">{singleProduct.description}</p>
-                                    <div className="sizes mt-5">
+                                    <div>
+                                        <AiOutlinePlusCircle onClick={() => { PlusIcon() }} style={{ width: "30px", height: "30px", margin: "5px" }} />
+                                        {countCart}
+                                        <AiOutlineMinusCircle onClick={() => { MinsIcon() }} style={{ width: "30px", height: "30px", margin: "5px" }} />
+                                    </div>
+
+                                    <div className="sizes mt-1">
 
                                         <br /> <h5>Available offers</h5>
                                         <p><strong> Special Price </strong> Get extra 10% off (price inclusive of discount)T&C</p>

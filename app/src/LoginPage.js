@@ -76,9 +76,9 @@ const LoginPage = ({ initialValue, ...rest }) => {
                                         </div>
                                         <div className="form-group">
                                             <input type="text" onChange={(e) => UserNamevld(e)} value={userNameVld} placeholder="Enter your name" className="form-control" />
-                                            <div className="error" > {errorMessage} </div><br /><br />
+                                            <div className="errorMsg" > {errorMessage} </div><br /><br />
                                             <input type="password" onChange={(e) => PassWordvld(e)} value={passWordVld} placeholder="Enter your password" className="form-control" />
-                                            <div className="error" > {errorMessagePsd} </div> <br /><br />
+                                            <div className="errorMsg" > {errorMessagePsd} </div> <br /><br />
                                         </div>
                                         <div className="input-group check-field">
                                             <div>

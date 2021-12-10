@@ -94,9 +94,10 @@ const HeaderPage = (props) => {
                             <button className="search-btn">search</button>
                         </div>
 
-                        <UncontrolledDropdown >
-                            <DropdownToggle >
-                                <img src="/user.png" alt="ddd" />
+                        <FaHome style={{color:"#000",height:"30px",width:"30px",marginRight:"20px"}} onClick={() => HomePageLink()} className="HeaderHome" />
+                        <UncontrolledDropdown className="HeaderUserIconbg">
+                            <DropdownToggle className="HeaderUserIcon">
+                                <FaUserCircle style={{ color: "#000", height: "30px", width: "30px" }} />
                             </DropdownToggle>
                             <DropdownMenu >
                                 <DropdownItem onClick={() => YourProfile()}>Your Profile</DropdownItem>
@@ -107,8 +108,8 @@ const HeaderPage = (props) => {
                         <a href="#"><img src="/cart.png" alt="dddd" onClick={() => CartPage()} /></a>
 
                         {On ? <div className="HeaderCart">
-                            <UncontrolledDropdown >
-                                <DropdownToggle className="HeaderUserIcon">
+                            <UncontrolledDropdown className="HeaderAdminIconbg">
+                                <DropdownToggle className="HeaderAdminIcon">
                                     <BsThreeDotsVertical />
                                 </DropdownToggle>
                                 <DropdownMenu >

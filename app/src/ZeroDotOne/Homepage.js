@@ -89,7 +89,7 @@ const HomePage = () => {
                                         </div>
                                         <div className="product-details">
                                             {/* <span className="product-catagory"></span> */}
-                                            <h4><a href="#">{postDetails.title}</a></h4>
+                                            <h4 className="product-title">{postDetails.title}</h4>
                                             {/* <p>{postDetails.description}</p> */}
                                             <div className="product-bottom-details">
                                                 <div className="product-price"><small>${postDetails.price + 199}</small>${postDetails.price}</div>

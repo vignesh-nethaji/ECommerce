@@ -4,9 +4,11 @@ import axios from "axios";
 import { Context } from "./UserDetails";
 import { YourProfileId } from './YourProfile';
 import HeaderPage from './ZeroDotOne/HeaderPage';
-import { Navigate } from 'react-router';
+import { BsWindowSidebar } from 'react-icons/bs';
+import { useNavigate } from "react-router-dom";
 
 const UserAdded = () => {
+    let navigate = useNavigate();
     const id = useContext(Context);
     const [errorMessage, setErrorMessageuser] = useState("");
     const [errorMessagePsd, setErrorMessagePsd] = useState("");
@@ -24,8 +26,6 @@ const UserAdded = () => {
     const token = localStorage.getItem("UserTokenDetails");
     const [on, setOn] = useState(true);
     const [off, setOff] = useState(false);
-
-
 
     useEffect(() => {
         if ((id !== 0 && id !== undefined) || (ProfileId !== 0 && ProfileId !== undefined)) {
@@ -90,16 +90,17 @@ const UserAdded = () => {
         }
     }, [userDetails])
 
-    const validation = () => {
+    const UserDetailsSubmit = () => {
 
         if (!emailidvld) {
             alert('Enter Valid Email')
+            return false;
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(emailidvld)) {
             alert('Invalid email address')
             return false;
         }
 
-        else if (passwordvld.length < 7) {
+        else if (passwordvld === " ") {
             alert('Enter Password');
             return false;
         }
@@ -123,26 +124,15 @@ const UserAdded = () => {
             alert("Enter Your Address");
             return false;
         }
-        else if (zipcodevld.length < 6) {
+        else if (zipcodevld === " ") {
             alert("Enter Your Correct Zipcode");
             return false;
         }
-        else if (PhoneNumbervld.length > 10) {
+        else if (PhoneNumbervld === " ") {
             alert("Enter Phone Number");
             return false;
-        } else {
-            setErrorMessageuser('')
         }
-
-        if (PhoneNumbervld.trim() === " ") {
-            setErrorMessagePsd("Please Enter a PhoneNumber!");
-            return false;
-        }
-        window.location.reload();
-    }
-    const UserDetailsSubmit = () => {
-
-        validation();
+        GotoUser();
         axios.post("http://localhost:40073/api/User/Add", {
 
             "id": 0,
@@ -164,13 +154,51 @@ const UserAdded = () => {
             .catch(error => {
                 console.log(error)
             })
-        window.location.reload();
     }
-
-
+    const GotoUser = () => {
+        navigate("/ZeroDotOne/UserDetails")
+    }
     const UserDetailsUpdate = () => {
+        if (!emailidvld) {
+            alert('Enter Valid Email')
+            return false;
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(emailidvld)) {
+            alert('Invalid email address')
+            return false;
+        }
 
-        validation();
+        else if (passwordvld === " ") {
+            alert('Enter Password');
+            return false;
+        }
+        else if (usernamevld === '') {
+            alert("Enter Username");
+            return false;
+        }
+        else if (firstnamevld === '') {
+            alert("Enter FirstName");
+            return false;
+        }
+        else if (lastnamevld === '') {
+            alert("Enter LastName");
+            return false;
+        }
+        else if (cityvld === '') {
+            alert("Enter your city");
+            return false;
+        }
+        else if (addressvld === '') {
+            alert("Enter Your Address");
+            return false;
+        }
+        else if (zipcodevld === " ") {
+            alert("Enter Your Correct Zipcode");
+            return false;
+        }
+        else if (PhoneNumbervld === " ") {
+            alert("Enter Phone Number");
+            return false;
+        }
         axios.put("http://localhost:40073/api/User/Update", {
             "id": userDetails.id,
             "email": emailidvld,
@@ -212,7 +240,7 @@ const UserAdded = () => {
                                 </div>
                                 <div className="form-group">
                                     <label>Password</label>
-                                    <input type="text" onChange={(e) => setPasswordvld(e.target.value)} value={passwordvld} placeholder="Enter your Password" className="form-control" />
+                                    <input type="Password" onChange={(e) => setPasswordvld(e.target.value)} value={passwordvld} placeholder="Enter your Password" className="form-control" />
                                 </div>
                                 <div className="form-group">
                                     <label>UserName</label>
@@ -236,14 +264,14 @@ const UserAdded = () => {
                                 </div>
                                 <div className="form-group">
                                     <label>ZipCode</label>
-                                    <input type="text" onChange={(e) => setZipcodevld(e.target.valuee)} value={zipcodevld} placeholder="Enter your ZipCode" className="form-control" />
+                                    <input type="text" onChange={(e) => setZipcodevld(e.target.value)} value={zipcodevld} maxLength="6" placeholder="Enter your ZipCode" className="form-control" />
                                 </div>
                                 <div className="form-group">
                                     <label>PhoneNumber</label>
-                                    <input type="text" onChange={(e) => setphoneNumvervld(e.target.value)} value={PhoneNumbervld} placeholder="Enter your FirstName" className="form-control" />
+                                    <input type="text" onChange={(e) => setphoneNumvervld(e.target.value)} value={PhoneNumbervld} maxLength="10" placeholder="Enter your PhoneNumber" className="form-control" />
                                 </div>
 
-                                <input href="/ZeroDotOne/UserDetails" type="button" value="Back" className="btn btn-primary" ></input>{"   "}
+                                <input type="button" value="Back" className="btn btn-primary" ></input>{"   "}
 
 
                                 {on ?

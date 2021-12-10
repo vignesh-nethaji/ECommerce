@@ -7,6 +7,8 @@ import Swal from 'sweetalert2';
 import SidePage from "./ZeroDotOne/SidePage";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import HeaderPage from "./ZeroDotOne/HeaderPage";
+import { FaUserEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 export const Context = React.createContext();
 
 const UserDetails = () => {
@@ -76,7 +78,7 @@ const UserDetails = () => {
 
                         <Button href="/ZeroDotOne/AddUser">Add User</Button>
                         {on ?
-                            <Table responsive>
+                            <table className="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>S.No</th>
@@ -108,8 +110,10 @@ const UserDetails = () => {
                                                 <td>{UserDataTable.zipcode}</td>
                                                 <td>{UserDataTable.phoneNumber}</td>
                                                 <td>
-                                                    <Button onClick={() => { UserDetailsEdit(UserDataTable.id) }}>Edit</Button>{'  '}</td>
-                                                <td><Button onClick={() => { UserDetailsDelete(UserDataTable.id) }}>Delete</Button></td>
+                                                    <FaUserEdit onClick={() => { UserDetailsEdit(UserDataTable.id) }} /></td>
+                                                <td>< MdDelete onClick={() => { UserDetailsDelete(UserDataTable.id) }} /></td>
+                                                {/* <input type="button" value="Edit" className="btn btn-primary" onClick={() => { UserDetailsEdit(UserDataTable.id) }}></input></td> */}
+                                                {/* <input type="button" value="Delete" className="btn btn-primary" onClick={() => { UserDetailsDelete(UserDataTable.id) }}></input> */}
                                             </tr>
                                         )
                                     }
@@ -117,7 +121,7 @@ const UserDetails = () => {
 
                                     )}
                                 </tbody>
-                            </Table>
+                            </table>
                             : ''}
                         {off ?
                             <UserAdded />

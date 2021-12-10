@@ -72,6 +72,7 @@ const CategoryDetails = () => {
                 <Row>
                     <Col md="3"></Col>
                     <Col md="6">
+
                         <Button href="/ZeroDotOne/AddCategory">Add Category</Button>
                         {on ?
                             <Table responsive>
@@ -91,8 +92,11 @@ const CategoryDetails = () => {
                                             <td>{UserDataTable.id}</td>
                                             <td>{UserDataTable.name}</td>
                                             <td>
-                                                <Button onClick={() => { CategoryDetailsEdit(UserDataTable.id) }}>Edit</Button>{'  '}
-                                                <Button onClick={() => { CategoryDetailsDelete(UserDataTable.id) }}> Delete</Button>
+                                                <input type="button" value="Edit" className="btn btn-primary" onClick={() => { CategoryDetailsEdit(UserDataTable.id) }}></input>{' '}
+                                                <input type="button" value="Delete" className="btn btn-primary" onClick={() => { CategoryDetailsDelete(UserDataTable.id) }}></input>
+
+
+
                                             </td></tr>
                                     )}
                                 </tbody>

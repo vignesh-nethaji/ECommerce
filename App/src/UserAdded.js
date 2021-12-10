@@ -4,11 +4,14 @@ import axios from "axios";
 import { Context } from "./UserDetails";
 import { YourProfileId } from './YourProfile';
 import HeaderPage from './ZeroDotOne/HeaderPage';
+import { Navigate } from 'react-router';
 
 const UserAdded = () => {
     const id = useContext(Context);
+    const [errorMessage, setErrorMessageuser] = useState("");
+    const [errorMessagePsd, setErrorMessagePsd] = useState("");
     const ProfileId = useContext(YourProfileId);
-    const [emailidvld, setEmailidvld] = useState("");
+    var [emailidvld, setEmailidvld] = useState("");
     const [passwordvld, setPasswordvld] = useState("");
     const [usernamevld, setUsernamevld] = useState("");
     const [firstnamevld, setFirstnamevld] = useState("");
@@ -21,6 +24,8 @@ const UserAdded = () => {
     const token = localStorage.getItem("UserTokenDetails");
     const [on, setOn] = useState(true);
     const [off, setOff] = useState(false);
+
+
 
     useEffect(() => {
         if ((id !== 0 && id !== undefined) || (ProfileId !== 0 && ProfileId !== undefined)) {
@@ -93,6 +98,7 @@ const UserAdded = () => {
             alert('Invalid email address')
             return false;
         }
+
         else if (passwordvld.length < 7) {
             alert('Enter Password');
             return false;
@@ -121,11 +127,18 @@ const UserAdded = () => {
             alert("Enter Your Correct Zipcode");
             return false;
         }
-
         else if (PhoneNumbervld.length > 10) {
             alert("Enter Phone Number");
             return false;
+        } else {
+            setErrorMessageuser('')
         }
+
+        if (PhoneNumbervld.trim() === " ") {
+            setErrorMessagePsd("Please Enter a PhoneNumber!");
+            return false;
+        }
+        window.location.reload();
     }
     const UserDetailsSubmit = () => {
 
@@ -154,6 +167,7 @@ const UserAdded = () => {
         window.location.reload();
     }
 
+
     const UserDetailsUpdate = () => {
 
         validation();
@@ -176,80 +190,80 @@ const UserAdded = () => {
         window.location.reload();
     }
 
+
     return (
         <div>
             {on ?
                 <HeaderPage />
                 : ''}
-            <Row>
+            <div className="container-fluid login-2">
+                <div className="container">
+                    <div className="login-form">
+                        <div className="row align-items-center">
+                            <div className="col-md-2">
+                            </div>
+                        </div>
+                        <div className="col-md-10">
+                            <div className="login-box"></div>
+                            <form>
+                                <div className="form-group">
+                                    <label>Email</label>
+                                    <input type="text" value={emailidvld} onChange={(e) => setEmailidvld(e.target.value)} placeholder="Enter your Email" className="form-control" />
+                                </div>
+                                <div className="form-group">
+                                    <label>Password</label>
+                                    <input type="text" onChange={(e) => setPasswordvld(e.target.value)} value={passwordvld} placeholder="Enter your Password" className="form-control" />
+                                </div>
+                                <div className="form-group">
+                                    <label>UserName</label>
+                                    <input type="text" onChange={(e) => setUsernamevld(e.target.value)} value={usernamevld} placeholder="Enter your Name" className="form-control" />
+                                </div>
+                                <div className="form-group">
+                                    <label>FirstName</label>
+                                    <input type="text" onChange={(e) => setFirstnamevld(e.target.value)} value={firstnamevld} placeholder="Enter your FirstName" className="form-control" />
+                                </div>
+                                <div className="form-group">
+                                    <label>LastName</label>
+                                    <input type="text" onChange={(e) => setLastnamevld(e.target.value)} value={lastnamevld} placeholder="Enter your LastName" className="form-control" />
+                                </div>
+                                <div className="form-group">
+                                    <label>City</label>
+                                    <input type="text" onChange={(e) => setCityvld(e.target.value)} value={cityvld} placeholder="Enter your City" className="form-control" />
+                                </div>
+                                <div className="form-group">
+                                    <label>Address</label>
+                                    <input type="text" onChange={(e) => setAddressvld(e.target.value)} value={addressvld} placeholder="Enter your Address" className="form-control" />
+                                </div>
+                                <div className="form-group">
+                                    <label>ZipCode</label>
+                                    <input type="text" onChange={(e) => setZipcodevld(e.target.valuee)} value={zipcodevld} placeholder="Enter your ZipCode" className="form-control" />
+                                </div>
+                                <div className="form-group">
+                                    <label>PhoneNumber</label>
+                                    <input type="text" onChange={(e) => setphoneNumvervld(e.target.value)} value={PhoneNumbervld} placeholder="Enter your FirstName" className="form-control" />
+                                </div>
 
-                <Col md="2"> </Col>
-                <Col md="8">
+                                <input href="/ZeroDotOne/UserDetails" type="button" value="Back" className="btn btn-primary" ></input>{"   "}
 
-                    <CardHeader>
-                        <Form>
-                            <FormGroup>
-                                <Label>Email</Label>
-                                <Input type="email" name="email" placeholder="Email ID" value={emailidvld} onChange={(e) => setEmailidvld(e.currentTarget.value)} />
-                                <FormText >Please Fill Email Format</FormText>
-                            </FormGroup>
-                            <FormGroup>
-                                <Label>Password</Label>
-                                <Input type="password" name="password" placeholder="password" value={passwordvld} onChange={(e) => setPasswordvld(e.currentTarget.value)} />
-                                <FormText >Please Fill Correct PassWord</FormText>
-                            </FormGroup>
-                            <FormGroup>
-                                <Label>User Name</Label>
-                                <Input type="text" name="Username" placeholder="User Name" value={usernamevld} onChange={(e) => setUsernamevld(e.currentTarget.value)} />
-                                <FormText >Fill User Name</FormText>
-                            </FormGroup>
-                            <FormGroup>
-                                <Row>
-                                    <Col md="6">
-                                        <Input type="text" name="password" placeholder="First Name" value={firstnamevld} onChange={(e) => { setFirstnamevld(e.currentTarget.value) }} />
-                                    </Col>
-                                    <Col md="6">
-                                        <Input type="text" name="password" placeholder="Last Name" value={lastnamevld} onChange={(e) => { setLastnamevld(e.currentTarget.value) }} />
-                                    </Col>
-                                </Row>
-                                <FormText >Fill Correct First Name</FormText>
-                            </FormGroup>
-                            <FormGroup>
-                                <Label>City</Label>
-                                <Input type="text" name="text" value={cityvld} onChange={(e) => { setCityvld(e.currentTarget.value) }} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label>Address</Label>
-                                <Input type="textarea" name="text" value={addressvld} onChange={(e) => { setAddressvld(e.currentTarget.value) }} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label>Zipcode</Label>
-                                <Input type="number" name="text" value={zipcodevld} onChange={(e) => { setZipcodevld(e.currentTarget.value) }} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label>phoneNumber</Label><br />
-                                <Input type="number" placeholder="+91" value={PhoneNumbervld} onChange={(e) => { setphoneNumvervld(e.currentTarget.value) }} required></Input>
-                            </FormGroup>
-                            <FormGroup>
 
-                                {/* <Input type="submit" value="Submit" /> */}
-                            </FormGroup>
-                        </Form>
+                                {on ?
+                                    <input type="button" value="Submit" className="btn btn-primary" onClick={() => { UserDetailsSubmit() }}></input>
 
-                    </CardHeader>
-                    <Button href="/ZeroDotOne/UserDetails">Back</Button>{"  "}
-                    {on ?
-                        <Button href="/ZeroDotOne/UserDetails" onClick={() => { UserDetailsSubmit() }}>Submit</Button>
+                                    : ''}
+                                {off ?
+                                    <input type="button" value="Update" className="btn btn-primary" onClick={() => { UserDetailsUpdate() }} ></input>
+                                    : ''}
 
-                        : ''}
-                    {off ?
-                        <Button onClick={() => { UserDetailsUpdate() }} >Update</Button>
-                        : ''}
-                </Col>
-                <Col md="2"> </Col>
-            </Row>
+                                <Col md="2"> </Col>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
 
     )
 }
+
 export default UserAdded;

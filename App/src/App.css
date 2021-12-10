@@ -131,7 +131,13 @@ body {
     margin: 120px 80px;
     overflow: hidden;
 }
-
+.login-2 {
+  height: 220vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
 .img-box {
     max-height: 700px;
     display: flex;

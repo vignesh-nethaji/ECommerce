@@ -24,6 +24,8 @@ const LoginPage = ({ initialValue, ...rest }) => {
             setErrorMessageuser('')
         }
 
+
+
         if (passWordVld.trim() === "") {
             setErrorMessagePsd("Please Enter a Password!");
             return false;
@@ -62,7 +64,7 @@ const LoginPage = ({ initialValue, ...rest }) => {
                             <div className="col-md-6">
                                 <div className="img-box">
                                     <div className="loader"></div>
-                                    <img src="online.webp" className="back-img" title="login" alt="welcome image" />
+                                    <img src="Shopping.webp" className="back-img" title="login" alt="welcome image" />
                                 </div>
                             </div>
                             <div className="col-md-6">

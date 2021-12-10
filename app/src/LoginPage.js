@@ -64,7 +64,7 @@ const LoginPage = ({ initialValue, ...rest }) => {
                             <div className="col-md-6">
                                 <div className="img-box">
                                     <div className="loader"></div>
-                                    <img src="Shopping.webp" className="back-img" title="login" alt="welcome image" />
+                                    <img src="Shop.webp" className="back-img" title="login" alt="welcome image" />
                                 </div>
                             </div>
                             <div className="col-md-6">

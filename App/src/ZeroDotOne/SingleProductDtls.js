@@ -11,7 +11,7 @@ const SingleProductDtls = (props) => {
     const token = localStorage.getItem("UserTokenDetails");
     const [singleProduct, setSingleProduct] = useState([]);
     const navigate = useNavigate();
-    const [countCart, setCountCart] = useState(0)
+    const [countCart, setCountCart] = useState(1)
 
     useEffect(() => {
         axios.get(("http://localhost:40073/api/Product/Get/" + singleProductDtls),

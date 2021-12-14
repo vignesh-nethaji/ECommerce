@@ -8,7 +8,23 @@ import HeaderPage from "./HeaderPage";
 import SidePage from "./SidePage";
 import axios from "axios";
 import SingleProductDtls from "./SingleProductDtls";
-import { BsCartCheckFill } from "react-icons/bs";
+import { BsHeart } from "react-icons/bs";
+
+const ReadMore = ({ children }) => {
+    const text = children.props.children;
+    const [isReadMore, setIsReadMore] = useState(true);
+    const toggleReadMore = () => {
+      setIsReadMore(!isReadMore);
+    };
+    return (
+      <p className="product-title">
+        {isReadMore ? text.slice(0,30) : text}
+        <span onClick={toggleReadMore} >
+          {isReadMore ? "..." : " ..."}
+        </span>
+      </p>
+    );
+  };
 
 
 const HomePage = () => {
@@ -80,8 +96,8 @@ const HomePage = () => {
                         <Col md="9" >
                             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gridGap: 10, }}>
                                 {product.map((postDetails, i) =>
-                                    <div key={i} className="product-card">
-                                        <div className="badge">Hot</div>
+                                    <div key={i} className="product-card" onClick={() => GetSingleProduct(postDetails)}>
+                                        {/* <div className="badge">Hot</div> */}
                                         <div className="product-tumb">
                                             {/* <img src={"https://assets.ajio.com/medias/sys_master/root/20210511/Ao2d/6099b6ddaeb269a9e3ba8757/-473Wx593H-462405155-blue-MODEL.jpg"} alt="" /> */}
                                             <img src={postDetails.image} alt="" /> 
@@ -89,13 +105,14 @@ const HomePage = () => {
                                         </div>
                                         <div className="product-details">
                                             {/* <span className="product-catagory"></span> */}
+                                            <ReadMore>
                                             <h4 className="product-title">{postDetails.title}</h4>
+                                            </ReadMore>
                                             {/* <p>{postDetails.description}</p> */}
-                                            <div className="product-bottom-details">
+                                            <div className="product-bottom-details force-overflow">
                                                 <div className="product-price"><small>${postDetails.price + 199}</small>${postDetails.price}</div>
                                                 <div className="product-links">
-                                                    {/*<a href=""><i className="fa fa-heart"></i></a>*/}
-                                                    <a><BsCartCheckFill className="pointer" onClick={() => GetSingleProduct(postDetails)} ></BsCartCheckFill></a>
+                                                    <BsHeart />
                                                 </div>
                                             </div>
                                         </div>

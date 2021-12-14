@@ -132,7 +132,21 @@ body {
     overflow: hidden;
 }
 .login-2 {
-  height: 220vh;
+  height: 200vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.login-3 {
+  height: 130vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.login-4 {
+  height: 30vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -314,7 +328,7 @@ body {
 }
 
 .search{
-  width: 500px;
+  width: 600px;
   display: flex;
 }
 
@@ -332,7 +346,7 @@ body {
 }
 
 .search-btn{
-  width: 20%;
+  width: 10%;
   height: 40px;
   padding: 10px 20px;
   border: none;
@@ -344,6 +358,9 @@ body {
   font-size: 15px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+}
+.search-btn{
+  background: #000 !important;
 }
 
 .search-box::placeholder{
@@ -538,7 +555,7 @@ a
     width: 300px;
     position: relative;
     box-shadow: 0 2px 7px #dfdfdf;
-    margin: 50px auto;
+    margin: 30px auto;
     background: #fafafa;
 }
 
@@ -730,8 +747,11 @@ button:active {
 
 }
 .categoryicon:hover {
-   color: #a9a9a9!important;
-  
+  color: #0a0a0a!important;
+  background-color: #FFFFFF;
+}
+.categoryicon{
+ color: #FFFFFF !important;
 }
 
 .pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item > .pro-item-content {
@@ -753,4 +773,13 @@ button:active {
 }
 .HeaderUserIconbg{
   background-color: #e1e1e1;
+}
+.product-price:hover {
+  color: #000;
+}
+.HeaderUser{
+  color: #000 !important;
+   height: 30px !important;
+    width: 30px !important;
+    margin-left: 20px !important; 
 }

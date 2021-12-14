@@ -88,7 +88,7 @@ const AddCategory = () => {
             <section>
                 <h2> Add Category </h2>
             </section>
-            <div className="container-fluid login-3">
+            <div className="container-fluid login-4">
                 <div className="container">
                     <div className="login-form">
                         <div className="row align-items-center">

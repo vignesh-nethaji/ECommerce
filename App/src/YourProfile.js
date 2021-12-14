@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Row, Col } from 'reactstrap';
+import { Button, Row, Col, Input } from 'reactstrap';
 import axios from "axios";
 import { FaUserCircle } from "react-icons/fa";
 import { BsDot } from "react-icons/bs";
@@ -43,8 +43,8 @@ const YourProfile = () => {
                 <HeaderPage />
                 {on ?
                     <div>
-                        <h4><IoMdArrowRoundBack href="/ZeroDotOne/HomePage" />{"         "}
-                            <FiEdit2 onClick={() => { AdminDetailsEdit(userDetails.id) }} >Edit</FiEdit2></h4>
+                        <Button href="/ZeroDotOne/HomePage"><IoMdArrowRoundBack /></Button>{"   "}
+                        <Button onClick={() => { AdminDetailsEdit(userDetails.id) }}><FiEdit2 />{'  '} Edit</Button>
                         <Row>
                             <Col md="4">
                                 <FaUserCircle style={{ width: "200px", height: "200px" }} className='yourProfileImg' />

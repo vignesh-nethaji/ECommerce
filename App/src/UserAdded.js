@@ -1,19 +1,17 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText, Col, Row, CardHeader } from 'reactstrap';
+import { Col } from 'reactstrap';
 import axios from "axios";
 import { Context } from "./UserDetails";
 import { YourProfileId } from './YourProfile';
 import HeaderPage from './ZeroDotOne/HeaderPage';
-import { BsWindowSidebar } from 'react-icons/bs';
 import { useNavigate } from "react-router-dom";
+
 
 const UserAdded = () => {
     let navigate = useNavigate();
     const id = useContext(Context);
-    const [errorMessage, setErrorMessageuser] = useState("");
-    const [errorMessagePsd, setErrorMessagePsd] = useState("");
     const ProfileId = useContext(YourProfileId);
-    var [emailidvld, setEmailidvld] = useState("");
+    const [emailidvld, setEmailidvld] = useState("");
     const [passwordvld, setPasswordvld] = useState("");
     const [usernamevld, setUsernamevld] = useState("");
     const [firstnamevld, setFirstnamevld] = useState("");
@@ -26,6 +24,7 @@ const UserAdded = () => {
     const token = localStorage.getItem("UserTokenDetails");
     const [on, setOn] = useState(true);
     const [off, setOff] = useState(false);
+
 
     useEffect(() => {
         if ((id !== 0 && id !== undefined) || (ProfileId !== 0 && ProfileId !== undefined)) {
@@ -92,11 +91,11 @@ const UserAdded = () => {
 
     const UserDetailsSubmit = () => {
 
-        if (!emailidvld) {
-            alert('Enter Valid Email')
+        if (!emailidvld === " ") {
+            alert('Enter E-mailID')
             return false;
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(emailidvld)) {
-            alert('Invalid email address')
+            alert('Enter Valid E-Mail(@.)')
             return false;
         }
 
@@ -112,20 +111,21 @@ const UserAdded = () => {
             alert("Enter FirstName");
             return false;
         }
-        else if (lastnamevld === '') {
-            alert("Enter LastName");
+        // else if (lastnamevld === '') {
+        //     alert("Enter LastName");
+        //     return false;
+        // }
+        else if (addressvld === " ") {
+            alert("Enter Address");
             return false;
         }
         else if (cityvld === '') {
-            alert("Enter your city");
+            alert("Select City");
             return false;
         }
-        else if (addressvld === '') {
-            alert("Enter Your Address");
-            return false;
-        }
+
         else if (zipcodevld === " ") {
-            alert("Enter Your Correct Zipcode");
+            alert("Enter Zipcode");
             return false;
         }
         else if (PhoneNumbervld === " ") {
@@ -160,10 +160,10 @@ const UserAdded = () => {
     }
     const UserDetailsUpdate = () => {
         if (!emailidvld) {
-            alert('Enter Valid Email')
+            alert('Enter E-mailID')
             return false;
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(emailidvld)) {
-            alert('Invalid email address')
+            alert('Enter Valid E-Mail(@.)')
             return false;
         }
 
@@ -179,20 +179,21 @@ const UserAdded = () => {
             alert("Enter FirstName");
             return false;
         }
-        else if (lastnamevld === '') {
-            alert("Enter LastName");
+        // else if (lastnamevld === '') {
+        //     alert("Enter LastName");
+        //     return false;
+        // }
+        else if (addressvld === '') {
+            alert("Enter Address");
             return false;
         }
         else if (cityvld === '') {
-            alert("Enter your city");
+            alert("Select City");
             return false;
         }
-        else if (addressvld === '') {
-            alert("Enter Your Address");
-            return false;
-        }
+
         else if (zipcodevld === " ") {
-            alert("Enter Your Correct Zipcode");
+            alert("Enter Zipcode");
             return false;
         }
         else if (PhoneNumbervld === " ") {
@@ -216,14 +217,20 @@ const UserAdded = () => {
                 console.log(error)
             })
         window.location.reload();
-    }
+    };
+    const BackBtn = () => {
+        navigate("/ZeroDotOne/UserDetails")
 
+    }
 
     return (
         <div>
             {on ?
                 <HeaderPage />
                 : ''}
+            <section>
+                <h1> Add User </h1>
+            </section>
             <div className="container-fluid login-2">
                 <div className="container">
                     <div className="login-form">
@@ -235,19 +242,19 @@ const UserAdded = () => {
                             <div className="login-box"></div>
                             <form>
                                 <div className="form-group">
-                                    <label>Email</label>
+                                    <label>Email <span className="errorMsg">*</span></label>
                                     <input type="text" value={emailidvld} onChange={(e) => setEmailidvld(e.target.value)} placeholder="Enter your Email" className="form-control" />
                                 </div>
                                 <div className="form-group">
-                                    <label>Password</label>
+                                    <label>Password <span className="errorMsg">*</span></label>
                                     <input type="Password" onChange={(e) => setPasswordvld(e.target.value)} value={passwordvld} placeholder="Enter your Password" className="form-control" />
                                 </div>
                                 <div className="form-group">
-                                    <label>UserName</label>
+                                    <label>UserName <span className="errorMsg">*</span></label>
                                     <input type="text" onChange={(e) => setUsernamevld(e.target.value)} value={usernamevld} placeholder="Enter your Name" className="form-control" />
                                 </div>
                                 <div className="form-group">
-                                    <label>FirstName</label>
+                                    <label>FirstName <span className="errorMsg">*</span></label>
                                     <input type="text" onChange={(e) => setFirstnamevld(e.target.value)} value={firstnamevld} placeholder="Enter your FirstName" className="form-control" />
                                 </div>
                                 <div className="form-group">
@@ -255,23 +262,33 @@ const UserAdded = () => {
                                     <input type="text" onChange={(e) => setLastnamevld(e.target.value)} value={lastnamevld} placeholder="Enter your LastName" className="form-control" />
                                 </div>
                                 <div className="form-group">
-                                    <label>City</label>
-                                    <input type="text" onChange={(e) => setCityvld(e.target.value)} value={cityvld} placeholder="Enter your City" className="form-control" />
-                                </div>
-                                <div className="form-group">
-                                    <label>Address</label>
+                                    <label>Address <span className="errorMsg">*</span></label>
                                     <input type="text" onChange={(e) => setAddressvld(e.target.value)} value={addressvld} placeholder="Enter your Address" className="form-control" />
                                 </div>
                                 <div className="form-group">
-                                    <label>ZipCode</label>
+                                    <label>City <span className="errorMsg">*</span></label>
+                                    <select id="city" onChange={(e) => setCityvld(e.target.value)} value={cityvld} className="form-control">
+                                        <option value="Select your city">Select your City </option>
+                                        <option value="Bangalore">Bangalore</option>
+                                        <option value="Chennai">Chennai</option>
+                                        <option value="Mysore">Mysore</option>
+                                        <option value="Coimbatore">Coimbatore</option>
+                                        <option value=" Hyderabad">Hydrabad</option>
+                                        <option value=" Salem">Salem</option>
+                                        <option value=" Tanjavur">Tanjavur</option>
+                                        <option value=" Kanniyakumari">Kanniyakumari</option>
+                                    </select>
+                                </div>
+                                <div className="form-group">
+                                    <label>ZipCode </label>
                                     <input type="text" onChange={(e) => setZipcodevld(e.target.value)} value={zipcodevld} maxLength="6" placeholder="Enter your ZipCode" className="form-control" />
                                 </div>
                                 <div className="form-group">
-                                    <label>PhoneNumber</label>
+                                    <label>PhoneNumber <span className="errorMsg">*</span></label>
                                     <input type="text" onChange={(e) => setphoneNumvervld(e.target.value)} value={PhoneNumbervld} maxLength="10" placeholder="Enter your PhoneNumber" className="form-control" />
                                 </div>
 
-                                <input type="button" value="Back" className="btn btn-primary" ></input>{"   "}
+                                <input type="button" value="Back" className="btn btn-primary" onClick={() => BackBtn()}></input>{"   "}
 
 
                                 {on ?

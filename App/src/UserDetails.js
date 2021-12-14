@@ -1,14 +1,11 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Button, Table, Row, Col } from "reactstrap";
+import { Button, Row, Col } from "reactstrap";
 import UserAdded from "./UserAdded";
 import Swal from 'sweetalert2';
-import SidePage from "./ZeroDotOne/SidePage";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import HeaderPage from "./ZeroDotOne/HeaderPage";
-import { FaUserEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
 export const Context = React.createContext();
 
 const UserDetails = () => {
@@ -91,8 +88,8 @@ const UserDetails = () => {
                                         <th>Address</th>
                                         <th>Zip Code</th>
                                         <th>Phone Number</th>
-                                        <th>Edit</th>
-                                        <th>Delete</th>
+                                        {/* <th>Edit</th>
+                                        <th>Delete</th> */}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -109,9 +106,9 @@ const UserDetails = () => {
                                                 <td>{UserDataTable.address}</td>
                                                 <td>{UserDataTable.zipcode}</td>
                                                 <td>{UserDataTable.phoneNumber}</td>
-                                                <td>
+                                                {/* <td>
                                                     <FaUserEdit onClick={() => { UserDetailsEdit(UserDataTable.id) }} /></td>
-                                                <td>< MdDelete onClick={() => { UserDetailsDelete(UserDataTable.id) }} /></td>
+                                                <td>< MdDelete onClick={() => { UserDetailsDelete(UserDataTable.id) }} /></td> */}
                                                 {/* <input type="button" value="Edit" className="btn btn-primary" onClick={() => { UserDetailsEdit(UserDataTable.id) }}></input></td> */}
                                                 {/* <input type="button" value="Delete" className="btn btn-primary" onClick={() => { UserDetailsDelete(UserDataTable.id) }}></input> */}
                                             </tr>

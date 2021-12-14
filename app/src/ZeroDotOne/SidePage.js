@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react/cjs/react.development";
+import { Row, Col } from "reactstrap";
 import axios from "axios";
 import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
@@ -23,14 +24,20 @@ const SidePage = (props) => {
         <div style={{ height: "100%" }}>
             <ProSidebar>
                 <Menu iconShape="square">
-                    <SubMenu title="Categorys" className="categoryicon" icon={<MdCategory />}>
+                    <Row>
+                        <Col md="1"><MdCategory style={{ width: "30px", height: "30px", marginLeft: "5px" }} /></Col>
+                        <Col md="11"><h3 style={{ marginLeft: "15px" }}>Category</h3></Col>
+                    </Row>
+                    <table className="table table-striped" style={{ color: "#f8f9fa" }}>
                         <MenuItem onClick={() => CategoryName(0)}>All Product</MenuItem>
                         {category.map((item, i) =>
                             <MenuItem key={i} onClick={() => CategoryName(item.id)}>{item.name}</MenuItem>
                         )}
-                    </SubMenu>
+                    </table>
                 </Menu>
             </ProSidebar>;
+
+
         </div>
 
     )

@@ -85,7 +85,41 @@ const AddCategory = () => {
             {on ?
                 <HeaderPage />
                 : ''}
-            <Row>
+            <section>
+                <h2> Add Category </h2>
+            </section>
+            <div className="container-fluid login-3">
+                <div className="container">
+                    <div className="login-form">
+                        <div className="row align-items-center">
+                            <div className="col-md-2">
+                            </div>
+                        </div>
+                        <div className="col-md-10">
+                            <div className="login-box"></div>
+                            <form>
+                                <div className="form-group">
+
+                                    <input type="text" value={categoryName} onChange={(e) => { setCategoryName(e.currentTarget.value) }} placeholder="Add Category" className="form-control" />
+                                </div>
+
+
+                                <input type="button" value="Back" className="btn btn-primary" onClick={() => { CategoryDetailsBack() }}></input>{" "}
+
+
+                                {on ?
+                                    <input type="button" value="Submit" className="btn btn-primary" onClick={() => { CategoryDetailsSubmit() }}></input>
+
+                                    : ''}
+                                {off ?
+                                    <input type="button" value="Update" className="btn btn-primary" onClick={() => { CategoryDetailsUpdate() }} ></input>
+                                    : ''}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* <Row>
                 <Col md="3"></Col>
                 <Col md="6">
 
@@ -99,8 +133,7 @@ const AddCategory = () => {
                         </Form>
                     </CardHeader>
                     <input type="button" value="Back" className="btn btn-primary" onClick={() => { CategoryDetailsBack() }}></input>{" "}
-                    {/* <button className="btn-primary" href="/ZeroDotOne/CategoryDetails">Back</button>{" "} */}
-
+                   
                     {on ?
                         <input type="button" value="Submit" className="btn btn-primary" onClick={() => { CategoryDetailsSubmit() }}></input>
 
@@ -112,7 +145,7 @@ const AddCategory = () => {
                         : ''}
                 </Col>
                 <Col md="6"></Col>
-            </Row>
+            </Row> */}
         </div >
     )
 }

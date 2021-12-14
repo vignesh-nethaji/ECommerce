@@ -79,9 +79,10 @@ const CategoryDetails = () => {
                                 <thead>
                                     <tr>
                                         <th>S.No</th>
-                                        <th>Id</th>
+                                        {/* <th>Id</th> */}
                                         <th>Category Name</th>
-                                        <th>Action</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -89,11 +90,13 @@ const CategoryDetails = () => {
                                         // <Datatable UserDataTable={items} i={i} key={items.id} />
                                         <tr key={i}>
                                             <td>{i + 1}</td>
-                                            <td>{UserDataTable.id}</td>
+                                            {/* <td>{UserDataTable.id}</td> */}
                                             <td>{UserDataTable.name}</td>
                                             <td>
-                                                <input type="button" value="Edit" className="btn btn-primary" onClick={() => { CategoryDetailsEdit(UserDataTable.id) }}></input>{' '}
-                                                <input type="button" value="Delete" className="btn btn-primary" onClick={() => { CategoryDetailsDelete(UserDataTable.id) }}></input>
+                                                <input type="button" value="Edit" className="btn btn-secondary" onClick={() => { CategoryDetailsEdit(UserDataTable.id) }}></input>
+                                            </td>
+                                            <td>
+                                                <input type="button" value="Delete" className="btn btn-secondary" onClick={() => { CategoryDetailsDelete(UserDataTable.id) }}></input>
 
 
 

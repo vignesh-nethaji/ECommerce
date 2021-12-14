@@ -172,7 +172,7 @@ const CreateProduct = () => {
         <Col md="8" > */}
       <Button href="../ZeroDotOne/ProductDetails"><IoMdArrowRoundBack /></Button>
 
-      <div className="container-fluid login-2">
+      <div className="container-fluid login-3">
         <div className="container">
           <div className="login-form">
             <div className="row align-items-center">
@@ -199,7 +199,7 @@ const CreateProduct = () => {
                   </div>
 
                   <div className="form-group">
-                    <label id="lblProduct">Product Name</label>
+                    <label id="lblProduct" >Product Name <span className="errorMsg">*</span></label>
                     <input value={txtProduct} className="form-control" onChange={e => setTxtProduct(e.target.value)} />
                   </div>
                   <div className="form-group">
@@ -208,7 +208,7 @@ const CreateProduct = () => {
                   </div>
                   <div className="form-group">
                     <label id="lblDes">Product Description</label>
-                    <input type="textarea" value={txtDesc} className="form-control" onChange={e => setTxtDesc(e.target.value)} />
+                    <textarea value={txtDesc} className="form-control" onChange={e => setTxtDesc(e.target.value)} />
 
                   </div>
                   <div className="form-group">

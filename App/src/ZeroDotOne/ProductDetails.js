@@ -113,7 +113,7 @@ const ProductDetails = () => {
                                             <td>{items.categoryId}</td>
                                             <td><Button id="btnEdit" value={items.id} onClick={(e) => EditProductDtls(items)}>Edit</Button></td>
                                             <td><Button id="btnDelete" value={items.id} onClick={() => DeleteProductDtls(items.id)}>Delete</Button></td>
-
+                                           
                                         </tr>
                                     )}
                                 </tbody>

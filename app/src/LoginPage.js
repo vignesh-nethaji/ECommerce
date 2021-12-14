@@ -18,7 +18,7 @@ const LoginPage = ({ initialValue, ...rest }) => {
     const Onsubmit_Function = () => {
 
         if (userNameVld.trim() === "") {
-            setErrorMessageuser("Please Enter a UserName!");
+            setErrorMessageuser("Please Enter UserName !");
             return false;
         } else {
             setErrorMessageuser('')
@@ -27,7 +27,7 @@ const LoginPage = ({ initialValue, ...rest }) => {
 
 
         if (passWordVld.trim() === "") {
-            setErrorMessagePsd("Please Enter a Password!");
+            setErrorMessagePsd("Please Enter Password !");
             return false;
         } else {
             setErrorMessagePsd('')
@@ -43,8 +43,8 @@ const LoginPage = ({ initialValue, ...rest }) => {
                 
             }
             else {
-                setErrorMessagePsd("please enter the correct password");
-                setErrorMessageuser("please enter the correct username");
+                setErrorMessagePsd("Invalid Password");
+                setErrorMessageuser("Invalid Username");
             }
             localStorage.setItem("UserIdDetails", data.data.data.id)
             localStorage.setItem("UserTokenDetails", data.data.data.token)
@@ -75,9 +75,11 @@ const LoginPage = ({ initialValue, ...rest }) => {
                                             <p className="login-p">Please login to your account.</p>
                                         </div>
                                         <div className="form-group">
-                                            <input type="text" onChange={(e) => UserNamevld(e)} value={userNameVld} placeholder="Enter your name" className="form-control" />
+                                        <label>UserName <span className="errorMsg">*</span></label>
+                                            <input type="text" onChange={(e) => UserNamevld(e)} value={userNameVld} placeholder="Enter UserName" className="form-control" />
                                             <div className="errorMsg" > {errorMessage} </div><br />
-                                            <input type="password" onChange={(e) => PassWordvld(e)} value={passWordVld} placeholder="Enter your password" className="form-control" />
+                                            <label>Password <span className="errorMsg">*</span></label>
+                                            <input type="password" onChange={(e) => PassWordvld(e)} value={passWordVld} placeholder="Enter Password" className="form-control" />
                                             <div className="errorMsg" > {errorMessagePsd} </div> <br />
                                         </div>
                                         <div className="input-group check-field">

@@ -21,7 +21,7 @@ const SidePage = (props) => {
     }
 
     return (
-        <div style={{ height: "100%" }}>
+        <div style={{ height: "100%",borderRight: '2px solid rgb(246 246 244)' }}>
             <ProSidebar>
                 <Menu iconShape="square">
                     <Row>

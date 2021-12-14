@@ -116,12 +116,12 @@ const CartDetailsPage = () => {
                         <hr />
                         <Row>
                             <Col md="6">Price ({productDetails.length} items)</Col>
-                            <Col md="6">$ {total + 199}</Col>
+                            <Col md="6">$ {total +(productDetails.length*199)}</Col>
                         </Row >
                         <br />
                         <Row>
                             <Col md="6">Discount</Col>
-                            <Col md="6">$ 199</Col>
+                            <Col md="6">$ {(productDetails.length*199)}</Col>
                         </Row>
                         <br />
                         <Row>
@@ -141,7 +141,7 @@ const CartDetailsPage = () => {
                         <br />
                         <Row className="dotted">
                             <Col md="6">Total Amount</Col>
-                            <Col md="6">{total}</Col>
+                            <Col md="6">{total+100}</Col>
                         </Row>
                     </CardHeader>
                 </Col>

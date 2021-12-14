@@ -1,6 +1,6 @@
 import { CardHeader, Row, Col, Input, InputGroup, InputGroupText, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { IoSearchSharp } from "react-icons/io5";
-import { BsCartCheckFill, BsThreeDotsVertical } from "react-icons/bs";
+import { BsCartCheckFill, BsSearch, BsThreeDotsVertical } from "react-icons/bs";
 import { FaUserCircle, FaHome } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
@@ -91,13 +91,13 @@ const HeaderPage = (props) => {
                     <div className="nav-items">
                         <div className="search">
                             <input type="text" className="search-box" placeholder="search brand, product" />
-                            <button className="search-btn">search</button>
+                            <button className="search-btn"><BsSearch/></button>
                         </div>
 
                         <FaHome style={{ color: "#000", height: "30px", width: "30px", marginLeft: "20px" }} onClick={() => HomePageLink()} className="HeaderHome" />
                         <UncontrolledDropdown className="HeaderUserIconbg">
                             <DropdownToggle className="HeaderUserIcon">
-                                <FaUserCircle style={{ color: "#000", height: "30px", width: "30px" }} />
+                                <FaUserCircle style={{ color: "#000", height: "30px", width: "30px",marginLeft: "20px" }} />
                             </DropdownToggle>
                             <DropdownMenu >
                                 <DropdownItem onClick={() => YourProfile()}>Your Profile</DropdownItem>
@@ -110,7 +110,7 @@ const HeaderPage = (props) => {
                         {On ? <div className="HeaderCart">
                             <UncontrolledDropdown className="HeaderAdminIconbg">
                                 <DropdownToggle className="HeaderAdminIcon">
-                                    <BsThreeDotsVertical />
+                                    <BsThreeDotsVertical style={{float:"right"}}/>
                                 </DropdownToggle>
                                 <DropdownMenu >
                                     <DropdownItem onClick={() => UserDetails()} >User Management</DropdownItem>

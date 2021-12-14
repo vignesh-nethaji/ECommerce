@@ -73,7 +73,7 @@ const UserDetails = () => {
                     <Context.Provider value={userEditID}>
                         <Button href="/ZeroDotOne/HomePage"><IoMdArrowRoundBack /></Button>{"   "}
 
-                        <Button href="/ZeroDotOne/AddUser">Add User</Button>
+                        {/* <Button href="/ZeroDotOne/AddUser">Add User</Button> */}
                         {on ?
                             <table className="table table-striped">
                                 <thead>

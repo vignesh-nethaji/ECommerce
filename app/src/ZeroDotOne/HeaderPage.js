@@ -94,7 +94,7 @@ const HeaderPage = (props) => {
                             <button className="search-btn">search</button>
                         </div>
 
-                        <FaHome style={{color:"#000",height:"30px",width:"30px",marginRight:"20px"}} onClick={() => HomePageLink()} className="HeaderHome" />
+                        <FaHome style={{ color: "#000", height: "30px", width: "30px", marginLeft: "20px" }} onClick={() => HomePageLink()} className="HeaderHome" />
                         <UncontrolledDropdown className="HeaderUserIconbg">
                             <DropdownToggle className="HeaderUserIcon">
                                 <FaUserCircle style={{ color: "#000", height: "30px", width: "30px" }} />
@@ -105,7 +105,7 @@ const HeaderPage = (props) => {
                             </DropdownMenu>
                         </UncontrolledDropdown>
 
-                        <a href="#"><img src="/cart.png" alt="dddd" onClick={() => CartPage()} /></a>
+                        <a href="#"><img src="/cart.png" alt="dddd" onClick={() => CartPage()} style={{ color: "#000", height: "30px", width: "30px" }} /></a>
 
                         {On ? <div className="HeaderCart">
                             <UncontrolledDropdown className="HeaderAdminIconbg">

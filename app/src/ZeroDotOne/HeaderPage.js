@@ -83,48 +83,50 @@ const HeaderPage = (props) => {
 
     return (
         <div>
+            <Row>
+                <Col sm="12" md="12">
+                    <nav className="navbar">
+                        <div className="nav">
+                            <img src="/Image.png" className="brand-logo" alt="dddddd" />
+                            <div className="nav-items">
+                                <div className="search">
+                                    <input type="text" className="search-box" placeholder="search brand, product" />
+                                    <button className="search-btn"><BsSearch /></button>
+                                </div>
 
+                                            <FaHome style={{ color: "#000", height: "30px", width: "30px", marginLeft: "20px" }} onClick={() => HomePageLink()} className="HeaderHome" />
+                                            <UncontrolledDropdown className="HeaderUserIconbg">
+                                                <DropdownToggle className="HeaderUserIcon">
+                                                    <FaUserCircle style={{ color: "#000", height: "30px", width: "30px", marginLeft: "20px" }} />
+                                                </DropdownToggle>
+                                                <DropdownMenu >
+                                                    <DropdownItem onClick={() => YourProfile()}>Your Profile</DropdownItem>
+                                                    <DropdownItem onClick={() => { LogoutFun() }}>Logout </DropdownItem>
+                                                </DropdownMenu>
+                                            </UncontrolledDropdown>
 
-            <nav className="navbar">
-                <div className="nav">
-                    <img src="/Image.png" className="brand-logo" alt="dddddd" />
-                    <div className="nav-items">
-                        <div className="search">
-                            <input type="text" className="search-box" placeholder="search brand, product" />
-                            <button className="search-btn"><BsSearch/></button>
-                        </div>
+                                            <a href="#"><img src="/cart.png" alt="dddd" onClick={() => CartPage()} style={{ color: "#000", height: "30px", width: "30px" }} /></a>
 
-                        <FaHome style={{ color: "#000", height: "30px", width: "30px", marginLeft: "20px" }} onClick={() => HomePageLink()} className="HeaderHome" />
-                        <UncontrolledDropdown className="HeaderUserIconbg">
-                            <DropdownToggle className="HeaderUserIcon">
-                                <FaUserCircle style={{ color: "#000", height: "30px", width: "30px",marginLeft: "20px" }} />
-                            </DropdownToggle>
-                            <DropdownMenu >
-                                <DropdownItem onClick={() => YourProfile()}>Your Profile</DropdownItem>
-                                <DropdownItem onClick={() => { LogoutFun() }}>Logout </DropdownItem>
-                            </DropdownMenu>
-                        </UncontrolledDropdown>
+                                            {On ? <div className="HeaderCart">
+                                                <UncontrolledDropdown className="HeaderAdminIconbg">
+                                                    <DropdownToggle className="HeaderAdminIcon">
+                                                        <BsThreeDotsVertical />
+                                                    </DropdownToggle>
+                                                    <DropdownMenu >
+                                                        <DropdownItem onClick={() => UserDetails()} >User Management</DropdownItem>
+                                                        <DropdownItem onClick={() => { CategoryDetails() }}>Category Management</DropdownItem>
+                                                        <DropdownItem onClick={() => { ProductDetails() }}>Products Management</DropdownItem>
+                                                    </DropdownMenu>
+                                                </UncontrolledDropdown>
+                                            </div> : ''}
+                                        </div>
+                                    </div>
+                                </nav>
+                            </Col>
+                        </Row>
+                    </div >
 
-                        <a href="#"><img src="/cart.png" alt="dddd" onClick={() => CartPage()} style={{ color: "#000", height: "30px", width: "30px" }} /></a>
-
-                        {On ? <div className="HeaderCart">
-                            <UncontrolledDropdown className="HeaderAdminIconbg">
-                                <DropdownToggle className="HeaderAdminIcon">
-                                    <BsThreeDotsVertical style={{float:"right"}}/>
-                                </DropdownToggle>
-                                <DropdownMenu >
-                                    <DropdownItem onClick={() => UserDetails()} >User Management</DropdownItem>
-                                    <DropdownItem onClick={() => { CategoryDetails() }}>Category Management</DropdownItem>
-                                    <DropdownItem onClick={() => { ProductDetails() }}>Products Management</DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
-                        </div> : ''}
-                    </div>
-                </div>
-            </nav>
-        </div >
-
-    );
+                    );
 }
-export default HeaderPage;
+                    export default HeaderPage;
 

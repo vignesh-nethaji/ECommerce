@@ -3,6 +3,7 @@ import {
     Row,
     Col,
     Button,
+    Container,
     CardHeader,
     CardBody,
     CardText
@@ -69,18 +70,18 @@ const CartDetailsPage = () => {
             </div>
             <Button href="/ZeroDotOne/HomePage"><IoMdArrowRoundBack /></Button>
             <Row>
-                <Col md="8" >
+                <Col md="8" sm="8" lg="8">
                     <CardHeader className="CartPageCard">
                         <CardBody>
                             <Row>
-                                <Col md="6">
+                                <Col md="6" sm="6" lg="6">
                                     <h5>My Cart ({productDetails.length})</h5>
                                     {localStorage.setItem("CartCount", productDetails.length)}
                                 </Col>
-                                <Col md="6">
+                                <Col md="6" lg="6" sm="6">
                                     <Row>
-                                        <Col md="6" className="modal-footer"><ImLocation2 /></Col>
-                                        <Col md="6" className="mt-3"><p>Deliver to</p></Col>
+                                        <Col md="6" lg="6" sm="2" className="modal-footer"><ImLocation2 /></Col>
+                                        <Col md="6" lg="6" sm="10" className="mt-3"><p>Deliver to</p></Col>
                                     </Row>
                                 </Col>
                             </Row>
@@ -88,17 +89,17 @@ const CartDetailsPage = () => {
                             {productDetails.map((items, i) =>
                                 <div key={i}>
                                     <Row className="mt-3">
-                                        <Col md="3" className="mt-1"> <img src={items.image} style={{ width: "200px", height: "200px" }}></img></Col>
-                                        <Col md="5">
+                                        <Col md="3" sm="3" lg="3" className="mt-1"> <img src={items.image} style={{ width: "200px", height: "200px" }}></img></Col>
+                                        <Col md="5" sm="5" lg="5">
                                             <b>{items.title}</b>
                                             <p className="text-justify">{items.description}</p>
                                             <Row>
-                                                <Col md='6'><CardText tag="h5"> $ {items.price}{" "}<s> ${items.price + 199}</s></CardText><p style={{ display: "none" }}>{total = total + items.price}</p></Col>
-                                                <Col md='6'><a href="#" value={items.id} onClick={() => { CartDetailsDelete(items.id) }} >Delete</a></Col>
+                                                <Col md='6' sm="6" lg="6"><CardText tag="h5"> $ {items.price}{" "}<s> ${items.price + 199}</s></CardText><p style={{ display: "none" }}>{total = total + items.price}</p></Col>
+                                                <Col md='6' sm="6" lg="6"><a href="#" value={items.id} onClick={() => { CartDetailsDelete(items.id) }} >Delete</a></Col>
                                             </Row>
                                             <br /><br />
                                         </Col>
-                                        <Col md="4">
+                                        <Col md="4" sm="4" lg="4">
                                             <h6>Delivery by Sun Dec 5 | Free₹40</h6>
                                             <p>7 Days Replacement Policy</p>
                                             <p>Pickup charge ₹100</p>
@@ -110,43 +111,42 @@ const CartDetailsPage = () => {
                         </CardBody>
                     </CardHeader>
                 </Col>
-                <Col md="4">
+                <Col md="4" sm="4" lg="4">
                     <CardHeader>
                         <h6 className="mt-2">PRICE DETAILS</h6>
                         <hr />
                         <Row>
                             <Col md="6">Price ({productDetails.length} items)</Col>
-                            <Col md="6">$ {total +(productDetails.length*199)}</Col>
+                            <Col md="6">$ {total + (productDetails.length * 199)}</Col>
                         </Row >
                         <br />
                         <Row>
                             <Col md="6">Discount</Col>
-                            <Col md="6">$ {(productDetails.length*199)}</Col>
+                            <Col md="6">$ {(productDetails.length * 199)}</Col>
                         </Row>
                         <br />
                         <Row>
-                            <Col md="6">Exchange Value (0 item)</Col>
-                            <Col md="6">$ 0</Col>
+                            <Col md="6" sm="6" lg="6">Exchange Value (0 item)</Col>
+                            <Col md="6" sm="6" lg="6">$ 0</Col>
                         </Row>
                         <br />
                         <Row>
-                            <Col md="6">Delivery Charges</Col>
-                            <Col md="6">$ 100</Col>
+                            <Col md="6" sm="6" lg="6">Delivery Charges</Col>
+                            <Col md="6" sm="6" lg="6">$ 100</Col>
                         </Row>
                         <br />
                         <Row>
-                            <Col md="6">Pickup Charges</Col>
-                            <Col md="6"> $ 0</Col>
+                            <Col md="6" sm="6" lg="6">Pickup Charges</Col>
+                            <Col md="6" sm="6" lg="6"> $ 0</Col>
                         </Row>
                         <br />
                         <Row className="dotted">
                             <Col md="6">Total Amount</Col>
-                            <Col md="6">{total+100}</Col>
+                            <Col md="6">{total + 100}</Col>
                         </Row>
                     </CardHeader>
                 </Col>
             </Row>
-
         </div >
     )
 }

@@ -783,3 +783,8 @@ button:active {
     width: 30px !important;
     margin-left: 20px !important; 
 }
+.pagination-bar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

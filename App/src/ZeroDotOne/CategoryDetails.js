@@ -63,11 +63,13 @@ const CategoryDetails = () => {
 
             return false;
         }
+
     }
 
     return (
         <div>
             <HeaderPage />
+
             <Context.Provider value={categoryEditID}>
                 <Row>
                     <Col md="3"></Col>
@@ -75,11 +77,10 @@ const CategoryDetails = () => {
 
                         <Button href="/ZeroDotOne/AddCategory">Add Category</Button>
                         {on ?
-                            <Table responsive>
+                            <table className="table table-striped" >
                                 <thead>
                                     <tr>
                                         <th>S.No</th>
-                                        {/* <th>Id</th> */}
                                         <th>Category Name</th>
                                         <th>Edit</th>
                                         <th>Delete</th>
@@ -103,7 +104,7 @@ const CategoryDetails = () => {
                                             </td></tr>
                                     )}
                                 </tbody>
-                            </Table>
+                            </table>
                             : ''}
                     </Col>
                     <Col md="6"></Col>

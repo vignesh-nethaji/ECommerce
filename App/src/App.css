@@ -338,7 +338,7 @@ body {
   padding: 10px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  border: 1px solid #d1d1d1;
+  /* border: 1px solid #d1d1d1; */
   text-transform: capitalize;
   background: none;
   color: #a9a9a9;
@@ -787,4 +787,16 @@ button:active {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

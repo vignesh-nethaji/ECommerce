@@ -91,12 +91,12 @@ const ProductDetails = () => {
                                 <thead>
                                     <tr>
                                         <th>S.No</th>
-                                        <th>Id</th>
+                                        {/* <th>Id</th> */}
                                         <th>Title</th>
                                         <th>Price</th>
                                         <th>Description</th>
                                         <th>Image</th>
-                                        <th>CateId</th>
+                                        {/* <th>CateId</th> */}
                                         <th>Edit</th>
                                         <th>Delete</th>
                                     </tr>
@@ -105,12 +105,12 @@ const ProductDetails = () => {
                                     {productDetails.map((items, i) =>
                                         <tr key={i}>
                                             <td>{i + 1}</td>
-                                            <td>{items.id}</td>
+                                            {/* <td>{items.id}</td> */}
                                             <td>{items.title}</td>
                                             <td>{items.price}</td>
                                             <td>{items.description}</td>
                                             <td><img src={items.image} width="50px" height="50px"></img></td>
-                                            <td>{items.categoryId}</td>
+                                            {/* <td>{items.categoryId}</td> */}
                                             <td><Button id="btnEdit" value={items.id} onClick={(e) => EditProductDtls(items)}>Edit</Button></td>
                                             <td><Button id="btnDelete" value={items.id} onClick={() => DeleteProductDtls(items.id)}>Delete</Button></td>
                                            

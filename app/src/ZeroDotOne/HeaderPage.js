@@ -61,16 +61,17 @@ const HeaderPage = (props) => {
     }
     const getDataFromAPI = () => {
 
-        axios.get(("http://localhost:40073/api/Category/GetAll"),
+        axios.get(("http://localhost:40073/api/Product/GetAll"),
             { headers: { "Authorization": `Bearer ${token}` } }
         )
             .then((res) => {
                 for (var i = 0; i < res.data.data.length; i++) {
-                    myOptions.push(res.data.data[i].name)
-
+                    // myOptions.push(res.data.data[i].id) 
+                    myOptions.push(res.data.data[i].title)
                 }
                 setMyOptions(myOptions)
             })
+            console.log(myOptions);
     }
     const OnchangeAuto = (id) => {
         localStorage.setItem("CategoryIds", id)
@@ -90,8 +91,35 @@ const HeaderPage = (props) => {
                     <img src="/Image.png" className="brand-logo" alt="dddddd" />
                     <div className="nav-items">
                         <div className="search">
-                            <input type="text" className="search-box" placeholder="search brand, product" />
-                            <button className="search-btn"><BsSearch/></button>
+                        <InputGroup >
+                            <Autocomplete
+                            className="search-box"
+                                // className="AutocompleteHeader"
+                                //onChange={OnchangeAuto}
+                                freeSolo
+                                autoComplete
+                                autoHighlight
+                                options={myOptions}
+                                renderInput={(params) => (
+                                    <TextField {...params}
+                                        // onChange={OnchangeAuto}
+                                        // variant="outlined"
+                                        // label="Search Box"
+                                        // style={{ height: "2rem" }}
+                                        placeholder="search Products"
+                                    />
+                                )}
+                            />
+                            {/* <InputGroupText>
+                                <IoSearchSharp />
+                            </InputGroupText> */}
+                        </InputGroup>
+
+
+
+
+                            {/* <input type="text" value={myOptions} className="search-box" placeholder="search brand, product" /> */}
+                            <button ><BsSearch/></button>
                         </div>
 
                         <FaHome style={{ color: "#000", height: "30px", width: "30px", marginLeft: "20px" }} onClick={() => HomePageLink()} className="HeaderHome" />

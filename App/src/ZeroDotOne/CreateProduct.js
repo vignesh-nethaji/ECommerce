@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Input, Button, CardHeader, Label, Row, Col } from "reactstrap";
+import { Button } from "reactstrap";
 import axios from "axios";
 import HeaderPage from "./HeaderPage";
 import { Context } from "./ProductDetails";
 import Swal from "sweetalert2";
-import { SketchPicker } from 'react-color';
 import { IoMdArrowRoundBack } from "react-icons/io";
 
 
@@ -12,14 +11,13 @@ const CreateProduct = () => {
 
   const [category, setCategory] = useState([]);
   const [Singlecategory, setSingleCategory] = useState([]);
-  // var [colorHexCode, setColorHexCode] = useState('#000000');
   const [addProduct, setAddProduct] = useState([]);
 
   const singleProdDtls = useContext(Context)
 
   var [ddlCategory, setDdlCategory] = useState(0);
   var [txtProduct, setTxtProduct] = useState("");
-  var [txtPrice, setTxtPrice] = useState(0);
+  var [txtPrice, setTxtPrice] = useState();
   var [txtDesc, setTxtDesc] = useState("");
   var [txtImg, setTxtImg] = useState("");
   var [prodId, setTxtId] = useState(0);
@@ -32,12 +30,11 @@ const CreateProduct = () => {
 
 
   useEffect(() => {
-    if (singleProdDtls !== null && singleProdDtls !== "" && singleProdDtls !== undefined) { 
+    if (singleProdDtls !== null && singleProdDtls !== "" && singleProdDtls !== undefined) {
       setDdlCategory(singleProdDtls.categoryId);
       setTxtProduct(singleProdDtls.title);
       setTxtPrice(singleProdDtls.price);
       setTxtDesc(singleProdDtls.description);
-      // setColorHexCode(singleProdDtls.image);
       setTxtImg(singleProdDtls.image);
       setTxtId(singleProdDtls.id);
 
@@ -65,13 +62,39 @@ const CreateProduct = () => {
   }, [token])
 
   const AddProduct = () => {
+    let product = txtProduct;
+    let price = txtPrice;
+
+    if (ddlCategory === "0" || ddlCategory == undefined || ddlCategory === 0) {
+      alert("Please Select Category");
+      return false;
+    }
+
+    else if (product == "") {
+      alert("Please Enter Product Name");
+      return false;
+    }
+
+    else if (price == "" || price == "0") {
+      alert("Please Enter price");
+      return false;
+    }
+
+    else if (txtDesc == "") {
+      alert("Please Enter Product Description");
+      return false;
+    }
+
+    else if (txtImg == "") {
+      alert("Please Enter Image");
+      return false;
+    }
     const ProductDtls = {
       "Id": 0,
       "Title": txtProduct,
       "Price": parseFloat(txtPrice),
       "Description": txtDesc,
       "Image": txtImg,
-      // colorHexCode.substring(1),
       "CategoryId": parseInt(ddlCategory)
     }
     const headers = {
@@ -112,7 +135,6 @@ const CreateProduct = () => {
       "Price": parseFloat(txtPrice),
       "Description": txtDesc,
       "Image": txtImg,
-      // colorHexCode.substring(1),
       "CategoryId": parseInt(ddlCategory)
     }
     const headers = {
@@ -151,11 +173,31 @@ const CreateProduct = () => {
   const CancelProduct = () => {
     setDdlCategory(0);
     setTxtProduct("");
-    setTxtPrice(0);
+    setTxtPrice();
     setTxtDesc("");
     setTxtImg("");
     setTxtId(0);
-    //setColorHexCode("");
+  }
+  const onlyAllowCharAndSpace = (e) => {
+    var regex = new RegExp("^[a-zA-Z ]*$");
+    if (regex.test(e)) {
+      setTxtProduct(e);
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  const onlyAllowNumber = (e) => {
+    var regex = new RegExp("^[0-9]*$");
+    // var regex = new RegExp("^[0-9]*\.?[0-9]*$");
+    if (regex.test(e)) {
+      setTxtPrice(e);
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   return (
@@ -167,22 +209,18 @@ const CreateProduct = () => {
           <HeaderPage />
           : ''}
       </div>
-      {/* <Row>
-        <Col md="2"></Col>
-        <Col md="8" > */}
       <Button href="../ZeroDotOne/ProductDetails"><IoMdArrowRoundBack /></Button>
 
       <div className="container-fluid login-3">
         <div className="container">
           <div className="login-form">
             <div className="row align-items-center">
-              {/* <div className="col-md-12"> */}
               <div className="login-box">
                 <form>
                   <div className="form-group">
-                    <label id="lblCat">Category</label>
+                    <label id="lblCat">Category <span className="errorMsg">*</span></label>
                     <select className="form-control" onChange={e => setDdlCategory(e.target.value)}>
-                      <option>Select Category</option>
+                      <option value="0">Select Category</option>
 
                       {off ?
                         <option selected={true} value={Singlecategory.id}>{Singlecategory.name}</option>
@@ -200,82 +238,36 @@ const CreateProduct = () => {
 
                   <div className="form-group">
                     <label id="lblProduct" >Product Name <span className="errorMsg">*</span></label>
-                    <input value={txtProduct} className="form-control" onChange={e => setTxtProduct(e.target.value)} />
+                    <input value={txtProduct} maxLength={20} placeholder="Enter Product" className="form-control" onChange={e => onlyAllowCharAndSpace(e.target.value)} />
+                    {/* onChange={e => setTxtProduct(e.target.value)} */}
                   </div>
                   <div className="form-group">
-                    <label id="lblPrice"> Price</label>
-                    <input type="number" value={txtPrice} className="form-control" onChange={e => setTxtPrice(e.target.value)} />
+                    <label id="lblPrice"> Price <span className="errorMsg">*</span></label>
+                    <input type="number" onKeyDown={ e => ( e.keyCode === 69 || e.keyCode === 190 ) && e.preventDefault()} value={txtPrice} placeholder="Enter Price" className="form-control" onChange={e => onlyAllowNumber(e.target.value)} />
+                    {/* onChange={e => setTxtPrice(e.target.value)} */}
                   </div>
                   <div className="form-group">
-                    <label id="lblDes">Product Description</label>
-                    <textarea value={txtDesc} className="form-control" onChange={e => setTxtDesc(e.target.value)} />
+                    <label id="lblDes">Product Description <span className="errorMsg">*</span></label>
+                    <textarea value={txtDesc} placeholder="Enter Product Description" maxLength={100} className="form-control" onChange={e => setTxtDesc(e.target.value)} />
 
                   </div>
                   <div className="form-group">
-                    <label id="lblImg">Image</label>
-                    {/* <Input readOnly value={colorHexCode} className="form-control" onChange={e => setTxtImg({colorHexCode})} /><br /><br /> */}
-                    <input value={txtImg} className="form-control" onChange={e => setTxtImg(e.target.value)} />
+                    <label id="lblImg">Image <span className="errorMsg">*</span></label>
+                    <input value={txtImg} placeholder="Enter Image" className="form-control" onChange={e => setTxtImg(e.target.value)} />
                   </div>
 
                   <div className="form-group text-center">
-                    {on ? <button onClick={AddProduct} className="btn btn-primary">Add Product</button> : ''}{" "}
+                    {on ? <input type="button" value="Add Product" onClick={AddProduct} className="btn btn-primary"></input> : ''}{" "}
+                    {/* {on ? <button onClick={AddProduct} className="btn btn-primary">Add Product</button> : ''}{" "} */}
                     {off ? <button onClick={UpdateProduct} className="btn btn-primary">Update Product</button> : ''}{" "}
                     <button color="danger" onClick={CancelProduct} className="btn btn-primary">Cancel</button>{" "}
                   </div>
                 </form>
               </div>
-              {/* </div> */}
             </div>
           </div>
         </div>
       </div>
-
-      {/* <CardHeader className="">
-            <div >
-              <Label id="lblCat">Category</Label>
-              <select className="form-control" onChange={e => setDdlCategory(e.target.value)}>
-                <option>Select Category</option>
-
-                {off ?
-                  <option selected={true} value={Singlecategory.id}>{Singlecategory.name}</option>
-
-                  : category.map((catDetails, i) => {
-                    return (
-                      <option key={i} value={catDetails.id}>
-                        {catDetails.name}
-                      </option>
-                    )
-                  })
-                }
-              </select> 
-              <br /><br />
-              <Label id="lblProduct">Product Name</Label>
-              <input value={txtProduct} className="form-control" onChange={e => setTxtProduct(e.target.value)} /><br /><br />
-
-              <Label id="lblPrice"> Price</Label>
-              <Input type="number" value={txtPrice} className="form-control" onChange={e => setTxtPrice(e.target.value)} /><br /><br />
-
-              <Label id="lblDes">Product Description</Label>
-              <Input type="textarea" value={txtDesc} className="form-control" onChange={e => setTxtDesc(e.target.value)} /><br /><br />
-
-              <Label id="lblImg">Image</Label>
-              {/* <Input readOnly value={colorHexCode} className="form-control" onChange={e => setTxtImg({colorHexCode})} /><br /><br /> */}
-      {/* <Input value={txtImg} className="form-control" onChange={e => setTxtImg(e.target.value)} /><br /><br /> */}
-
-      {/* <SketchPicker
-                color={colorHexCode}
-                onChange={e => setColorHexCode(e.hex)} /><br/> */}
-
-      {/* <br />
-              <b>Selected Hex Color: </b>{colorHexCode} */}
-      {/* {on ? <Button onClick={AddProduct} color="danger" >Add Product</Button> : ''}{" "}
-              {off ? <Button onClick={UpdateProduct} color="danger" >Update Product</Button> : ''}{" "}
-              <Button color="danger" onClick={CancelProduct} >Cancel</Button>{" "}
-            </div>
-
-          </CardHeader> */}
-      {/* </Col>
-      </Row> */}
     </div>
   )
 }

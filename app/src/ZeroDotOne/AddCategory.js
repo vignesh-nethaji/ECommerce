@@ -44,7 +44,11 @@ const AddCategory = () => {
         if (categoryName === '' || categoryName === undefined || categoryName === null) {
             alert("Please Add category");
             return false;
+        } else if (/[^A-Za-z]/.test(categoryName)) {
+            alert("Enter valid CategoryName");
+            return false;
         }
+
         else {
             axios.post("http://localhost:40073/api/Category/Add", {
                 "id": 0,
@@ -61,6 +65,9 @@ const AddCategory = () => {
 
         if (categoryName === '' || categoryName === undefined || categoryName === null) {
             alert("Please Add category");
+            return false;
+        } else if (/[^A-Za-z]/.test(categoryName)) {
+            alert("Enter valid CategoryName");
             return false;
         }
         else {
@@ -114,38 +121,13 @@ const AddCategory = () => {
                                 {off ?
                                     <input type="button" value="Update" className="btn btn-primary" onClick={() => { CategoryDetailsUpdate() }} ></input>
                                     : ''}
+
+                                <Col md="2"> </Col>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            {/* <Row>
-                <Col md="3"></Col>
-                <Col md="6">
-
-                    <CardHeader>
-                        <Form>
-                            <FormGroup>
-
-                                <Label><h3>Add Category</h3></Label>
-                                <Input type="text" name="text" placeholder="AddCategory" value={categoryName} onChange={(e) => { setCategoryName(e.currentTarget.value) }} />
-                            </FormGroup>
-                        </Form>
-                    </CardHeader>
-                    <input type="button" value="Back" className="btn btn-primary" onClick={() => { CategoryDetailsBack() }}></input>{" "}
-                   
-                    {on ?
-                        <input type="button" value="Submit" className="btn btn-primary" onClick={() => { CategoryDetailsSubmit() }}></input>
-
-                        : ''}
-
-                    {off ?
-                        <input type="button" value="Update" className="btn btn-primary" onClick={() => { CategoryDetailsUpdate() }}></input>
-
-                        : ''}
-                </Col>
-                <Col md="6"></Col>
-            </Row> */}
         </div >
     )
 }

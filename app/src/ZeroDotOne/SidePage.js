@@ -21,19 +21,19 @@ const SidePage = (props) => {
     }
 
     return (
-        <div style={{ height: "100%",borderRight: '2px solid rgb(246 246 244)' }}>
+        <div style={{ height: "100%", borderRight: '2px solid rgb(246 246 244)' }}>
             <ProSidebar>
                 <Menu iconShape="square">
                     <Row>
                         <Col md="1"><MdCategory style={{ width: "30px", height: "30px", marginLeft: "5px" }} /></Col>
                         <Col md="11"><h3 style={{ marginLeft: "15px" }}>Category</h3></Col>
                     </Row>
-                    <table className="table table-striped" style={{ color: "#f8f9fa" }}>
-                        <MenuItem onClick={() => CategoryName(0)}>All Product</MenuItem>
-                        {category.map((item, i) =>
-                            <MenuItem key={i} onClick={() => CategoryName(item.id)}>{item.name}</MenuItem>
-                        )}
-                    </table>
+                    {/* <table className="table table-striped" style={{ color: "#f8f9fa" }}> */}
+                    <MenuItem onClick={() => CategoryName(0)}>All Product<hr /></MenuItem>
+                    {category.map((item, i) =>
+                        <MenuItem key={i} onClick={() => CategoryName(item.id)}>{item.name}<hr /></MenuItem>
+                    )}
+                    {/* </table> */}
                 </Menu>
             </ProSidebar>;
 

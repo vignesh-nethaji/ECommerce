@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Row, Col, Input } from 'reactstrap';
 import axios from "axios";
-import { FaUserCircle } from "react-icons/fa";
-import { BsDot } from "react-icons/bs";
-import { FiEdit2 } from "react-icons/fi";
+import { FaUserEdit } from "react-icons/fa";
 import UserAdded from './UserAdded';
 import HeaderPage from './ZeroDotOne/HeaderPage';
-import { IoMdArrowRoundBack } from "react-icons/io";
 
 export const YourProfileId = React.createContext();
 
@@ -38,31 +34,84 @@ const YourProfile = () => {
 
     return (
         <div>
-
             <YourProfileId.Provider value={adminEditID}>
                 <HeaderPage />
-                {on ?
-                    <div>
-                        <Button href="/ZeroDotOne/HomePage"><IoMdArrowRoundBack /></Button>{"   "}
-                        <Button onClick={() => { AdminDetailsEdit(userDetails.id) }}><FiEdit2 />{'  '} Edit</Button>
-                        <Row>
-                            <Col md="4">
-                                <FaUserCircle style={{ width: "200px", height: "200px" }} className='yourProfileImg' />
-                            </Col>
-                            <Col md="8">
+                {on ? <div>
+                    <div className="navbar-top">
+                        <div className="title1">
+                            <h1>Profile</h1>
+                        </div>
+                    </div>
+                    <div className="sidenav">
+                        <div className="profile">
+                            <img src="/Img.png" alt="" width="100" height="100" />
+                        </div>
 
-                                <h5 className="mt-3"> <BsDot /> Email Id:{' '}{userDetails.email}</h5>
-                                <h5 className="mt-3"> <BsDot /> Username: {' '}{userDetails.username}</h5>
-                                <h5 className="mt-3">  <BsDot />FirstName: {' '}{userDetails.firstname}</h5>
-                                <h5 className="mt-3">  <BsDot />LastName: {' '}{userDetails.lastname}</h5>
-                                <h5 className="mt-3">  <BsDot />City: {' '}{userDetails.city}</h5>
-                                <h5 className="mt-3">  <BsDot />Address: {' '}{userDetails.address}</h5>
-                                <h5 className="mt-3">  <BsDot />ZipCode: {' '}{userDetails.zipcode}</h5>
-                                <h5 className="mt-3" >  <BsDot />Phone Number:{' '}{userDetails.phoneNumber}</h5>
-                            </Col>
-                        </Row>
+                        <div className="sidenav-url">
+                            <div className="url">
+                                <h4 className="">{userDetails.username}</h4>
+                                <hr align="center" />
+                            </div>
+
+                        </div>
                     </div>
 
+                    <div className="main">
+                        {/* <h2>IDENTITY</h2> */}
+                        <div className="card">
+                            <div className="card-body">
+                                {/* <i className="fa fa-pen fa-xs edit"></i> */}
+                                <FaUserEdit value={userDetails.id} onClick={() => { AdminDetailsEdit(userDetails.id) }} className="edit" />
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>UserName</td>
+                                            <td>: </td>
+                                            <td><h5 style={{ marginLeft: "8px", marginTop: "5px" }}>{userDetails.username}</h5></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email</td>
+                                            <td>:</td>
+                                            <td><h5 style={{ marginLeft: "8px", marginTop: "5px" }}>{userDetails.email}</h5></td>
+                                        </tr>
+                                        <tr>
+                                            <td>FirstName</td>
+                                            <td>:</td>
+                                            <td><h5 style={{ marginLeft: "8px", marginTop: "5px" }}>{userDetails.firstname}</h5></td>
+                                        </tr>
+                                        <tr>
+                                            <td>LastName</td>
+                                            <td>:</td>
+                                            <td><h5 style={{ marginLeft: "8px", marginTop: "5px" }}>{userDetails.lastname}</h5></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Address</td>
+                                            <td>:</td>
+                                            <td><h5 style={{ marginLeft: "8px", marginTop: "5px" }}>{userDetails.address}</h5></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Country</td>
+                                            <td>:</td>
+                                            <td><h5 style={{ marginLeft: "8px", marginTop: "5px" }}>{userDetails.country}</h5></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Zipcode</td>
+                                            <td>:</td>
+                                            <td><h5 style={{ marginLeft: "8px", marginTop: "5px" }}>{userDetails.zipcode}</h5></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Phonenumber</td>
+                                            <td>:</td>
+                                            <td><h5 style={{ marginLeft: "8px", marginTop: "5px" }}>{userDetails.Phonenumber}</h5></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
                     : ''}
                 {off ?
                     <div>

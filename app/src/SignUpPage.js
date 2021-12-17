@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+
 
 const SignUpPage = () => {
     const navigate = useNavigate();
@@ -10,28 +13,49 @@ const SignUpPage = () => {
     var [usernamevld, setUsernamevld] = useState("");
     var [firstnamevld, setFirstnamevld] = useState("");
     var [lastnamevld, setLastnamevld] = useState("");
-    var [cityvld, setCityvld] = useState("");
+    var [countryDtls, setCountryDtls] = useState([]);
     var [addressvld, setAddressvld] = useState("");
     var [zipcodevld, setZipcodevld] = useState("");
-    var [PhoneNumbervld, setphoneNumvervld] = useState("");
+    var [Phonenumber, setPhonenumber] = useState("");
+
+
 
     const OnCancel_Function = () => {
         window.location.reload();
     }
+
+    useEffect(() => {
+        axios.get("https://gist.githubusercontent.com/anubhavshrimal/75f6183458db8c453306f93521e93d37/raw/f77e7598a8503f1f70528ae1cbf9f66755698a16/CountryCodes.json", {
+
+        })
+            .then((response) => (response))
+            .then((response) => (setCountryDtls(response.data)))
+            .catch(error => {
+                console.log(error);
+            });
+
+    })
     const Onsubmit_Function = () => {
         if (!emailidvld) {
             alert('Enter E-mailId')
             return false;
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(emailidvld)) {
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[com]{2,4}$/i.test(emailidvld)) {
             alert('Enter Valid Email(@.)')
             return false;
         }
         else if (passwordvld.length < 7) {
             alert('Enter Password');
             return false;
+        } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/.test(passwordvld)) {
+            alert('Enter valid Password');
+            return false;
         }
         else if (usernamevld === '') {
             alert("Enter Username");
+            return false;
+        }
+        else if (!/^[a-zA-Z0-9_]*$"/.test(passwordvld)) {
+            alert('Enter valid Username');
             return false;
         }
         else if (firstnamevld === '') {
@@ -42,17 +66,17 @@ const SignUpPage = () => {
             alert("Enter Address");
             return false;
         }
-        else if (cityvld === '') {
-            alert("Select City");
+        else if (countryDtls === '') {
+            alert("Select Country");
             return false;
         }
 
-        else if (zipcodevld.length < 6) {
+        else if (zipcodevld.length < 6 || zipcodevld.length < 5) {
             alert("Enter Your Zipcode");
             return false;
         }
-        else if (PhoneNumbervld.length < 10) {
-            alert("Enter Phone Number");
+        else if (Phonenumber.length < 10) {
+            alert("Enter Mobile Number");
             return false;
         }
         axios.post("http://localhost:40073/api/User/Add", {
@@ -63,9 +87,9 @@ const SignUpPage = () => {
             "firstname": firstnamevld,
             "lastname": lastnamevld,
             "address": addressvld,
-            "city": cityvld,
+            "Country": countryDtls,
             "zipcode": zipcodevld,
-            "phoneNumber": PhoneNumbervld
+            "Phonenumber": Phonenumber
 
         })
             .then((response) => { JSON.stringify(response) })
@@ -142,17 +166,16 @@ const SignUpPage = () => {
                                         <textarea onChange={(e) => setAddressvld(e.target.value)} value={addressvld} placeholder="Enter Address" className="form-control" />
                                     </div>
                                     <div className="form-group">
-                                        <label>City</label><span className="errorMsg">*</span>
-                                        <select id="city" onChange={(e) => setCityvld(e.target.value)} value={cityvld} className="form-control">
-                                            <option value="Select your city">Select your City </option>
-                                            <option value="Bangalore">Bangalore</option>
-                                            <option value="Chennai">Chennai</option>
-                                            <option value="Mysore">Mysore</option>
-                                            <option value="Coimbatore">Coimbatore</option>
-                                            <option value=" Hyderabad">Hydrabad</option>
-                                            <option value=" Salem">Salem</option>
-                                            <option value=" Tanjavur">Tanjavur</option>
-                                            <option value=" Kanniyakumari">Kanniyakumari</option>
+                                        <label>Country <span className="errorMsg">*</span></label>
+
+                                        <select id="Country" onChange={(e) => setCountryDtls(e.target.value)} value={countryDtls} className="form-control">
+                                            <option defaultValue value={0}>Select Country</option>
+                                            {countryDtls.map((country, i) => {
+                                                return (
+                                                    <option value={country.dial_code} value2={country.name} key={i}>{country.name}</option>
+                                                )
+                                            }
+                                            )}
                                         </select>
                                     </div>
                                     <div className="form-group">
@@ -160,8 +183,8 @@ const SignUpPage = () => {
                                         <input type="number" onChange={(e) => setZipcodevld(e.target.value)} value={zipcodevld} placeholder="Enter ZipCode" className="form-control" />
                                     </div>
                                     <div className="form-group">
-                                        <label>PhoneNumber <span className="errorMsg">*</span></label>
-                                        <input type="number" onChange={(e) => setphoneNumvervld(e.target.value)} value={PhoneNumbervld} maxLength="10" placeholder="Enter PhoneNumber" className="form-control" />
+                                        <label>Mobile Number <span className="errorMsg">*</span></label>
+                                        <PhoneInput type="text" maxLength="10" onKeyPress={(e) => setPhonenumber(e.target.value)} placeholder="Enter Mobile Number" className="form-control" />
                                     </div>
                                     <input type="button" value="Submit" className="btn btn-primary" onClick={() => Onsubmit_Function()}></input>{"   "}
                                     <input href="/" type="button" value="Cancel" className="btn btn-primary" onClick={() => OnCancel_Function()}></input>
@@ -172,7 +195,9 @@ const SignUpPage = () => {
                 </div>
             </div>
         </div>
-
     )
 }
 export default SignUpPage;
+
+
+
